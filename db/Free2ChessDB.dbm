@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="16"
+	 default-schema="public" default-owner="postgres">
+<database name="Free2chess" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="User" layer="0" collapse-mode="2" max-obj-count="14" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="20"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="password">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="salt">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="elo">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="level">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="exp">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="subscribed">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="subs_date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="paypal_id">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="coins">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="diamonds">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="User_pk" type="pk-constr" table="public.&quot;User&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Game" layer="0" collapse-mode="2" max-obj-count="1" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="140" y="320"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Game_pk" type="pk-constr" table="public.&quot;Game&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Booster" layer="0" collapse-mode="2" pagination="true" attribs-page="0" ext-attribs-page="0" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="240" y="740"/>
+</table>
+
+<table name="Product" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="920" y="360"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="price">
+		<type name="money" length="0"/>
+	</column>
+	<column name="rarity">
+		<type name="char" length="1"/>
+	</column>
+	<column name="purchases">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="discount_perc">
+		<type name="float" length="0"/>
+	</column>
+	<constraint name="Product_pk" type="pk-constr" table="public.&quot;Product&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="GameState" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="500"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="moveString">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="GameState_pk" type="pk-constr" table="public.&quot;GameState&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_Game" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="Game_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="Emoji" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1460" y="740"/>
+</table>
+
+<table name="Achievement" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="360"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="exp_reward">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="coin_reward">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Achievement_pk" type="pk-constr" table="public.&quot;Achievement&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="740"/>
+</table>
+
+<table name="PieceSkinSet" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1140" y="740"/>
+</table>
+
+<table name="PieceSkin" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="740" y="740"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="PieceSkin_pk" type="pk-constr" table="public.&quot;PieceSkin&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="PendingGames" layer="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1400" y="440"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="PendingGames_pk" type="pk-constr" table="public.&quot;PendingGames&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Tournament" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1400" y="200"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="min_elo">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="max_elo">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Tournament_pk" type="pk-constr" table="public.&quot;Tournament&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Booster_inherits_Product" type="relgen" layer="0"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#aac875"
+	 src-table="public.&quot;Booster&quot;"
+	 dst-table="public.&quot;Product&quot;">
+	<label ref-type="name-label">
+		<position x="-14.9793" y="-7.22108"/>
+	</label>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<relationship name="BoardSkin_inherits_Product" type="relgen" layer="0"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#393035"
+	 src-table="public.&quot;BoardSkin&quot;"
+	 dst-table="public.&quot;Product&quot;">
+	<label ref-type="name-label">
+		<position x="-7.97925" y="12.3349"/>
+	</label>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<relationship name="PieceSkinSet_inherits_Product" type="relgen" layer="0"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#e56b95"
+	 src-table="public.&quot;PieceSkinSet&quot;"
+	 dst-table="public.&quot;Product&quot;">
+	<label ref-type="name-label">
+		<position x="23.1073" y="-6.40168"/>
+	</label>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<relationship name="Emoji_inherits_Product" type="relgen" layer="0"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#8305d6"
+	 src-table="public.&quot;Emoji&quot;"
+	 dst-table="public.&quot;Product&quot;">
+	<label ref-type="name-label">
+		<position x="26.5754" y="12.5563"/>
+	</label>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<relationship name="TournamentGame" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e42ac7"
+	 src-table="public.&quot;Tournament&quot;"
+	 dst-table="public.&quot;PendingGames&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-0.514457" y="-18.5323"/>
+	</label>
+</relationship>
+
+<relationship name="GameMoves" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d02990"
+	 src-table="public.&quot;Game&quot;"
+	 dst-table="public.&quot;GameState&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-13.6249" y="-28.5323"/>
+	</label>
+</relationship>
+
+<relationship name="PurchasedProduct" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#237721"
+	 src-table="public.&quot;User&quot;"
+	 dst-table="public.&quot;Product&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="PurchasedProduct">
+	<label ref-type="name-label">
+		<position x="31.5178" y="-17.3323"/>
+	</label>
+</relationship>
+
+<relationship name="CompletedAchivement" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#420df7"
+	 src-table="public.&quot;Achievement&quot;"
+	 dst-table="public.&quot;User&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="CompletedAchivement">
+	<label ref-type="name-label">
+		<position x="-16.2788" y="-17.3323"/>
+	</label>
+</relationship>
+
+<relationship name="PlayedGame" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#49ea26"
+	 src-table="public.&quot;Game&quot;"
+	 dst-table="public.&quot;User&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="PlayedGame">
+	<label ref-type="name-label">
+		<position x="-1.59424" y="-25.7741"/>
+	</label>
+</relationship>
+
+<relationship name="JoinedTournament" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#05e2e9"
+	 src-table="public.&quot;Tournament&quot;"
+	 dst-table="public.&quot;User&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="JoinedTournament">
+	<label ref-type="name-label">
+		<position x="14.0451" y="-27.0762"/>
+	</label>
+</relationship>
+
+<relationship name="ProductReward" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#f6a902"
+	 src-table="public.&quot;Achievement&quot;"
+	 dst-table="public.&quot;Product&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="ProductReward">
+	<label ref-type="name-label">
+		<position x="-7.31299" y="-27.6177"/>
+	</label>
+</relationship>
+
+<relationship name="PieceSkinSet_has_many_PieceSkin" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f9f352"
+	 src-table="public.&quot;PieceSkinSet&quot;"
+	 dst-table="public.&quot;PieceSkin&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="3.52168" y="-7.16484"/>
+	</label>
+</relationship>
+
+<relationship name="PieceSkin_inherits_Product" type="relgen" layer="0"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#e1076f"
+	 src-table="public.&quot;PieceSkin&quot;"
+	 dst-table="public.&quot;Product&quot;"/>
+
+<relationship name="GamesToAccept" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#fc0f16"
+	 src-table="public.&quot;User&quot;"
+	 dst-table="public.&quot;PendingGames&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="GamesToAccept">
+	<label ref-type="name-label">
+		<position x="27.0451" y="-30.6236"/>
+	</label>
+</relationship>
+
+</dbmodel>
