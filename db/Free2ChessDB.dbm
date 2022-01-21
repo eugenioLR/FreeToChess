@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="16"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="6,0" last-zoom="1" max-obj-count="16"
 	 default-schema="public" default-owner="postgres">
 <database name="Free2chess" is-template="false" allow-conns="true">
 </database>
@@ -77,7 +77,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Product" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="920" y="360"/>
+	<position x="940" y="360"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -136,7 +136,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Achievement" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="480" y="360"/>
+	<position x="440" y="400"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -310,7 +310,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"
 	 table-name="CompletedAchivement">
 	<label ref-type="name-label">
-		<position x="-16.2788" y="-17.3323"/>
+		<position x="-11.4541" y="-22.7285"/>
 	</label>
 </relationship>
 
@@ -325,7 +325,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"
 	 table-name="PlayedGame">
 	<label ref-type="name-label">
-		<position x="-1.59424" y="-25.7741"/>
+		<position x="-5.09424" y="-25.7125"/>
 	</label>
 </relationship>
 
