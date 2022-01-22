@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="6,0" last-zoom="1" max-obj-count="16"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="39,0" last-zoom="1" max-obj-count="19"
 	 default-schema="public" default-owner="postgres">
 <database name="Free2chess" is-template="false" allow-conns="true">
 </database>
@@ -88,7 +88,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="text" length="0"/>
 	</column>
 	<column name="price">
-		<type name="money" length="0"/>
+		<type name="numeric" length="0"/>
 	</column>
 	<column name="rarity">
 		<type name="char" length="1"/>
@@ -127,10 +127,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</customidxs>
 </table>
 
-<table name="Emoji" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<table name="Emoji" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="1460" y="740"/>
+	<column name="texture_path">
+		<type name="varchar" length="150"/>
+	</column>
+
+	<customidxs object-type="constraint">
+		<object name="Emoji_pk" index="0"/>
+	</customidxs>
 </table>
 
 <table name="Achievement" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
@@ -157,34 +164,52 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="480" y="740"/>
+	<column name="texture_path">
+		<type name="varchar" length="150"/>
+	</column>
+
+	<customidxs object-type="constraint">
+		<object name="BoardSkin_pk" index="0"/>
+	</customidxs>
 </table>
 
 <table name="PieceSkinSet" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1140" y="740"/>
+	<position x="1140" y="760"/>
 </table>
 
-<table name="PieceSkin" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="PieceSkin" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="740" y="740"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
+	<column name="texture_path">
+		<type name="varchar" length="150"/>
+	</column>
 	<constraint name="PieceSkin_pk" type="pk-constr" table="public.&quot;PieceSkin&quot;">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_PieceSkinSet" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="PieceSkinSet_fk" index="1"/>
+	</customidxs>
 </table>
 
 <table name="PendingGames" layer="0" collapse-mode="2" max-obj-count="2" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1400" y="440"/>
+	<position x="1400" y="220"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -196,7 +221,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Tournament" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1400" y="200"/>
+	<position x="1420" y="0"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -368,7 +393,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;PieceSkin&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="3.52168" y="-7.16484"/>
+		<position x="13.5217" y="-12.0834"/>
 	</label>
 </relationship>
 
@@ -392,5 +417,34 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<position x="27.0451" y="-30.6236"/>
 	</label>
 </relationship>
+
+<table name="ProductPack" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1480" y="420"/>
+	<column name="pack_id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="ProductPack_pk" type="pk-constr" table="public.&quot;ProductPack&quot;">
+		<columns names="pack_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="ProductPack_inherits_Product" type="relgen" layer="0"
+	 pk-pattern="{dt}_pk"
+	 custom-color="#8b9359"
+	 src-table="public.&quot;ProductPack&quot;"
+	 dst-table="public.&quot;Product&quot;"/>
+
+<relationship name="PackContents" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#aedb21"
+	 src-table="public.&quot;Product&quot;"
+	 dst-table="public.&quot;ProductPack&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="many_Product_has_many_ProductPack"/>
 
 </dbmodel>

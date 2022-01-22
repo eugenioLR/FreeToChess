@@ -53,7 +53,7 @@ CREATE TABLE public."Booster" (
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price money,
+-- 	price numeric,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -71,7 +71,7 @@ CREATE TABLE public."Product" (
 	id smallint NOT NULL,
 	name varchar(50),
 	description text,
-	price money,
+	price numeric,
 	rarity char(1),
 	purchases smallint,
 	discount_perc float,
@@ -98,11 +98,12 @@ ALTER TABLE public."GameState" OWNER TO postgres;
 -- object: public."Emoji" | type: TABLE --
 -- DROP TABLE IF EXISTS public."Emoji" CASCADE;
 CREATE TABLE public."Emoji" (
+	texture_path varchar(150),
 
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price money,
+-- 	price numeric,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -132,11 +133,12 @@ ALTER TABLE public."Achievement" OWNER TO postgres;
 -- object: public."BoardSkin" | type: TABLE --
 -- DROP TABLE IF EXISTS public."BoardSkin" CASCADE;
 CREATE TABLE public."BoardSkin" (
+	texture_path varchar(150),
 
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price money,
+-- 	price numeric,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -155,7 +157,7 @@ CREATE TABLE public."PieceSkinSet" (
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price money,
+-- 	price numeric,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -172,10 +174,11 @@ ALTER TABLE public."PieceSkinSet" OWNER TO postgres;
 CREATE TABLE public."PieceSkin" (
 	id smallint NOT NULL,
 	"id_PieceSkinSet" smallint,
+	texture_path varchar(150),
 
 -- 	name varchar(50),
 -- 	description text,
--- 	price money,
+-- 	price numeric,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -375,6 +378,50 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ALTER TABLE public."GamesToAccept" DROP CONSTRAINT IF EXISTS "PendingGames_fk" CASCADE;
 ALTER TABLE public."GamesToAccept" ADD CONSTRAINT "PendingGames_fk" FOREIGN KEY ("id_PendingGames")
 REFERENCES public."PendingGames" (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public."ProductPack" | type: TABLE --
+-- DROP TABLE IF EXISTS public."ProductPack" CASCADE;
+CREATE TABLE public."ProductPack" (
+	pack_id smallint NOT NULL,
+
+-- 	id smallint NOT NULL,
+-- 	name varchar(50),
+-- 	description text,
+-- 	price numeric,
+-- 	rarity char(1),
+-- 	purchases smallint,
+-- 	discount_perc float,
+	CONSTRAINT "ProductPack_pk" PRIMARY KEY (pack_id)
+
+)
+ INHERITS(public."Product");
+-- ddl-end --
+ALTER TABLE public."ProductPack" OWNER TO postgres;
+-- ddl-end --
+
+-- object: public."many_Product_has_many_ProductPack" | type: TABLE --
+-- DROP TABLE IF EXISTS public."many_Product_has_many_ProductPack" CASCADE;
+CREATE TABLE public."many_Product_has_many_ProductPack" (
+	"id_Product" smallint NOT NULL,
+	"pack_id_ProductPack" smallint NOT NULL,
+	CONSTRAINT "many_Product_has_many_ProductPack_pk" PRIMARY KEY ("id_Product","pack_id_ProductPack")
+
+);
+-- ddl-end --
+
+-- object: "Product_fk" | type: CONSTRAINT --
+-- ALTER TABLE public."many_Product_has_many_ProductPack" DROP CONSTRAINT IF EXISTS "Product_fk" CASCADE;
+ALTER TABLE public."many_Product_has_many_ProductPack" ADD CONSTRAINT "Product_fk" FOREIGN KEY ("id_Product")
+REFERENCES public."Product" (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: "ProductPack_fk" | type: CONSTRAINT --
+-- ALTER TABLE public."many_Product_has_many_ProductPack" DROP CONSTRAINT IF EXISTS "ProductPack_fk" CASCADE;
+ALTER TABLE public."many_Product_has_many_ProductPack" ADD CONSTRAINT "ProductPack_fk" FOREIGN KEY ("pack_id_ProductPack")
+REFERENCES public."ProductPack" (pack_id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
