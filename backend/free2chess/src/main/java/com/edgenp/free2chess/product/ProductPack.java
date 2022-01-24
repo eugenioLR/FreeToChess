@@ -6,6 +6,7 @@
 
 package com.edgenp.free2chess.product;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -16,8 +17,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"ProductPack\"")
 public class ProductPack extends Product{
-    //@ManyToMany(mappedBy = "None")
-    //private Set<Product> contents;
+
+    @ManyToMany
+    private final Set<Product> contents = new HashSet<>();
+    
+    public ProductPack() {
+    }
+    
+    @Override
+    public void increasePurchases(){
+        this.purchases++;
+        for(Product p : this.contents){
+           p.increasePurchases();
+        }
+    }
+    
     
     
 }

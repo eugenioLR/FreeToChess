@@ -14,10 +14,22 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"PieceSkin\"")
-public class PieceSkin extends Skin{
+public class PieceSkin extends Skin{    
+    @ManyToOne
+    @JoinColumn(name = "\"id_PieceSkinSet\"")
+    private PieceSkinSet skinSet;
+
     private String texture_path;
     
-    //@ManyToOne
-    //@JoinColumn(name = "id_PieceSkinSet")
-    //private PieceSkinSet skinSet;
+    public PieceSkin() {
+        super();
+    }
+    
+    public String getTexture_path() {
+        return texture_path;
+    }
+
+    public void setTexture_path(String texture_path) {
+        this.texture_path = texture_path;
+    }
 }

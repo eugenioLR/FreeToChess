@@ -6,16 +6,25 @@
 
 package com.edgenp.free2chess.store;
 
-import com.edgenp.free2chess.product.Product;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import com.edgenp.free2chess.user.User;
 
 /**
  *
  * @author eugeniolr
  */
 public class Store {
+
+    private static final PaySysAbs paySystem = new PaySysProxy();
+     
+    private Store() {
+    }
+
+    public static Store getInstance() {
+        return new Store();
+    }
+
+    public void doPayment(User user, double price) {
+        paySystem.makePurchase(user.getPaypal_id(), price);
+    }
 
 }

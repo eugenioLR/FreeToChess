@@ -11,10 +11,5 @@ package com.edgenp.free2chess.user;
  * @author eugeniolr
  */
 public class UserBasic extends User{
-    public UserBasic(String name, String password, String salt, int paypal_id) {
-        this.name = name;
-        this.password = password;
-        this.salt = salt;
-        this.paypal_id = paypal_id;
-    }
+    
 }

@@ -6,10 +6,12 @@
 
 package com.edgenp.free2chess.product;
 
+import com.edgenp.free2chess.user.User;
+
 /**
  *
  * @author eugeniolr
  */
 public interface ProductInterf {
-
+    public void buyItem(User user);
 }

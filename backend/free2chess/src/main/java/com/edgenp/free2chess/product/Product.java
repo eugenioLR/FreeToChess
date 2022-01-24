@@ -6,6 +6,8 @@
 
 package com.edgenp.free2chess.product;
 
+import com.edgenp.free2chess.store.Store;
+import com.edgenp.free2chess.user.User;
 import javax.persistence.*;
 import java.io.Serializable;
 /**
@@ -23,7 +25,7 @@ public class Product implements ProductInterf, Serializable{
     private String description;
     private double price;
     private char rarity;
-    private long purchases;
+    protected long purchases;
     private float discount_perc;
 
     public Product() {
@@ -58,7 +60,7 @@ public class Product implements ProductInterf, Serializable{
     }
 
     public double getPrice() {
-        return price;
+        return ((double) Math.round(price*100))/100.00;
     }
 
     public char getRarity() {
@@ -75,6 +77,16 @@ public class Product implements ProductInterf, Serializable{
     
     public void increasePurchases(){
         this.purchases++;
+    }
+
+    @Override
+    public void buyItem(User user) {
+        Store store = Store.getInstance();
+        double finalPrice =  this.price * (1 - this.discount_perc);
+        finalPrice = ((double) Math.round(finalPrice*100))/100.00;
+        store.doPayment(user, finalPrice);
+        this.increasePurchases();
+        System.out.println(this.purchases);
     }
 
 

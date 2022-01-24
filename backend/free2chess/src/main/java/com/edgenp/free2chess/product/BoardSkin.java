@@ -16,5 +16,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "\"BoardSkin\"")
 public class BoardSkin extends Skin{
+    
     private String texture_path;
+    
+    public BoardSkin() {
+        super();
+    }
+    
+    public String getTexture_path() {
+        return texture_path;
+    }
+
+    public void setTexture_path(String texture_path) {
+        this.texture_path = texture_path;
+    }
 }

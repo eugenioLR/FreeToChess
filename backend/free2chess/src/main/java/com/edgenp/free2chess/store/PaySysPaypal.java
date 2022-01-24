@@ -10,6 +10,25 @@ package com.edgenp.free2chess.store;
  *
  * @author eugeniolr
  */
-public class PaySysPaypal {
+public class PaySysPaypal implements PaySysAbs{
 
+    public PaySysPaypal() {
+    }
+    
+    private boolean paypalId_is_valid(int paypalId){
+        return paypalId >= 0;
+    }
+    
+    private void doPayment(int paypalId, double amount){
+        System.out.println("User with paypalID [" + paypalId + "] made a transaction of " + amount + " $");
+    }
+
+    @Override
+    public boolean makePurchase(int paypalId, double amount) {
+        boolean successful;
+        if(successful = paypalId_is_valid(paypalId)){
+            doPayment(paypalId, amount);
+        }
+        return successful;
+    }    
 }

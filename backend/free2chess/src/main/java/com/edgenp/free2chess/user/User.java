@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"User\"")
-public abstract class User implements UserInterf{
+public class User implements UserInterf{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,6 +33,13 @@ public abstract class User implements UserInterf{
 
     
     public User() {
+    }
+    
+    public User(String name, String password, String salt, int paypal_id) {
+        this.name = name;
+        this.password = password;
+        this.salt = salt;
+        this.paypal_id = paypal_id;
     }
 
     public Integer getId() {
@@ -130,4 +137,11 @@ public abstract class User implements UserInterf{
     public void setDiamonds(int diamonds) {
         this.diamonds = diamonds;
     }    
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name=" + name + ", password=" + password + ", salt=" + salt + ", elo=" + elo + ", level=" + level + ", exp=" + exp + ", subscribed=" + subscribed + ", subs_date=" + subs_date + ", paypal_id=" + paypal_id + ", coins=" + coins + ", diamonds=" + diamonds + '}';
+    }
+    
+    
 }

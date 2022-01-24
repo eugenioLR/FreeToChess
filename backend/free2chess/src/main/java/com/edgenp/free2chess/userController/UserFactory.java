@@ -19,6 +19,9 @@ import java.security.NoSuchAlgorithmException;
  * @author eugeniolr
  */
 public class UserFactory {
+    public UserFactory() {
+    }
+    
     public User createUser(String name, String password, int paypal_id){
         Random rand = new Random();
         
@@ -28,7 +31,7 @@ public class UserFactory {
         
         String pass_hashed = encryptPass(password + salt);
         
-        User user = new UserBasic(name, pass_hashed, salt, paypal_id);
+        User user = new User(name, pass_hashed, salt, paypal_id);
         
         return user;
     }

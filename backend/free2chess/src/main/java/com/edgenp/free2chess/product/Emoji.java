@@ -17,4 +17,16 @@ import javax.persistence.Table;
 @Table(name = "\"Emoji\"")
 public class Emoji extends Product{
     private String texture_path;
+
+    public Emoji() {
+        super();
+    }
+
+    public String getTexture_path() {
+        return texture_path;
+    }
+
+    public void setTexture_path(String texture_path) {
+        this.texture_path = texture_path;
+    }
 }

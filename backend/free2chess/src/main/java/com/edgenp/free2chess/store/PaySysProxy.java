@@ -10,6 +10,12 @@ package com.edgenp.free2chess.store;
  *
  * @author eugeniolr
  */
-public class PaySysProxy {
+public class PaySysProxy implements PaySysAbs{
+
+    @Override
+    public boolean makePurchase(int paypal_id, double amount) {
+        PaySysPaypal realSystem = new PaySysPaypal();
+        return realSystem.makePurchase(paypal_id, amount);
+    }
 
 }

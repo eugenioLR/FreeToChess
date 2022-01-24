@@ -5,8 +5,10 @@
 package com.edgenp.free2chess.storeController;
 
 import com.edgenp.free2chess.product.*;
+import com.edgenp.free2chess.user.*;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -77,9 +79,11 @@ public class StoreController {
         return prodPackServ.getAll();
     }
     
-    @PutMapping("/store")
+    @PostMapping(value = "/store", produces = MediaType.TEXT_PLAIN_VALUE)
     public void updateProduct(@RequestBody Product prod){
-        prodServ.update(prod);
+        Product prodReal = this.getProducts(prod.getId());
+        prodReal.buyItem(new User("none", "none", "none", 0));
+        prodServ.update(prodReal);
     }
     
     

@@ -17,4 +17,8 @@ import javax.persistence.Table;
 @Table(name = "\"Booster\"")
 public class Booster extends Product{
 
+    public Booster() {
+        super();
+    }
+
 }

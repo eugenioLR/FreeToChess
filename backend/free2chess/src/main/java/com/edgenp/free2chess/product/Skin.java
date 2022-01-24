@@ -11,5 +11,5 @@ package com.edgenp.free2chess.product;
  * @author eugeniolr
  */
 public abstract class Skin extends Product{
-
+    
 }

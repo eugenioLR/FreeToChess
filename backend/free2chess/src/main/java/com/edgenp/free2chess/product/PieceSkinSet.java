@@ -6,6 +6,7 @@
 
 package com.edgenp.free2chess.product;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -16,16 +17,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"PieceSkinSet\"")
 public class PieceSkinSet extends Product{
+    
+    @OneToMany
+    private final Set<PieceSkin> pieceSkins = new HashSet<>();
+    
     /*
-    @OneToMany(targetEntity = PieceSkin.class)
-    private Set<PieceSkin> pieceSkins;
-
-    public Set<PieceSkin> getPieceSkins() {
+    public Set<PieceSkin> obtainContents(){
         return pieceSkins;
     }
-
-    public void setPieceSkins(Set<PieceSkin> pieceSkins) {
-        this.pieceSkins = pieceSkins;
-    }
     */
+    
+    @Override
+    public void increasePurchases(){
+        this.purchases++;
+        for(Product p : this.pieceSkins){
+           p.increasePurchases();
+        }
+    }
+    
 }
