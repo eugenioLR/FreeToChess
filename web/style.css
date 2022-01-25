@@ -54,7 +54,7 @@ nav {
 .square {
   width: 9vh;
   height: 9vh;
-  margin: -3px; 
+  margin: -3px;
   display: inline-block;
 }
 
@@ -141,6 +141,51 @@ nav {
   border: 1px solid rgb(236, 196, 62);
 }
 
+.productA {
+    position: relative;
+    width: 27vh;
+    height: 15vh;
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 80%,rgb(255, 100, 0) 0%);
+    border: 1px solid rgb(255, 100, 0);
+
+}
+
+.productB {
+    position: relative;
+    width: 27vh;
+    height: 15vh;
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 80%, rgb(100, 70, 150) 0%);
+    border: 1px solid rgb(100, 70, 150);
+
+}
+
+.productC {
+    position: relative;
+    width: 27vh;
+    height: 15vh;
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 80%,rgb(0, 130, 236) 0%);
+    border: 1px solid rgb(0, 130, 236);
+
+}
+
+.productD {
+    position: relative;
+    width: 27vh;
+    height: 15vh;
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 80%,rgb(0, 218, 97) 0%);
+    border: 1px solid rgb(0, 218, 97);
+}
+
+.productF {
+    position: relative;
+    width: 27vh;
+    height: 15vh;
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 80%,rgb(97, 97, 97) 0%);
+    border: 1px solid rgb(97, 97, 97);
+
+}
+
+
 .discount {
   position: absolute;
   font-size: 2vh;
@@ -153,6 +198,7 @@ nav {
 .description {
   position:absolute;
   font-family: "Montserrat", sans-serif;
+  font-size: 1.2vh;
   left: 8vh;
   top: 3vh;
   right: 5vh;
@@ -177,37 +223,3 @@ nav {
   top: 0vh;
   right: 1vh;
 }
-
-.productA {
-  width: 10vh;
-  height: 6vh;
-
-}
-
-.productB {
-  width: 10vh;
-  height: 6vh;
-
-}
-
-.productC {
-  width: 10vh;
-  height: 6vh;
-
-}
-
-.productD {
-  width: 10vh;
-  height: 6vh;
-
-}
-
-.productF {
-  width: 10vh;
-  height: 6vh;
-  
-}
-
-
-
-
