@@ -6,10 +6,23 @@
 
 package com.edgenp.free2chess.store;
 
+import com.edgenp.free2chess.product.*;
+import java.util.*;
+
 /**
  *
  * @author eugeniolr
  */
-public class ProductConstructor {
-
+public abstract class ProductConstructor {
+    protected List<Product> packContents = new ArrayList<>();
+    protected ProductPack pack = null;
+    
+    public abstract void selectByRarity(char rarity);
+    
+    public abstract void selectAmount(int amount);
+    
+    public ProductPack getPack(){
+        return this.pack;
+    }
+    
 }

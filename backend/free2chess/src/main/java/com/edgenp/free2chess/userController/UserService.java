@@ -23,7 +23,7 @@ public class UserService {
         return userRepo.findAll();
     }
     
-    public User getById(Integer id){
+    public User getById(String id){
         Optional<User> optional = userRepo.findById(id);
         if (optional.isPresent()) {
             return optional.get();

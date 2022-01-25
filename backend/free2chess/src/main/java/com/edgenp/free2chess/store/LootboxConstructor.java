@@ -10,6 +10,14 @@ package com.edgenp.free2chess.store;
  *
  * @author eugeniolr
  */
-public class LootboxConstructor {
+public class LootboxConstructor extends ProductConstructor{
 
+    @Override
+    public void selectByRarity(char rarity) {
+    }
+
+    @Override
+    public void selectAmount(int amount) {
+    }
+    
 }

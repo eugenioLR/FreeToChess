@@ -5,6 +5,7 @@
 package com.edgenp.free2chess.storeController;
 
 import com.edgenp.free2chess.product.Product;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProductJPA extends JpaRepository<Product, Integer>{   
+
+    public List<Product> findByRarity(char rarity);
+    
 }

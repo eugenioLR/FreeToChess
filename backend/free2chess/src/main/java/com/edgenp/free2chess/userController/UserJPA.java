@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author eugeniolr
  */
 @Repository
-public interface UserJPA extends JpaRepository<User, Integer>{
-    
+public interface UserJPA extends JpaRepository<User, String>{
+    public User getById(String name);
 }

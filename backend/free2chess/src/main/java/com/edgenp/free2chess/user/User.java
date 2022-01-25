@@ -6,7 +6,9 @@
 
 package com.edgenp.free2chess.user;
 
-import java.util.Date;
+import com.edgenp.free2chess.product.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.*;
 import javax.persistence.*;
 
 /**
@@ -28,9 +30,21 @@ public class User implements UserInterf{
     protected int paypal_id;
     protected int coins;
     protected int diamonds;
+    
+    
+    
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "\"PurchasedProduct\"", 
+               joinColumns = @JoinColumn(name = "\"name_User\"", referencedColumnName = "name"), 
+               inverseJoinColumns = @JoinColumn(name = "\"id_Product\"", referencedColumnName = "id"))
+    private Set<Product> purchasedProducts = new HashSet<>();
 
     
     public User() {
+    }
+    
+    public User(String name, int paypal_id) {
     }
     
     public User(String name, String password, String salt, int paypal_id) {
@@ -127,6 +141,10 @@ public class User implements UserInterf{
     public void setDiamonds(int diamonds) {
         this.diamonds = diamonds;
     }    
+
+    public Set<Product> getPurchasedProducts() {
+        return purchasedProducts;
+    }
 
     @Override
     public String toString() {

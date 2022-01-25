@@ -25,6 +25,14 @@ public class ProductPackService {
         return prodPackRepo.findAll();
     }
     
+    public ProductPack getById(Integer id){
+        Optional<ProductPack> optional = prodPackRepo.findById(id);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
+    }
+    
     public void update(ProductPack prod){
         prodPackRepo.save(prod);
     }

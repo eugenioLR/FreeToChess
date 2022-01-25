@@ -12,8 +12,11 @@ import com.edgenp.free2chess.user.User;
  * @author eugeniolr
  */
 public class PurchaseRequest {
-    private User user;
-    private Product product;
+    private User user = new User();
+    private Product product = new Product();
+
+    public PurchaseRequest() {
+    }
 
     public PurchaseRequest(User buyer, Product prod) {
         this.user = buyer;

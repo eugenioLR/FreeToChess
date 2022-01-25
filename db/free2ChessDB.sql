@@ -7,9 +7,9 @@
 -- Database creation must be performed outside a multi lined SQL file. 
 -- These commands were put in this file only as a convenience.
 -- 
--- object: "Free2chess" | type: DATABASE --
--- DROP DATABASE IF EXISTS "Free2chess";
-CREATE DATABASE "Free2chess";
+-- object: "free2chessDB" | type: DATABASE --
+-- DROP DATABASE IF EXISTS "free2chessDB";
+CREATE DATABASE "free2chessDB";
 -- ddl-end --
 
 
@@ -45,6 +45,24 @@ CREATE TABLE public."Game" (
 ALTER TABLE public."Game" OWNER TO postgres;
 -- ddl-end --
 
+-- object: public."Product" | type: TABLE --
+-- DROP TABLE IF EXISTS public."Product" CASCADE;
+CREATE TABLE public."Product" (
+	id smallint NOT NULL,
+	name varchar(50),
+	description text,
+	c_price integer,
+	d_price integer,
+	rarity char(1),
+	purchases smallint,
+	discount_perc float,
+	CONSTRAINT "Product_pk" PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public."Product" OWNER TO postgres;
+-- ddl-end --
+
 -- object: public."Booster" | type: TABLE --
 -- DROP TABLE IF EXISTS public."Booster" CASCADE;
 CREATE TABLE public."Booster" (
@@ -63,24 +81,6 @@ CREATE TABLE public."Booster" (
  INHERITS(public."Product");
 -- ddl-end --
 ALTER TABLE public."Booster" OWNER TO postgres;
--- ddl-end --
-
--- object: public."Product" | type: TABLE --
--- DROP TABLE IF EXISTS public."Product" CASCADE;
-CREATE TABLE public."Product" (
-	id smallint NOT NULL,
-	name varchar(50),
-	description text,
-	c_price integer,
-	d_price integer,
-	rarity char(1),
-	purchases smallint,
-	discount_perc float,
-	CONSTRAINT "Product_pk" PRIMARY KEY (id)
-
-);
--- ddl-end --
-ALTER TABLE public."Product" OWNER TO postgres;
 -- ddl-end --
 
 -- object: public."GameState" | type: TABLE --
@@ -156,6 +156,7 @@ ALTER TABLE public."BoardSkin" OWNER TO postgres;
 -- object: public."PieceSkinSet" | type: TABLE --
 -- DROP TABLE IF EXISTS public."PieceSkinSet" CASCADE;
 CREATE TABLE public."PieceSkinSet" (
+	texture_path varchar(150),
 
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
@@ -171,28 +172,6 @@ CREATE TABLE public."PieceSkinSet" (
  INHERITS(public."Product");
 -- ddl-end --
 ALTER TABLE public."PieceSkinSet" OWNER TO postgres;
--- ddl-end --
-
--- object: public."PieceSkin" | type: TABLE --
--- DROP TABLE IF EXISTS public."PieceSkin" CASCADE;
-CREATE TABLE public."PieceSkin" (
-	id smallint NOT NULL,
-	"id_PieceSkinSet" smallint,
-	texture_path varchar(150),
-
--- 	name varchar(50),
--- 	description text,
--- 	c_price integer,
--- 	d_price integer,
--- 	rarity char(1),
--- 	purchases smallint,
--- 	discount_perc float,
-	CONSTRAINT "PieceSkin_pk" PRIMARY KEY (id)
-
-)
- INHERITS(public."Product");
--- ddl-end --
-ALTER TABLE public."PieceSkin" OWNER TO postgres;
 -- ddl-end --
 
 -- object: public."PendingGames" | type: TABLE --
@@ -353,13 +332,6 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE public."ProductReward" ADD CONSTRAINT "Product_fk" FOREIGN KEY ("id_Product")
 REFERENCES public."Product" (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: "PieceSkinSet_fk" | type: CONSTRAINT --
--- ALTER TABLE public."PieceSkin" DROP CONSTRAINT IF EXISTS "PieceSkinSet_fk" CASCADE;
-ALTER TABLE public."PieceSkin" ADD CONSTRAINT "PieceSkinSet_fk" FOREIGN KEY ("id_PieceSkinSet")
-REFERENCES public."PieceSkinSet" (id) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public."GamesToAccept" | type: TABLE --

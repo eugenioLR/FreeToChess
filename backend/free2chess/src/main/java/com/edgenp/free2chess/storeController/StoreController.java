@@ -6,7 +6,8 @@ package com.edgenp.free2chess.storeController;
 
 import com.edgenp.free2chess.product.*;
 import com.edgenp.free2chess.user.*;
-import java.util.List;
+import com.edgenp.free2chess.userController.UserService;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class StoreController {
     private BoardSkinService boardSkinServ;
     
     @Autowired
-    private PieceSkinService pieceSkinServ;
-    
-    @Autowired
     private PieceSkinSetService pieceSkinSetServ;
     
     @Autowired
     private ProductPackService prodPackServ;
+    
+    @Autowired
+    private UserService userServ;
     
     @GetMapping("/store/{id}")
     public Product getProducts(@PathVariable("id") Integer id){
@@ -65,36 +66,39 @@ public class StoreController {
         return boardSkinServ.getAll();
     }
     
-    @GetMapping("/store/pieceSkins")
-    public List<PieceSkin> getPieceSkins(){
-        return pieceSkinServ.getAll();
-    }
-    
     @GetMapping("/store/pieceSkinSets")
     public List<PieceSkinSet> getPieceSkinSets(){
         return pieceSkinSetServ.getAll();
     }
     
-    @GetMapping("/store/productPacks")
+    @GetMapping("/store/packs")
     public List<ProductPack> getProductPacks(){
         return prodPackServ.getAll();
     }
     
+    @GetMapping("/store/packs/{id}/contents")
+    public List<Product> getProductPacks(@PathVariable("id") Integer id){
+        return new ArrayList<>(prodPackServ.getById(id).getContents());
+    }
     
+    /*
     @PostMapping(value = "/store/dummy", produces = MediaType.TEXT_PLAIN_VALUE)
     public void updateDummyProduct(@RequestBody Product prod){
         Product prodReal = this.getProducts(prod.getId());
         prodReal.buyItem(new User("none", "none", "none", 0));
         prodServ.update(prodReal);
-    }
+    }*/
     
-    @PostMapping(value = "/store")
-    public void updateProduct(@RequestBody PurchaseRequest pr){
-        System.out.println(pr.getBuyer());
-        System.out.println(pr.getProd());
-        Product prodReal = this.getProducts(pr.getProd().getId());
-        prodReal.buyItem(pr.getBuyer());
-        prodServ.update(prodReal);
+    @PostMapping(value = "/store/buy", produces = MediaType.TEXT_PLAIN_VALUE)
+    public void updateProduct(@RequestParam String name, @RequestBody Product prod){
+        User user = this.userServ.getById(name);
+        if(user != null){
+            Product prodReal = this.getProducts(prod.getId());
+
+            prodReal.buyItem(user);
+            prodServ.update(prodReal);
+        }else{
+            System.out.println("The user with name \"" + name + "\" was not found.");
+        }
     }
-    
 }

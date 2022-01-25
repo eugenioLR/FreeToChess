@@ -24,6 +24,10 @@ public class ProductService {
         return prodRepo.findAll();
     }
     
+    public List<Product> getByRarity(char rarity){
+        return prodRepo.findByRarity(rarity);
+    }
+    
     public Product getById(Integer id){
         Optional<Product> optional = prodRepo.findById(id);
         if (optional.isPresent()) {

@@ -6,6 +6,7 @@
 
 package com.edgenp.free2chess.product;
 
+import com.fasterxml.jackson.annotation.*;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -17,11 +18,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"ProductPack\"")
 public class ProductPack extends Product{
-
+            
+    @JsonIgnore
     @ManyToMany
-    private final Set<Product> contents = new HashSet<>();
+    @JoinTable(name = "\"PackContents\"", 
+               joinColumns = @JoinColumn(name = "\"id_Product\"", referencedColumnName = "id"), 
+               inverseJoinColumns = @JoinColumn(name = "\"id_ProductPack\"", referencedColumnName = "id"))
+    private Set<Product> contents = new HashSet<>();
     
     public ProductPack() {
+    }
+
+    public Set<Product> getContents() {
+        return contents;
     }
     
     @Override
@@ -30,8 +39,5 @@ public class ProductPack extends Product{
         for(Product p : this.contents){
            p.increasePurchases();
         }
-    }
-    
-    
-    
+    }    
 }

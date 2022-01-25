@@ -4,7 +4,10 @@
  */
 package com.edgenp.free2chess.userController;
 
+import com.edgenp.free2chess.product.Product;
+import com.edgenp.free2chess.storeController.ProductService;
 import com.edgenp.free2chess.user.*;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,23 +22,43 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userServ;
+    
+    @Autowired
+    private ProductService prodServ;
 
     @GetMapping("/users")
     public List<User> getAll(){
         return userServ.getAll();
     }
     
+    @GetMapping("/users/{id}/products")
+    public List<Product> getUserProducts(@PathVariable("id") String id){
+        User user = userServ.getById(id);
+        return new ArrayList<>(user.getPurchasedProducts());
+    }
+    
     @GetMapping("/users/{id}")
-    public User getById(@PathVariable("id") Integer id){
+    public User getById(@PathVariable("id") String id){
         return userServ.getById(id);
     }
     
     @PostMapping(value = "/users", produces = MediaType.TEXT_PLAIN_VALUE)
-    public void create(@RequestBody User user){
-        UserFactory userFactory = new UserFactory();
-        User userFinal = userFactory.createUser(user.getName(), user.getPassword(), user.getPaypal_id());
-        
-        System.out.println(userFinal.toString());
-        userServ.create(userFinal);
+    public void create(@RequestBody User user) throws ExistingUserException{
+        if(this.getById(user.getName()) == null){
+            UserFactory userFactory = new UserFactory();
+            User userFinal = userFactory.createUser(user.getName(), user.getPassword(), user.getPaypal_id());
+
+            System.out.println(userFinal.toString());
+            userServ.create(userFinal);
+        }else{
+            throw new ExistingUserException(user.getName());
+        }
+    }
+}
+
+
+class ExistingUserException extends Exception { 
+    public ExistingUserException(String username) {
+        super("The user \"" + username + "\" already exists");
     }
 }
