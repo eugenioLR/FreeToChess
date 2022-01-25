@@ -52,10 +52,9 @@ nav {
 }
 
 .square {
-  width: 70px;
-  height: 70px;
-  border: 1.5px solid black;
-  margin: -3px;
+  width: 9vh;
+  height: 9vh;
+  margin: -3px; 
   display: inline-block;
 }
 
@@ -66,3 +65,149 @@ nav {
 .square.dark-box {
   background-color: #5d4954;
 }
+
+.lootbox {
+  width: 100%;
+  height: 30vh;
+  background-color: pink;
+}
+
+.grandmaster-card {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  background-color: yellow;
+}
+
+.product-pack {
+  width: 100%;
+  height: 40vh;
+  background-color: white;
+}
+
+.piece-set {
+  width: 100%;
+  height: 40vh;
+  background-color: aquamarine;
+}
+
+.board-set {
+  width: 100%;
+  height: 40vh;
+  background-color: burlywood;
+}
+
+.boosters {
+  width: 100%;
+  height: 40vh;
+  background-color: wheat;
+}
+
+.emoji {
+  width: 100%;
+  height: 40vh;
+  background-color: purple;
+}
+
+.producticon {
+  position: absolute;
+  width: 6vh;
+  height: auto;
+  top: 3vh;
+  left: 1vh;
+}
+
+.purchasebutton {
+  position: absolute;
+  width: 100%;
+  height: 2.2vh;
+  border: none;
+  bottom: 0;
+  font-size: 1.2vh;
+}
+
+.producttitle {
+  position: abosolute;
+  font-size: 1.8vh;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.productS {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 80%,rgb(255, 218, 97) 0%);
+  border: 1px solid rgb(236, 196, 62);
+}
+
+.discount {
+  position: absolute;
+  font-size: 2vh;
+  top: 9.2vh;
+  right: 8vh;
+  color: red;
+  font-weight: bold;
+}
+
+.description {
+  position:absolute;
+  font-family: "Montserrat", sans-serif;
+  left: 8vh;
+  top: 3vh;
+  right: 5vh;
+}
+
+.price{
+  position: absolute;
+  font-size: 2vh;
+  top: 9.2vh;
+  left: 8vh;
+}
+
+.diamond {
+  position: absolute;
+  width: 2vh;
+  height: auto;
+}
+
+.rarity {
+  position: absolute;
+  font-size: 2vh;
+  top: 0vh;
+  right: 1vh;
+}
+
+.productA {
+  width: 10vh;
+  height: 6vh;
+
+}
+
+.productB {
+  width: 10vh;
+  height: 6vh;
+
+}
+
+.productC {
+  width: 10vh;
+  height: 6vh;
+
+}
+
+.productD {
+  width: 10vh;
+  height: 6vh;
+
+}
+
+.productF {
+  width: 10vh;
+  height: 6vh;
+  
+}
+
+
+
+
