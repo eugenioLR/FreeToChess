@@ -143,11 +143,17 @@ nav {
   font-family: "Montserrat", sans-serif;
 }
 
+.section-title {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3vh;
+}
+
 .productS {
   position: relative;
   width: 27vh;
   height: 15vh;
-  background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 90%,rgb(255, 218, 97) 0%);
+  background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 88%,rgb(255, 218, 97) 0%);
   border: 1px solid rgb(236, 196, 62);
 }
 
@@ -155,7 +161,7 @@ nav {
     position: relative;
     width: 27vh;
     height: 15vh;
-    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 90%,rgb(255, 100, 0) 0%);
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 88%,rgb(255, 100, 0) 0%);
     border: 1px solid rgb(255, 100, 0);
 
 }
@@ -164,7 +170,7 @@ nav {
     position: relative;
     width: 27vh;
     height: 15vh;
-    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 90%, rgb(100, 70, 150) 0%);
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 88%, rgb(100, 70, 150) 0%);
     border: 1px solid rgb(100, 70, 150);
 
 }
@@ -173,7 +179,7 @@ nav {
     position: relative;
     width: 27vh;
     height: 15vh;
-    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 90%,rgb(0, 130, 236) 0%);
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 88%,rgb(0, 130, 236) 0%);
     border: 1px solid rgb(0, 130, 236);
 
 }
@@ -182,7 +188,7 @@ nav {
     position: relative;
     width: 27vh;
     height: 15vh;
-    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 90%,rgb(0, 218, 97) 0%);
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 88%,rgb(0, 218, 97) 0%);
     border: 1px solid rgb(0, 218, 97);
 }
 
@@ -190,11 +196,10 @@ nav {
     position: relative;
     width: 27vh;
     height: 15vh;
-    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 90%,rgb(97, 97, 97) 0%);
+    background-image: -webkit-linear-gradient(bottom left, rgba(255, 255, 255, 0) 88%,rgb(97, 97, 97) 0%);
     border: 1px solid rgb(97, 97, 97);
 
 }
-
 
 .discount {
   position: absolute;
