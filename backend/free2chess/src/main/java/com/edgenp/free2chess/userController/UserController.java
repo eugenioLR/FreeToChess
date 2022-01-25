@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @author eugeniolr
  */
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserService userServ;

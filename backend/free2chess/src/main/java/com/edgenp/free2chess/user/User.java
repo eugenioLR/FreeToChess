@@ -17,8 +17,6 @@ import javax.persistence.*;
 @Table(name = "\"User\"")
 public class User implements UserInterf{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     protected String name;
     protected String password;
     protected String salt;
@@ -40,14 +38,6 @@ public class User implements UserInterf{
         this.password = password;
         this.salt = salt;
         this.paypal_id = paypal_id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -140,7 +130,7 @@ public class User implements UserInterf{
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", password=" + password + ", salt=" + salt + ", elo=" + elo + ", level=" + level + ", exp=" + exp + ", subscribed=" + subscribed + ", subs_date=" + subs_date + ", paypal_id=" + paypal_id + ", coins=" + coins + ", diamonds=" + diamonds + '}';
+        return "User{" + ", name=" + name + ", password=" + password + ", salt=" + salt + ", elo=" + elo + ", level=" + level + ", exp=" + exp + ", subscribed=" + subscribed + ", subs_date=" + subs_date + ", paypal_id=" + paypal_id + ", coins=" + coins + ", diamonds=" + diamonds + '}';
     }
     
     

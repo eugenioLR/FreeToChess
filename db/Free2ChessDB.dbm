@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="39,0" last-zoom="1" max-obj-count="19"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="6,0" last-zoom="1" max-obj-count="18"
 	 default-schema="public" default-owner="postgres">
 <database name="Free2chess" is-template="false" allow-conns="true">
 </database>
@@ -11,21 +11,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
-<table name="User" layer="0" collapse-mode="2" max-obj-count="14" z-value="0">
+<table name="User" layer="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="680" y="20"/>
-	<column name="id" not-null="true">
-		<type name="smallint" length="0"/>
-	</column>
-	<column name="name">
+	<column name="name" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
 	<column name="password">
-		<type name="smallint" length="0"/>
+		<type name="varchar" length="256"/>
 	</column>
 	<column name="salt">
-		<type name="smallint" length="0"/>
+		<type name="varchar" length="100"/>
 	</column>
 	<column name="elo">
 		<type name="smallint" length="0"/>
@@ -52,7 +49,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="smallint" length="0"/>
 	</column>
 	<constraint name="User_pk" type="pk-constr" table="public.&quot;User&quot;">
-		<columns names="id" ref-type="src-columns"/>
+		<columns names="name" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -68,16 +65,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="Booster" layer="0" collapse-mode="2" pagination="true" attribs-page="0" ext-attribs-page="0" max-obj-count="8" z-value="0">
+<table name="Booster" layer="0" collapse-mode="2" pagination="true" attribs-page="0" ext-attribs-page="0" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="240" y="740"/>
 </table>
 
-<table name="Product" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<table name="Product" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="940" y="360"/>
+	<position x="940" y="380"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -87,8 +84,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="description">
 		<type name="text" length="0"/>
 	</column>
-	<column name="price">
-		<type name="numeric" length="0"/>
+	<column name="c_price">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="d_price">
+		<type name="integer" length="0"/>
 	</column>
 	<column name="rarity">
 		<type name="char" length="1"/>
@@ -127,10 +127,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</customidxs>
 </table>
 
-<table name="Emoji" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="Emoji" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1460" y="740"/>
+	<position x="1460" y="760"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -164,7 +164,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="480" y="740"/>
@@ -177,13 +177,13 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</customidxs>
 </table>
 
-<table name="PieceSkinSet" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
+<table name="PieceSkinSet" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1140" y="760"/>
+	<position x="1140" y="780"/>
 </table>
 
-<table name="PieceSkin" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
+<table name="PieceSkin" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="740" y="740"/>
@@ -209,7 +209,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="PendingGames" layer="0" collapse-mode="2" max-obj-count="2" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1400" y="220"/>
+	<position x="1380" y="240"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -221,7 +221,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Tournament" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1420" y="0"/>
+	<position x="1400" y="20"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -256,7 +256,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-table="public.&quot;BoardSkin&quot;"
 	 dst-table="public.&quot;Product&quot;">
 	<label ref-type="name-label">
-		<position x="-7.97925" y="12.3349"/>
+		<position x="-17.9793" y="17.522"/>
 	</label>
 	<special-pk-cols indexes="0"/>
 </relationship>
@@ -292,7 +292,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;PendingGames&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-0.514457" y="-18.5323"/>
+		<position x="47.9946" y="42.0677"/>
 	</label>
 </relationship>
 
@@ -305,7 +305,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;GameState&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-13.6249" y="-28.5323"/>
+		<position x="-13.7404" y="-28.5323"/>
 	</label>
 </relationship>
 
@@ -350,7 +350,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"
 	 table-name="PlayedGame">
 	<label ref-type="name-label">
-		<position x="-5.09424" y="-25.7125"/>
+		<position x="-5.09424" y="-26.1504"/>
 	</label>
 </relationship>
 
@@ -380,7 +380,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"
 	 table-name="ProductReward">
 	<label ref-type="name-label">
-		<position x="-7.31299" y="-27.6177"/>
+		<position x="2.68701" y="-22.4683"/>
 	</label>
 </relationship>
 
@@ -393,7 +393,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;PieceSkin&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="13.5217" y="-12.0834"/>
+		<position x="-6.47832" y="-62.0486"/>
 	</label>
 </relationship>
 
@@ -421,20 +421,35 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="ProductPack" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1480" y="420"/>
-	<column name="pack_id" not-null="true">
+	<position x="1360" y="380"/>
+	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
+	<column name="name">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<column name="c_price">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="d_price">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="rarity">
+		<type name="char" length="1"/>
+	</column>
+	<column name="purchases">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="discont_perc">
+		<type name="float" length="0"/>
+	</column>
 	<constraint name="ProductPack_pk" type="pk-constr" table="public.&quot;ProductPack&quot;">
-		<columns names="pack_id" ref-type="src-columns"/>
+		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
-
-<relationship name="ProductPack_inherits_Product" type="relgen" layer="0"
-	 pk-pattern="{dt}_pk"
-	 custom-color="#8b9359"
-	 src-table="public.&quot;ProductPack&quot;"
-	 dst-table="public.&quot;Product&quot;"/>
 
 <relationship name="PackContents" type="relnn" layer="0"
 	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
@@ -445,6 +460,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-table="public.&quot;Product&quot;"
 	 dst-table="public.&quot;ProductPack&quot;"
 	 src-required="false" dst-required="false"
-	 table-name="many_Product_has_many_ProductPack"/>
+	 table-name="PackContents">
+	<label ref-type="name-label">
+		<position x="1.99043" y="-7.25728"/>
+	</label>
+</relationship>
 
 </dbmodel>

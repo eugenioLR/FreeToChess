@@ -16,10 +16,9 @@ CREATE DATABASE "Free2chess";
 -- object: public."User" | type: TABLE --
 -- DROP TABLE IF EXISTS public."User" CASCADE;
 CREATE TABLE public."User" (
-	id smallint NOT NULL,
-	name varchar(20),
-	password smallint,
-	salt smallint,
+	name varchar(20) NOT NULL,
+	password varchar(256),
+	salt varchar(100),
 	elo smallint,
 	level smallint,
 	exp smallint,
@@ -28,7 +27,7 @@ CREATE TABLE public."User" (
 	paypal_id varchar(20),
 	coins smallint,
 	diamonds smallint,
-	CONSTRAINT "User_pk" PRIMARY KEY (id)
+	CONSTRAINT "User_pk" PRIMARY KEY (name)
 
 );
 -- ddl-end --
@@ -53,7 +52,8 @@ CREATE TABLE public."Booster" (
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price numeric,
+-- 	c_price integer,
+-- 	d_price integer,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -71,7 +71,8 @@ CREATE TABLE public."Product" (
 	id smallint NOT NULL,
 	name varchar(50),
 	description text,
-	price numeric,
+	c_price integer,
+	d_price integer,
 	rarity char(1),
 	purchases smallint,
 	discount_perc float,
@@ -103,7 +104,8 @@ CREATE TABLE public."Emoji" (
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price numeric,
+-- 	c_price integer,
+-- 	d_price integer,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -138,7 +140,8 @@ CREATE TABLE public."BoardSkin" (
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price numeric,
+-- 	c_price integer,
+-- 	d_price integer,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -157,7 +160,8 @@ CREATE TABLE public."PieceSkinSet" (
 -- 	id smallint NOT NULL,
 -- 	name varchar(50),
 -- 	description text,
--- 	price numeric,
+-- 	c_price integer,
+-- 	d_price integer,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -178,7 +182,8 @@ CREATE TABLE public."PieceSkin" (
 
 -- 	name varchar(50),
 -- 	description text,
--- 	price numeric,
+-- 	c_price integer,
+-- 	d_price integer,
 -- 	rarity char(1),
 -- 	purchases smallint,
 -- 	discount_perc float,
@@ -233,17 +238,17 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- object: public."PurchasedProduct" | type: TABLE --
 -- DROP TABLE IF EXISTS public."PurchasedProduct" CASCADE;
 CREATE TABLE public."PurchasedProduct" (
-	"id_User" smallint NOT NULL,
+	"name_User" varchar(20) NOT NULL,
 	"id_Product" smallint NOT NULL,
-	CONSTRAINT "PurchasedProduct_pk" PRIMARY KEY ("id_User","id_Product")
+	CONSTRAINT "PurchasedProduct_pk" PRIMARY KEY ("name_User","id_Product")
 
 );
 -- ddl-end --
 
 -- object: "User_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."PurchasedProduct" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."PurchasedProduct" ADD CONSTRAINT "User_fk" FOREIGN KEY ("id_User")
-REFERENCES public."User" (id) MATCH FULL
+ALTER TABLE public."PurchasedProduct" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
+REFERENCES public."User" (name) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -258,8 +263,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- DROP TABLE IF EXISTS public."CompletedAchivement" CASCADE;
 CREATE TABLE public."CompletedAchivement" (
 	"id_Achievement" smallint NOT NULL,
-	"id_User" smallint NOT NULL,
-	CONSTRAINT "CompletedAchivement_pk" PRIMARY KEY ("id_Achievement","id_User")
+	"name_User" varchar(20) NOT NULL,
+	CONSTRAINT "CompletedAchivement_pk" PRIMARY KEY ("id_Achievement","name_User")
 
 );
 -- ddl-end --
@@ -273,8 +278,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- object: "User_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."CompletedAchivement" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."CompletedAchivement" ADD CONSTRAINT "User_fk" FOREIGN KEY ("id_User")
-REFERENCES public."User" (id) MATCH FULL
+ALTER TABLE public."CompletedAchivement" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
+REFERENCES public."User" (name) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -282,8 +287,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- DROP TABLE IF EXISTS public."PlayedGame" CASCADE;
 CREATE TABLE public."PlayedGame" (
 	"id_Game" smallint NOT NULL,
-	"id_User" smallint NOT NULL,
-	CONSTRAINT "PlayedGame_pk" PRIMARY KEY ("id_Game","id_User")
+	"name_User" varchar(20) NOT NULL,
+	CONSTRAINT "PlayedGame_pk" PRIMARY KEY ("id_Game","name_User")
 
 );
 -- ddl-end --
@@ -297,8 +302,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- object: "User_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."PlayedGame" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."PlayedGame" ADD CONSTRAINT "User_fk" FOREIGN KEY ("id_User")
-REFERENCES public."User" (id) MATCH FULL
+ALTER TABLE public."PlayedGame" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
+REFERENCES public."User" (name) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -306,8 +311,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- DROP TABLE IF EXISTS public."JoinedTournament" CASCADE;
 CREATE TABLE public."JoinedTournament" (
 	"id_Tournament" smallint NOT NULL,
-	"id_User" smallint NOT NULL,
-	CONSTRAINT "JoinedTournament_pk" PRIMARY KEY ("id_Tournament","id_User")
+	"name_User" varchar(20) NOT NULL,
+	CONSTRAINT "JoinedTournament_pk" PRIMARY KEY ("id_Tournament","name_User")
 
 );
 -- ddl-end --
@@ -321,8 +326,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- object: "User_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."JoinedTournament" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."JoinedTournament" ADD CONSTRAINT "User_fk" FOREIGN KEY ("id_User")
-REFERENCES public."User" (id) MATCH FULL
+ALTER TABLE public."JoinedTournament" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
+REFERENCES public."User" (name) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -360,17 +365,17 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- object: public."GamesToAccept" | type: TABLE --
 -- DROP TABLE IF EXISTS public."GamesToAccept" CASCADE;
 CREATE TABLE public."GamesToAccept" (
-	"id_User" smallint NOT NULL,
+	"name_User" varchar(20) NOT NULL,
 	"id_PendingGames" smallint NOT NULL,
-	CONSTRAINT "GamesToAccept_pk" PRIMARY KEY ("id_User","id_PendingGames")
+	CONSTRAINT "GamesToAccept_pk" PRIMARY KEY ("name_User","id_PendingGames")
 
 );
 -- ddl-end --
 
 -- object: "User_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."GamesToAccept" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."GamesToAccept" ADD CONSTRAINT "User_fk" FOREIGN KEY ("id_User")
-REFERENCES public."User" (id) MATCH FULL
+ALTER TABLE public."GamesToAccept" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
+REFERENCES public."User" (name) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -384,44 +389,42 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- object: public."ProductPack" | type: TABLE --
 -- DROP TABLE IF EXISTS public."ProductPack" CASCADE;
 CREATE TABLE public."ProductPack" (
-	pack_id smallint NOT NULL,
+	id smallint NOT NULL,
+	name varchar(50),
+	description text,
+	c_price integer,
+	d_price integer,
+	rarity char(1),
+	purchases smallint,
+	discont_perc float,
+	CONSTRAINT "ProductPack_pk" PRIMARY KEY (id)
 
--- 	id smallint NOT NULL,
--- 	name varchar(50),
--- 	description text,
--- 	price numeric,
--- 	rarity char(1),
--- 	purchases smallint,
--- 	discount_perc float,
-	CONSTRAINT "ProductPack_pk" PRIMARY KEY (pack_id)
-
-)
- INHERITS(public."Product");
+);
 -- ddl-end --
 ALTER TABLE public."ProductPack" OWNER TO postgres;
 -- ddl-end --
 
--- object: public."many_Product_has_many_ProductPack" | type: TABLE --
--- DROP TABLE IF EXISTS public."many_Product_has_many_ProductPack" CASCADE;
-CREATE TABLE public."many_Product_has_many_ProductPack" (
+-- object: public."PackContents" | type: TABLE --
+-- DROP TABLE IF EXISTS public."PackContents" CASCADE;
+CREATE TABLE public."PackContents" (
 	"id_Product" smallint NOT NULL,
-	"pack_id_ProductPack" smallint NOT NULL,
-	CONSTRAINT "many_Product_has_many_ProductPack_pk" PRIMARY KEY ("id_Product","pack_id_ProductPack")
+	"id_ProductPack" smallint NOT NULL,
+	CONSTRAINT "PackContents_pk" PRIMARY KEY ("id_Product","id_ProductPack")
 
 );
 -- ddl-end --
 
 -- object: "Product_fk" | type: CONSTRAINT --
--- ALTER TABLE public."many_Product_has_many_ProductPack" DROP CONSTRAINT IF EXISTS "Product_fk" CASCADE;
-ALTER TABLE public."many_Product_has_many_ProductPack" ADD CONSTRAINT "Product_fk" FOREIGN KEY ("id_Product")
+-- ALTER TABLE public."PackContents" DROP CONSTRAINT IF EXISTS "Product_fk" CASCADE;
+ALTER TABLE public."PackContents" ADD CONSTRAINT "Product_fk" FOREIGN KEY ("id_Product")
 REFERENCES public."Product" (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: "ProductPack_fk" | type: CONSTRAINT --
--- ALTER TABLE public."many_Product_has_many_ProductPack" DROP CONSTRAINT IF EXISTS "ProductPack_fk" CASCADE;
-ALTER TABLE public."many_Product_has_many_ProductPack" ADD CONSTRAINT "ProductPack_fk" FOREIGN KEY ("pack_id_ProductPack")
-REFERENCES public."ProductPack" (pack_id) MATCH FULL
+-- ALTER TABLE public."PackContents" DROP CONSTRAINT IF EXISTS "ProductPack_fk" CASCADE;
+ALTER TABLE public."PackContents" ADD CONSTRAINT "ProductPack_fk" FOREIGN KEY ("id_ProductPack")
+REFERENCES public."ProductPack" (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
