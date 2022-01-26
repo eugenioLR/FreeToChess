@@ -42,7 +42,7 @@ public class StoreController {
     private UserService userServ;
     
     @GetMapping("/store/{id}")
-    public Product getProducts(@PathVariable("id") Integer id){
+    public Product getProductById(@PathVariable("id") Integer id){
         return prodServ.getById(id);
     }
     
@@ -76,27 +76,44 @@ public class StoreController {
         return prodPackServ.getAll();
     }
     
+    @GetMapping("/store/packs/{id}")
+    public ProductPack getPackById(@PathVariable("id") Integer id){
+        return prodPackServ.getById(id);
+    }
+    
+    
     @GetMapping("/store/packs/{id}/contents")
-    public List<Product> getProductPacks(@PathVariable("id") Integer id){
+    public List<Product> getPackContents(@PathVariable("id") Integer id){
         return new ArrayList<>(prodPackServ.getById(id).getContents());
     }
     
-    /*
+    
+    
     @PostMapping(value = "/store/dummy", produces = MediaType.TEXT_PLAIN_VALUE)
-    public void updateDummyProduct(@RequestBody Product prod){
-        Product prodReal = this.getProducts(prod.getId());
+    public void updateDummpyProduct(@RequestBody Product prod){
+        Product prodReal = this.getProductById(prod.getId());
         prodReal.buyItem(new User("none", "none", "none", 0));
         prodServ.update(prodReal);
-    }*/
+    }
     
     @PostMapping(value = "/store/buy", produces = MediaType.TEXT_PLAIN_VALUE)
     public void updateProduct(@RequestParam String name, @RequestBody Product prod){
         User user = this.userServ.getById(name);
         if(user != null){
-            Product prodReal = this.getProducts(prod.getId());
-
-            prodReal.buyItem(user);
-            prodServ.update(prodReal);
+            if(this.getPackById(prod.getId()) == null){
+                Product prodReal = this.getProductById(prod.getId());
+                prodReal.buyItem(user);
+                prodServ.update(prodReal);
+                user.addPurchasedProducts(prod);
+            }else{
+                ProductPack pack = this.getPackById(prod.getId());
+                pack.buyItem(user);
+                prodPackServ.update(pack);
+                for(Product p : pack.getContents()){
+                    user.addPurchasedProducts(p);
+                }
+            }
+            userServ.update(user);
         }else{
             System.out.println("The user with name \"" + name + "\" was not found.");
         }

@@ -34,4 +34,8 @@ public class UserService {
     public void create(User user){
         userRepo.save(user);
     }
+
+    public void update(User user) {
+        this.create(user);
+    }
 }

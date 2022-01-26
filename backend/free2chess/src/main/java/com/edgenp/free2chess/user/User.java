@@ -7,7 +7,9 @@
 package com.edgenp.free2chess.user;
 
 import com.edgenp.free2chess.product.*;
+import com.edgenp.free2chess.store.Store;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.Instant;
 import java.util.*;
 import javax.persistence.*;
 
@@ -106,8 +108,16 @@ public class User implements UserInterf{
         return subscribed;
     }
 
-    public void setSubscribed(boolean subscribed) {
-        this.subscribed = subscribed;
+    public void subscribe() {
+        Store store = Store.getInstance();
+        store.doPayment(this, 5.99);
+        Date now = new Date();
+        this.setSubs_date(now);
+        this.subscribed = true;
+    }
+    
+    public void unsubscribe(){
+        this.subscribed = false;
     }
 
     public Date getSubs_date() {
@@ -144,6 +154,11 @@ public class User implements UserInterf{
 
     public Set<Product> getPurchasedProducts() {
         return purchasedProducts;
+    }
+    
+    public void addPurchasedProducts(ProductInterf prod){
+        Product p = (Product) prod;
+        this.purchasedProducts.add(p);
     }
 
     @Override

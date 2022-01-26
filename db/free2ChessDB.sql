@@ -368,7 +368,7 @@ CREATE TABLE public."ProductPack" (
 	d_price integer,
 	rarity char(1),
 	purchases smallint,
-	discont_perc float,
+	discount_perc float,
 	CONSTRAINT "ProductPack_pk" PRIMARY KEY (id)
 
 );

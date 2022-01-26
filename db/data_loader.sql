@@ -40,17 +40,17 @@ VALUES
 -- BOOSTER
 INSERT INTO "Booster" (id, name, description, c_price, d_price, rarity, purchases, discount_perc)
 VALUES
-(10, 'Extra Queen',                  'Add an extra queen to the board',           500, 0, 'F', 0, 0.0),
-(11, 'Extra King',                   'Add an extra king to the board',            600, 0, 'F', 0, 0.0),
-(12, 'Double Move',                  'Allow 2 moves to be done in a row',         800, 0, 'F', 0, 0.0),
-(13, 'Promote Pawn (Rook)',          'Instantly promote pawn to a rook',          300, 0, 'F', 0, 0.0),
-(14, 'Promote Pawn (Knight/Bishop)', 'Instantly promote pawn to a knight/bishop', 400, 0, 'F', 0, 0.0);
+(13, 'Extra Queen',                  'Add an extra queen to the board',           500, 0, 'F', 0, 0.0),
+(14, 'Extra King',                   'Add an extra king to the board',            600, 0, 'F', 0, 0.0),
+(15, 'Double Move',                  'Allow 2 moves to be done in a row',         800, 0, 'F', 0, 0.0),
+(16, 'Promote Pawn (Rook)',          'Instantly promote pawn to a rook',          300, 0, 'F', 0, 0.0),
+(17, 'Promote Pawn (Knight/Bishop)', 'Instantly promote pawn to a knight/bishop', 400, 0, 'F', 0, 0.0);
 
 
 -- PRODUCT PACK
-INSERT INTO "ProductPack" (id, name, description, c_price, d_price, rarity, purchases, discont_perc)
+INSERT INTO "ProductPack" (id, name, description, c_price, d_price, rarity, purchases, discount_perc)
 VALUES
-(15, 'Badly Drawn Pack', 'Low effort skins for an affordable price', 250, 0, 'F', 0, 0.0);
+(18, 'Badly Drawn Pack', 'Low effort skins for an affordable price', 250, 0, 'F', 0, 0.0);
 
 
 
@@ -58,8 +58,8 @@ VALUES
 -- PACK CONTENTS
 INSERT INTO "PackContents" ("id_Product", "id_ProductPack")
 VALUES
-(10, 15),
-(7,  15);
+(10, 18),
+(7,  18);
 
 
 

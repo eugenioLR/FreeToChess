@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,11" last-zoom="0.9" max-obj-count="15"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,34" last-zoom="0.9" max-obj-count="15"
 	 default-schema="public" default-owner="postgres">
 <database name="free2chessDB" is-template="false" allow-conns="true">
 </database>
@@ -205,7 +205,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Tournament" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1400" y="20"/>
+	<position x="1380" y="20"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -289,7 +289,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;GameState&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="86.2596" y="-28.5323"/>
+		<position x="46.2596" y="-28.5323"/>
 	</label>
 </relationship>
 
@@ -408,7 +408,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="purchases">
 		<type name="smallint" length="0"/>
 	</column>
-	<column name="discont_perc">
+	<column name="discount_perc">
 		<type name="float" length="0"/>
 	</column>
 	<constraint name="ProductPack_pk" type="pk-constr" table="public.&quot;ProductPack&quot;">
