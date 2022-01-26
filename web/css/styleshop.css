@@ -1,0 +1,251 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e0e0e0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  max-height: 8vh;
+  background-color: rgb(93, 73, 84);
+  font-family: "Montserrat", sans-serif;
+}
+
+.logo {
+  color: rgb(204, 204, 204);
+  letter-spacing: 0.2vh;
+  font-size: 2vh;
+  font-family: "Lobster", cursive;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgb(204, 204, 204);
+  text-decoration: none;
+  letter-spacing: 0.1vh;
+  font-weight: bold;
+  font-size: 2vh;
+}
+
+.lootbox {
+  width: 100%;
+  height: 30vh;
+}
+
+.left {
+  position: absolute;
+  left: 45vh;
+}
+
+.right {
+  position: absolute;
+  right: 45vh;
+}
+
+.grandmaster-card {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+}
+
+.producticon {
+  position: absolute;
+  width: 6vh;
+  height: auto;
+  top: 3vh;
+  left: 1vh;
+}
+
+.purchasebutton {
+  position: absolute;
+  width: 100%;
+  height: 2.2vh;
+  border: none;
+  bottom: 0;
+  font-size: 1.2vh;
+}
+
+.producttitle {
+  position: abosolute;
+  font-size: 1.8vh;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.section-title {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3vh;
+}
+
+.discount {
+  position: absolute;
+  font-size: 2vh;
+  top: 9.2vh;
+  right: 7vh;
+  color: red;
+  font-weight: bold;
+}
+
+.description {
+  position: absolute;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2vh;
+  left: 8vh;
+  top: 4vh;
+  right: 5vh;
+}
+
+.price {
+  position: absolute;
+  font-size: 2vh;
+  top: 9.2vh;
+  left: 4vh;
+}
+
+.price1 {
+  position: absolute;
+  font-size: 2vh;
+  top: 9.2vh;
+  left: 10vh;
+}
+
+.diamond {
+  position: absolute;
+  width: 2vh;
+  height: auto;
+}
+
+.coin {
+  position: absolute;
+  width: 2vh;
+  height: auto;
+}
+
+.rarity {
+  position: absolute;
+  font-size: 2vh;
+  top: 0vh;
+  right: 1vh;
+}
+
+.product-pack {
+  width: 100%;
+  height: 80vh;
+}
+
+
+.piece-set {
+  width: 100%;
+  height: 40vh;
+}
+
+.board-set {
+  width: 100%;
+  height: 40vh;
+}
+
+.booster {
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.emoji {
+  width: 100%;
+  height: 90vh;
+}
+
+.productS {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(
+    bottom left,
+    rgba(255, 255, 255, 0) 88%,
+    rgb(255, 218, 97) 0%
+  );
+  border: 1px solid rgb(236, 196, 62);
+}
+
+.productA {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(
+    bottom left,
+    rgba(255, 255, 255, 0) 88%,
+    rgb(255, 100, 0) 0%
+  );
+  border: 1px solid rgb(255, 100, 0);
+}
+
+.productB {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(
+    bottom left,
+    rgba(255, 255, 255, 0) 88%,
+    rgb(100, 70, 150) 0%
+  );
+  border: 1px solid rgb(100, 70, 150);
+}
+
+.productC {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(
+    bottom left,
+    rgba(255, 255, 255, 0) 88%,
+    rgb(0, 130, 236) 0%
+  );
+  border: 1px solid rgb(0, 130, 236);
+}
+
+.productD {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(
+    bottom left,
+    rgba(255, 255, 255, 0) 88%,
+    rgb(0, 218, 97) 0%
+  );
+  border: 1px solid rgb(0, 218, 97);
+}
+
+.productF {
+  position: relative;
+  width: 27vh;
+  height: 15vh;
+  background-image: -webkit-linear-gradient(
+    bottom left,
+    rgba(255, 255, 255, 0) 88%,
+    rgb(97, 97, 97) 0%
+  );
+  border: 1px solid rgb(97, 97, 97);
+}
+
+.hyperlink {
+  color: #cecece;
+  letter-spacing: 0.1vh;
+  text-decoration: none;
+}

@@ -1,0 +1,118 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    max-height: 8vh;
+    background-color: rgb(93, 73, 84);
+    font-family: "Montserrat", sans-serif;
+}
+
+.logo {
+    color: rgb(204, 204, 204);
+    letter-spacing: 0.2vh;
+    font-size: 2vh;
+    font-family: "Lobster", cursive;
+}
+
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+  
+.nav-links li {
+    list-style: none;
+}
+  
+.nav-links a {
+    color: rgb(204, 204, 204);
+    text-decoration: none;
+    letter-spacing: 0.1vh;
+    font-weight: bold;
+    font-size: 2vh;
+}
+
+.profile {
+    display: flex;
+    padding-left: 4vh;
+    padding-top: 4vh;
+    flex-direction: row;   
+}
+
+.stats {
+    padding-left: 3vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    width: auto;
+    height: 15vh;
+    border: 0.3vh solid #505050;
+    border-radius: 2vh;
+    max-width:15vh;
+    max-height:15vh;
+    min-width: 8vh;
+    min-height: 8vh;
+}
+
+.nickname {
+    display: flex;
+    font-size: 3.2vh;
+    font-family: "Montserrat", sans-serif;
+}
+
+.elo {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2vh;
+}
+
+.progress {
+    width: 100%;
+    border: solid black;
+}
+
+.progress-bar {
+    /* width: 20%; */
+    height: 2vh;
+    /* box-shadow: 0px 0px 10px 1px rgb(93, 73, 84); */
+    color: #9ACD32;
+   
+    background-image: linear-gradient(to right, red , yellow);
+}
+
+.skins {
+    display:flex;
+    padding-top: 4vh;
+    padding-left: 4vh;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    row-gap: 4vh;
+}
+
+.preview {
+    max-width: 10vh;  
+}
+
+.skin-set {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.board-set {
+
+}
+

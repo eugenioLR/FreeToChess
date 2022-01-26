@@ -1,0 +1,126 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e0e0e0;  
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: rgb(93, 73, 84);
+    font-family: "Montserrat", sans-serif;
+}
+
+.title {
+    position: absolute;
+    letter-spacing: 0.2vh;
+    top: 19%;
+    left: 43.5%;
+    font-size: 6vh;
+    color: rgb(93, 73, 84);
+    font-family: "Lobster", cursive;
+}
+
+.motto {
+    color:rgb(163, 140, 160);
+    position: absolute;
+    top: 27%;
+    left: 39%;
+    font-size: 2vh;
+}
+
+.newplayer {
+    text-align: center;
+    font-family: "Lobster", cursive;
+    font-size: 2vh;
+}
+
+.loginbutton {
+    position: absolute;
+    top: 40%;
+    left: 41%;
+    background-color: #555555; 
+    border-width: 0.323vh;
+    border-radius: 4vh;
+    color: #e0e0e0;
+    padding: 0.8vh 1vh;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1.5vh;
+    cursor: pointer;
+}
+
+.registerbutton {
+    position: absolute;
+    top: 40%;
+    left: 38%;
+    background-color: #555555; 
+    border-width: 0.323vh;
+    border-radius: 4vh;
+    color: #e0e0e0;
+    padding: 0.8vh 1vh;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1.5vh;
+    cursor: pointer;
+}
+
+.hyperlink {
+    color:#cecece;
+    letter-spacing: 0.1vh;
+    text-decoration: none;
+}
+
+.formdiv {
+    position: absolute;
+    width: 40vh;
+    height: 40vh;
+    /* background-color: beige; */
+    top: 36%;
+    right: 40%;
+    
+}
+
+.textinput1 {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    width: 20vh;
+    font-size: 1.4vh;
+    background-color: #e0e0e000;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 0.1vh solid rgb(93, 73, 84);
+}
+
+.textinput2 {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 20vh;
+    font-size: 1.4vh;
+    background-color: #e0e0e000;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 0.1vh solid rgb(93, 73, 84);
+}
+
+.textinput3 {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    width: 20vh;
+    font-size: 1.4vh;
+    background-color: #e0e0e000;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 0.1vh solid rgb(93, 73, 84);
+}
