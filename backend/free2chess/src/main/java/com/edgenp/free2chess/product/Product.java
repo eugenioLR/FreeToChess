@@ -8,8 +8,8 @@ package com.edgenp.free2chess.product;
 
 import com.edgenp.free2chess.store.Store;
 import com.edgenp.free2chess.user.User;
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 /**
  *
  * @author eugeniolr
@@ -53,7 +53,7 @@ public class Product implements ProductInterf, Serializable{
     public Integer getId() {
         return id;
     }
-
+    
     public String getName() {
         return name;
     }

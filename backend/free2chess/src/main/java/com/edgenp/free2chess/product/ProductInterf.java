@@ -14,4 +14,6 @@ import com.edgenp.free2chess.user.User;
  */
 public interface ProductInterf {
     public void buyItem(User user);
+
+    public void increasePurchases();
 }

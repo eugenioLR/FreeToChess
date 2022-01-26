@@ -37,6 +37,13 @@ public class UserController {
         return new ArrayList<>(user.getPurchasedProducts());
     }
     
+    @GetMapping("/users/{id}/subscribe")
+    public void subscribeUser(@PathVariable("id") String id){
+        User user = userServ.getById(id);
+        user.subscribe();
+        userServ.create(user);
+    }
+    
     @GetMapping("/users/{id}")
     public User getById(@PathVariable("id") String id){
         return userServ.getById(id);
