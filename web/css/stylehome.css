@@ -25,7 +25,6 @@ nav {
     font-family: "Lobster", cursive;
 }
 
-
 .nav-links {
     display: flex;
     justify-content: space-around;
@@ -42,4 +41,45 @@ nav {
     letter-spacing: 0.1vh;
     font-weight: bold;
     font-size: 2vh;
+}
+
+.stats {
+    display: flex;
+    width: 35vh;
+    height: 8vh;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(204, 204, 204);
+    font-size: 2vh;
+    justify-content: space-between;
+    padding-top: 1vh;
+}
+
+.nickname {
+    font-family: "Lobster", cursive;
+    letter-spacing: 0.1vh;
+    padding-top: 1vh;
+    font-size: 3vh;
+}
+
+.currencies {
+    display: flex; 
+    font-size: 1.8vh;
+    align-items: center;
+    padding-top: 0.5vh;
+}
+
+.money-icon {
+    width: 1.8vh;
+    height: auto;
+}
+
+.money-stats {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp {
+    font-size: 1.5vh;
+    padding-top: 3.5vh;
+    padding-right: 7vh;
 }
