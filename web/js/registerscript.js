@@ -10,5 +10,7 @@ $(document).ready(function()
         xhr.open("post","http://localhost:8080/users");
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhr.send(JSON.stringify({name:usr,email:email_input,password:pwd,paypal_id:paypal}));
+        localStorage.setItem('board','basic');
+        localStorage.setItem('pieces','fantasy');
     });    
 });
