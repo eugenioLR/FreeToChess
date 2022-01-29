@@ -59,7 +59,7 @@ nav {
 
 .registerbutton {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 38%;
     background-color: #555555; 
     border-width: 0.323vh;
@@ -116,6 +116,18 @@ nav {
 .textinput3 {
     position: absolute;
     top: 30%;
+    left: 25%;
+    width: 20vh;
+    font-size: 1.4vh;
+    background-color: #e0e0e000;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 0.1vh solid rgb(93, 73, 84);
+}
+
+.textinput4 {
+    position: absolute;
+    top: 40%;
     left: 25%;
     width: 20vh;
     font-size: 1.4vh;

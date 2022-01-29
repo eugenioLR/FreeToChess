@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="css/stylesettings.css">
+		<link rel="stylesheet" href="css/styleprofile.css">
 		<script src="libs/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="js/profilescript.js"></script>
 		<title>Free2Chess - Profile</title>
+		<link rel="shortcut icon" href="#">
 	</head>
-	
 	<body>
 		<nav>
 			<div class="logo">
@@ -23,26 +23,24 @@
 				<li><a href="ranking.html">Ranking</a></li>
 				<li><a href="shop.html">Shop</a></li>
 			</ul>
+			<div class="stats-div">
+			</div>
+			<button type="button" id="log-off" class="log-off">Log off</button>
 		</nav>
 		<div class="profile">
-			<img src="img/ftclogo.png" class="icon">
-			<div class="stats">
-				<h2 class="nickname">placeholderNombre</h2>
-				<h2 class="elo">elo: 420</h2>
-				<div class="expbar"><p class="nivel">69nice</p></div>
-				<div class="progress" >
-					<div class="progress-bar" width:"20%" } aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-				  </div>
-			</div>		
 		</div>
 		<div class="skins">
-				<p class="skin-set">- Pieces<img src="img/pieces/fantasy_pack/wK.png" class="preview"><button type="button" class="set-skin">Set</button></p>
-				<p class="skin-set">- Board<img src="" class="preview"><button type="button" class="set-skin">Set</button></p>
-		</div>
+			<p class="piece-set">- Pieces<img src="img/pieces/fantasy_pack/wK.png" class="preview">
+				<select class="piece-selector">'
+				</select>
+				<button type="button" class="set-skin">Set</button>
+			</p>
+			<p class="board-set">- Board<img src="img/boards/weird/preview.png" class="preview">
+				<select class="board-selector">'
+				</select>
+				<button type="button" class="set-skin">Set</button></p>
+ 		</div>
 		<div class="settings">
-			<form action="" method="POST">
-				<input type="password" class="password-input" placeholder="Password">
-			</form>
 		</div>
 	</body>
 </html>
