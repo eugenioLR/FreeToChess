@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "\"PieceSkinSet\"")
 public class PieceSkinSet extends Product{
-    private String texture_path;
+    private String texture_path = "";
     
     public PieceSkinSet() {
         super();

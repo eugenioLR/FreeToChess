@@ -6,6 +6,8 @@
 
 package com.edgenp.free2chess.chessGame;
 
+import com.edgenp.free2chess.user.User;
+
 /**
  *
  * @author eugeniolr
@@ -23,13 +25,13 @@ public class BoardMove implements GameCommandInterf{
     }
     
     @Override
-    public boolean canMove() {
-        return game.canMovePiece(init, last);
+    public boolean canMove(User user) {
+        return game.canMovePiece(user, init, last);
     }
 
     @Override
-    public void performMove() {
-        if(this.canMove()){
+    public void performMove(User user) {
+        if(this.canMove(user)){
             if(game.movePiece(init, last)){
                 System.out.println(":)");
             }else{

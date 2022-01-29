@@ -105,4 +105,11 @@ public class Product implements ProductInterf, Serializable{
         }
         return canBuy;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", c_price=" + c_price + ", d_price=" + d_price + ", rarity=" + rarity + ", purchases=" + purchases + ", discount_perc=" + discount_perc + ", for_sale=" + for_sale + '}';
+    }
+    
+    
 }

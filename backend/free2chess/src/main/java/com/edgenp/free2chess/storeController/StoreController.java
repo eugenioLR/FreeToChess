@@ -41,6 +41,9 @@ public class StoreController {
     
     @Autowired
     private UserService userServ;
+
+    @Autowired
+    private LootboxConstructor lootConst = new LootboxConstructor();
     
     @GetMapping("/store/{id}")
     public Product getProductById(@PathVariable("id") Integer id){
@@ -91,21 +94,23 @@ public class StoreController {
     @PostMapping(value = "/store/buy", produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateProduct(@RequestParam String name, @RequestBody Product prod){
         String status = "ok"; 
-        User user = this.userServ.getById(name);
+        User user = userServ.getById(name);
         if(user != null){
-            if(this.getPackById(prod.getId()) == null){
-                Product prodReal = this.getProductById(prod.getId());
+            if(prodPackServ.getById(prod.getId()) == null){
+                Product prodReal = prodServ.getById(prod.getId());
+                
                 if(user.canBuy(prodReal.getC_price(), prodReal.getD_price())){
                     prodReal.buyItem(user);
+                    user.addPurchasedProducts(prodReal);
+                    System.out.println(prodReal.toString());
                     prodServ.update(prodReal);
-                    user.addPurchasedProducts(prod);
                 }else{
                     System.out.println(user.getCoins() + "," + user.getDiamonds());
                     System.out.println("not enough moneys, prod");
                     status = "error";
                 }
             }else{
-                ProductPack pack = this.getPackById(prod.getId());
+                ProductPack pack = prodPackServ.getById(prod.getId());
                 if(user.canBuy(pack.getC_price(), pack.getD_price())){
                     pack.buyItem(user);
                     prodPackServ.update(pack);
@@ -113,10 +118,11 @@ public class StoreController {
                         user.addPurchasedProducts(p);
                     }
                 }else{
+                    System.out.println(user.getCoins() + "," + user.getDiamonds());
                     System.out.println("not enough moneys, pack");
                     status = "error";
                 }
-            }            
+            }
             userServ.update(user);
         }else{
             status = "error";
@@ -126,21 +132,30 @@ public class StoreController {
     }
     
     @PostMapping(value = "/store/lootbox", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ProductPack generateLootbox(@RequestBody User user, @RequestParam char rarity, @RequestParam int amount){
-        ProductConstructor lootboxBuilder;
-        ProductPack lootbox = null;
+    public String generateLootbox(@RequestBody User user, @RequestParam char rarity, @RequestParam int amount){
+        lootConst.wipePack();
+        ProductPack lootbox;
+        List<Integer> result = new ArrayList<>();
         User userReal = userServ.getById(user.getName());
+        
         if(userReal.canBuy(0, 20)){
-            System.out.println("hello");
-            lootboxBuilder = new LootboxConstructor();
-            lootboxBuilder.selectByRarity(rarity);
-            lootboxBuilder.selectAmount(amount);
-            lootbox = lootboxBuilder.getPack();
-            userReal.spendDiamonds(20);
+            lootConst.selectByRarity(rarity);
+            lootConst.selectAmount(amount);
+            lootbox = lootConst.getPack();
+            
+            
             prodPackServ.update(lootbox);
+            //result = lootbox.getContents();
+            result = lootbox.getIdContents();
+            
+            
+            userReal.spendDiamonds(20);
             userServ.update(userReal);
+            System.out.println(result.toString());
+            System.out.println(result.get(0).toString());
+            
         }
-        return lootbox;
+        return result.toString();
     }
     
     @PostMapping(value = "/store/diamonds", produces = MediaType.TEXT_PLAIN_VALUE)

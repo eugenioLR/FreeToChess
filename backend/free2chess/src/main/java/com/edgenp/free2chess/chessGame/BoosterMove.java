@@ -6,6 +6,8 @@
 
 package com.edgenp.free2chess.chessGame;
 
+import com.edgenp.free2chess.user.User;
+
 /**
  *
  * @author eugeniolr
@@ -19,12 +21,12 @@ public class BoosterMove implements GameCommandInterf{
     }
 
     @Override
-    public boolean canMove() {
+    public boolean canMove(User user) {
         return false;
     }
 
     @Override
-    public void performMove() {
+    public void performMove(User user) {
     }
 
     @Override

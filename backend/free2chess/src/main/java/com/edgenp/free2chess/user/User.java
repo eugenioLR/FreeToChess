@@ -34,8 +34,8 @@ public class User implements UserInterf{
     private int diamonds;
     
     
-    @JsonIgnore
-    @ManyToMany
+    //@JsonIgnore
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "\"PurchasedProduct\"", 
                joinColumns = @JoinColumn(name = "\"name_User\"", referencedColumnName = "name"), 
                inverseJoinColumns = @JoinColumn(name = "\"id_Product\"", referencedColumnName = "id"))

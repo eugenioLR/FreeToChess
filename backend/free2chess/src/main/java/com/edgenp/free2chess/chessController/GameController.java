@@ -43,15 +43,16 @@ public class GameController {
     }
     
     @PostMapping(value = "/game/{id}/board", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String performMove(@PathVariable("id") Integer id, @RequestBody MoveObj move){
+    public String performMove(@PathVariable("id") Integer id, @RequestParam String name, @RequestBody MoveObj move){
         String status = "ok";
         Game game = gameServ.getById(id);
+        User user = userServ.getById(name);
         System.out.println("API move: " + move.getInit()[0] + ", " + move.getInit()[1] + " -> " + move.getLast()[0] + ", " + move.getLast()[1]);
         GameCommandInterf command = new BoardMove(game, move.getInit(), move.getLast());
         
-        if(command.canMove()){
+        if(command.canMove(user)){
             System.out.println(game.getGameStates().size());
-            command.performMove();
+            command.performMove(user);
             System.out.println("Epic move bro");
             boardServ.create(game.getCurrentBoard());
             gameServ.create(game);

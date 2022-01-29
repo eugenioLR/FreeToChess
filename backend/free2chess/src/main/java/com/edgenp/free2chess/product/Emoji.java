@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "\"Emoji\"")
 public class Emoji extends Product{
-    private String texture_path;
+    private String texture_path = "";
 
     public Emoji() {
         super();

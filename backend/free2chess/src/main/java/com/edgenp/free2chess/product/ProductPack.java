@@ -9,6 +9,7 @@ package com.edgenp.free2chess.product;
 import com.edgenp.free2chess.store.Store;
 import com.edgenp.free2chess.user.User;
 import com.fasterxml.jackson.annotation.*;
+import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
@@ -18,7 +19,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "\"ProductPack\"")
-public class ProductPack implements ProductInterf{
+public class ProductPack implements ProductInterf, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="product_id_generator")
     private int id;
@@ -42,9 +43,18 @@ public class ProductPack implements ProductInterf{
     }
 
     public ProductPack(List<Product> contents, boolean for_sale) {
-        this.contents = contents;
+        this.name = "generatedPack";
+        this.description = "Pack generated automatically by the server.";
+        this.c_price = 0;
+        this.d_price = 20;
+        this.rarity = 'F';
+        this.purchases = 0;
+        this.discount_perc = 0;
         this.for_sale = for_sale;
+        this.contents = contents;
     }
+    
+    
 
     public Integer getId() {
         return id;
@@ -108,5 +118,15 @@ public class ProductPack implements ProductInterf{
             this.increasePurchases();
         }
         return canBuy;
+    }
+
+    public List<Integer> getIdContents() {
+        List<Integer> ids = new ArrayList<>();
+        
+        for(Product p : contents){
+            ids.add(p.getId());
+        }
+        
+        return ids;
     }
 }

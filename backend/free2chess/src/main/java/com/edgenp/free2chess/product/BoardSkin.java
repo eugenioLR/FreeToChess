@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "\"BoardSkin\"")
 public class BoardSkin extends Skin{
     
-    private String texture_path;
+    private String texture_path = "";
     
     public BoardSkin() {
         super();

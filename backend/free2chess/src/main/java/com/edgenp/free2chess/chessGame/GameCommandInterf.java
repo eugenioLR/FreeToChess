@@ -6,12 +6,14 @@
 
 package com.edgenp.free2chess.chessGame;
 
+import com.edgenp.free2chess.user.User;
+
 /**
  *
  * @author eugeniolr
  */
 public interface GameCommandInterf {
-    public boolean canMove();
-    public void performMove();
+    public boolean canMove(User user);
+    public void performMove(User user);
     public void undoMove();
 }

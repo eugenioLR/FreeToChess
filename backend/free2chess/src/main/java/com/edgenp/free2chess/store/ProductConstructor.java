@@ -17,6 +17,8 @@ public abstract class ProductConstructor {
     protected List<Product> packContents = new ArrayList<>();
     protected ProductPack pack = null;
     
+    public abstract void wipePack();
+    
     public abstract void selectByRarity(char rarity);
     
     public abstract void selectAmount(int amount);

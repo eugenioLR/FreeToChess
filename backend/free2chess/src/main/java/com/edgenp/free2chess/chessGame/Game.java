@@ -88,8 +88,14 @@ public class Game implements Serializable {
         return board;
     }
     
-    public boolean canMovePiece(int[] pos, int[] target){
-        return this.getCurrentBoard().canMovePiece(pos, target);
+    public boolean canMovePiece(User user, int[] pos, int[] target){
+        boolean valid = this.getCurrentBoard().canMovePiece(pos, target);
+        boolean white_turn = user.getName().equals(w_player.getName()) && next_player == 0;
+        boolean black_turn = user.getName().equals(b_player.getName()) && next_player == 1;
+        
+        valid = valid && (white_turn || black_turn);
+        
+        return valid;
     }
     
     public boolean movePiece(int[] pos, int[] target){
