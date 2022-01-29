@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.edgenp.free2chess.chessController;
 
 /**
@@ -12,18 +8,34 @@ public class MoveObj {
     private int[] init;
     private int[] last;
 
+    /**
+     *
+     */
     public MoveObj() {
     }
     
+    /**
+     *
+     * @param init
+     * @param last
+     */
     public MoveObj(int[] init, int[] last) {
         this.init = init;
         this.last = last;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int[] getInit() {
         return init;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getLast() {
         return last;
     }

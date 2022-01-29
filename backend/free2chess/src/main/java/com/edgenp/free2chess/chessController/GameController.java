@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.edgenp.free2chess.chessController;
 
 import com.edgenp.free2chess.chessGame.*;
@@ -34,6 +30,22 @@ public class GameController {
     @Autowired
     private UserService userServ;
     
+    /**
+     * Obtiene el estado actual de la partida de ajedrez con id "id"
+     * @param id
+     * @return
+     */
+    @GetMapping("/game/{id}")
+    public Game getGame(@PathVariable("id") Integer id){
+        Game game = gameServ.getById(id);
+        return game;
+    }
+    
+    /**
+     * Obtiene el estado actual de la partida de ajedrez con id "id"
+     * @param id
+     * @return
+     */
     @GetMapping("/game/{id}/board")
     public Board getState(@PathVariable("id") Integer id){
         System.out.println(id);
@@ -42,6 +54,13 @@ public class GameController {
         return game.getCurrentBoard();
     }
     
+    /**
+     * Realiza un movimiento en el tablero con id "id" y devuelve "error" si el movimiento es invalido
+     * @param id
+     * @param name
+     * @param move
+     * @return
+     */
     @PostMapping(value = "/game/{id}/board", produces = MediaType.TEXT_PLAIN_VALUE)
     public String performMove(@PathVariable("id") Integer id, @RequestParam String name, @RequestBody MoveObj move){
         String status = "ok";
@@ -65,6 +84,12 @@ public class GameController {
         return status;
     }
     
+    /**
+     * Crea un juego entre dos jugadores
+     * @param w_name
+     * @param b_name
+     * @return
+     */
     @PostMapping(value = "/game", produces = MediaType.TEXT_PLAIN_VALUE)
     public String createGame(@RequestParam String w_name, @RequestParam String b_name){
         User w_user = userServ.getById(w_name);

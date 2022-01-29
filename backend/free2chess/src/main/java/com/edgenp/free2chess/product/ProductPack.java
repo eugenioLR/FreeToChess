@@ -28,6 +28,10 @@ public class ProductPack implements ProductInterf, Serializable{
     private int c_price;
     private int d_price;
     private char rarity;
+
+    /**
+     *
+     */
     protected long purchases;
     private float discount_perc;
     private boolean for_sale;
@@ -39,9 +43,17 @@ public class ProductPack implements ProductInterf, Serializable{
                inverseJoinColumns = @JoinColumn(name = "\"id_Product\"", referencedColumnName = "id"))
     private List<Product> contents = new ArrayList<>();
     
+    /**
+     *
+     */
     public ProductPack() {
     }
 
+    /**
+     *
+     * @param contents
+     * @param for_sale
+     */
     public ProductPack(List<Product> contents, boolean for_sale) {
         this.name = "generatedPack";
         this.description = "Pack generated automatically by the server.";
@@ -54,53 +66,97 @@ public class ProductPack implements ProductInterf, Serializable{
         this.contents = contents;
     }
     
-    
-
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getC_price() {
         return c_price;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getD_price() {
         return d_price;
     }
 
+    /**
+     *
+     * @return
+     */
     public char getRarity() {
         return rarity;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getPurchases() {
         return purchases;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getDiscount_perc() {
         return discount_perc;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isFor_sale() {
         return for_sale;
     }
 
+    /**
+     *
+     * @param for_sale
+     */
     public void setFor_sale(boolean for_sale) {
         this.for_sale = for_sale;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Product> getContents() {
         return contents;
     }
     
-    
+    /**
+     * incrementa el numero de compras de los contenidos del pack recursivamente
+     */
     @Override
     public void increasePurchases(){
         this.purchases++;
@@ -109,6 +165,11 @@ public class ProductPack implements ProductInterf, Serializable{
         }
     }    
 
+    /**
+     * Compra un pack de productos y cobra las monedas y diamantes del usuario
+     * @param user
+     * @return
+     */
     @Override
     public boolean buyItem(User user) {
         boolean canBuy;
@@ -120,6 +181,10 @@ public class ProductPack implements ProductInterf, Serializable{
         return canBuy;
     }
 
+    /**
+     * Obtiene las ids de los contenidos del pack
+     * @return
+     */
     public List<Integer> getIdContents() {
         List<Integer> ids = new ArrayList<>();
         
@@ -128,5 +193,15 @@ public class ProductPack implements ProductInterf, Serializable{
         }
         
         return ids;
+    }
+
+    public List<String> getContentNames() {
+        List<String> names = new ArrayList<>();
+        
+        for(Product p : contents){
+            names.add(p.getName());
+        }
+        
+        return names;
     }
 }

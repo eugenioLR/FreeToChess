@@ -22,10 +22,18 @@ public class BoardSkinService {
     @Autowired
     private BoardSkinJPA boardSkinRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<BoardSkin> getAll(){
         return boardSkinRepo.findAll();
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void update(BoardSkin prod){
         boardSkinRepo.save(prod);
     }

@@ -12,6 +12,9 @@ package com.edgenp.free2chess.store;
  */
 public class PaySysPaypal implements PaySysAbs{
 
+    /**
+     *
+     */
     public PaySysPaypal() {
     }
     
@@ -23,6 +26,12 @@ public class PaySysPaypal implements PaySysAbs{
         System.out.println("User with paypalID [" + paypalId + "] made a transaction of " + amount + " $");
     }
 
+    /**
+     * Realiza una transaccion a traves de paypal (simulada con un print)
+     * @param paypalId
+     * @param amount
+     * @return
+     */
     @Override
     public boolean makePurchase(int paypalId, double amount) {
         boolean successful;

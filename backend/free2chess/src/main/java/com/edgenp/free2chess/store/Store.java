@@ -22,6 +22,10 @@ public class Store {
         Store.paySystem = new PaySysProxy();
     }
 
+    /**
+     * Obtiene la instancia de la tienda, si no existe se crea
+     * @return
+     */
     public static Store getInstance() {
         if(Store.instance == null){
             Store.instance = new Store();
@@ -63,6 +67,13 @@ public class Store {
         return price;
     }
     
+    /**
+     * Genera una lootbox dada una rareza y una candidad de elementos
+     * @param user
+     * @param rarity
+     * @param amount
+     * @return
+     */
     public ProductPack generateLootBox(User user, char rarity, int amount){
         ProductConstructor prodBuilder = new LootboxConstructor();
         double price = this.priceByLootbox(rarity);
@@ -73,6 +84,11 @@ public class Store {
         return prodBuilder.getPack();
     }
 
+    /**
+     * Realiza un pago a traves de paypal
+     * @param user
+     * @param price
+     */
     public void doPayment(User user, double price) {
         paySystem.makePurchase(user.getPaypal_id(), price);
     }

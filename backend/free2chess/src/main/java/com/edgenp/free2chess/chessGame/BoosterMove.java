@@ -16,19 +16,35 @@ public class BoosterMove implements GameCommandInterf{
 
     private Board board;
 
+    /**
+     *
+     * @param board
+     */
     public BoosterMove(Board board) {
         this.board = board;
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     @Override
     public boolean canMove(User user) {
         return false;
     }
 
+    /**
+     *
+     * @param user
+     */
     @Override
     public void performMove(User user) {
     }
 
+    /**
+     *
+     */
     @Override
     public void undoMove() {
     }

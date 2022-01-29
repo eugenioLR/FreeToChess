@@ -45,52 +45,96 @@ public class StoreController {
     @Autowired
     private LootboxConstructor lootConst = new LootboxConstructor();
     
+    /**
+     * Obtiene un producto dado su ID
+     * @param id
+     * @return
+     */
     @GetMapping("/store/{id}")
     public Product getProductById(@PathVariable("id") Integer id){
         return prodServ.getById(id);
     }
     
+    /**
+     * Obtiene todos los productos de la tienda
+     * @return
+     */
     @GetMapping("/store")
     public List<Product> getProducts(){
         return prodServ.getAll();
     }
     
+    /**
+     * Obtiene los emojis de la tienda
+     * @return
+     */
     @GetMapping("/store/emojis")
     public List<Emoji> getEmojis(){
         return emojiServ.getAll();
     }
     
+    /**
+     * Obtiene los boosters de la tienda
+     * @return
+     */
     @GetMapping("/store/boosters")
     public List<Booster> getBoosters(){
         return boosterServ.getAll();
     }
     
+    /**
+     * Obtiene las skins de tablero de la tienda
+     * @return
+     */
     @GetMapping("/store/boardSkins")
     public List<BoardSkin> getBoardSkins(){
         return boardSkinServ.getAll();
     }
     
+    /**
+     * Obtiene los sets de skins de piezas de la tienda
+     * @return
+     */
     @GetMapping("/store/pieceSkinSets")
     public List<PieceSkinSet> getPieceSkinSets(){
         return pieceSkinSetServ.getAll();
     }
     
+    /**
+     * Obtiene los packs de productos
+     * @return
+     */
     @GetMapping("/store/packs")
     public List<ProductPack> getProductPacks(){
         return prodPackServ.getAll();
     }
     
+    /**
+     * Obtiene un pack de productos dado su id
+     * @param id
+     * @return
+     */
     @GetMapping("/store/packs/{id}")
     public ProductPack getPackById(@PathVariable("id") Integer id){
         return prodPackServ.getById(id);
     }
     
-    
+    /**
+     * Obtiene los contenidos de un pack dada la id de este pack
+     * @param id
+     * @return
+     */
     @GetMapping("/store/packs/{id}/contents")
     public List<Product> getPackContents(@PathVariable("id") Integer id){
         return new ArrayList<>(prodPackServ.getById(id).getContents());
     }
     
+    /**
+     * Realiza la compra de un producto
+     * @param name
+     * @param prod
+     * @return
+     */
     @PostMapping(value = "/store/buy", produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateProduct(@RequestParam String name, @RequestBody Product prod){
         String status = "ok"; 
@@ -131,11 +175,18 @@ public class StoreController {
         return status;
     }
     
+    /**
+     * Genera y realiza la compra de un lootbox
+     * @param user
+     * @param rarity
+     * @param amount
+     * @return
+     */
     @PostMapping(value = "/store/lootbox", produces = MediaType.TEXT_PLAIN_VALUE)
     public String generateLootbox(@RequestBody User user, @RequestParam char rarity, @RequestParam int amount){
         lootConst.wipePack();
         ProductPack lootbox;
-        List<Integer> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         User userReal = userServ.getById(user.getName());
         
         if(userReal.canBuy(0, 20)){
@@ -146,18 +197,24 @@ public class StoreController {
             
             prodPackServ.update(lootbox);
             //result = lootbox.getContents();
-            result = lootbox.getIdContents();
+            result = lootbox.getContentNames();
             
             
             userReal.spendDiamonds(20);
             userServ.update(userReal);
             System.out.println(result.toString());
-            System.out.println(result.get(0).toString());
+            System.out.println(result.get(0));
             
         }
         return result.toString();
     }
     
+    /**
+     * Realiza la compra de una candidad de diamantes
+     * @param user
+     * @param amount
+     * @return
+     */
     @PostMapping(value = "/store/diamonds", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getDiamonds(@RequestBody User user, @RequestParam int amount){
         String status = "ok";
@@ -171,6 +228,12 @@ public class StoreController {
         return status;
     }
     
+    /**
+     * Realiza la compra de una candidad de monedas
+     * @param user
+     * @param amount
+     * @return
+     */
     @PostMapping(value = "/store/coins", produces = MediaType.TEXT_PLAIN_VALUE)
     public String getCoins(@RequestBody User user, @RequestParam int amount){
         String status = "ok";

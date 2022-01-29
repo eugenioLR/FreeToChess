@@ -15,12 +15,24 @@ public class Piece {
     private int[] pos;
     private PieceStrat pieceType;
 
+    /**
+     *
+     * @param color
+     * @param pos
+     * @param pieceType
+     */
     public Piece(int color, int[] pos, PieceStrat pieceType) {
         this.color = color;
         this.pos = pos;
         this.pieceType = pieceType;
     }
     
+    /**
+     *
+     * @param color
+     * @param pos
+     * @param type
+     */
     public Piece(int color, int[] pos, char type){
         this.color = color;
         this.pos = pos;
@@ -55,10 +67,18 @@ public class Piece {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getColor() {
         return color;
     }
     
+    /**
+     *
+     * @return
+     */
     public char getType() {
         char result = '-';
         if(pieceType != null){
@@ -67,14 +87,30 @@ public class Piece {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getPos() {
         return pos;
     }
     
+    /**
+     * Verifica si el movimiento que se quiere realizar es validos
+     * @param board
+     * @param posNew
+     * @return
+     */
     public boolean verifyMove(Board board, int[] posNew){
         return this.pieceType != null && this.pieceType.verifyMove(board, this.pos, posNew);
     }
     
+    /**
+     * Realiza un movimiento sobre el tablero
+     * @param board
+     * @param posNew
+     * @return
+     */
     public boolean move(Board board, int[] posNew){
         boolean valid;
         
@@ -84,10 +120,18 @@ public class Piece {
         return valid;
     }
     
+    /**
+     * Mueve una pieza a una posicion sin comprobar si este movimiento es legal
+     * @param posNew
+     */
     public void forceMove(int[] posNew){
         this.pos = posNew;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         char colorChar;

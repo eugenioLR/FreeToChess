@@ -11,7 +11,24 @@ package com.edgenp.free2chess.chessGame;
  * @author eugeniolr
  */
 public interface PieceStrat {
+
+    /**
+     * Verifica si el movimiento que se quiere realizar es validos
+     * @param board
+     * @param pos_init
+     * @param pos_new
+     * @return
+     */
     public boolean verifyMove(Board board, int[] pos_init, int[] pos_new);
+
+    /**
+     * 
+     */
     public void confirmMove();
+
+    /**
+     * Obtiene el nombre de la pieza 
+     * @return
+     */
     public char getName();
 }

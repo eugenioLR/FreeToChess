@@ -23,13 +23,20 @@ public class LootboxConstructor extends ProductConstructor{
     @Autowired
     private ProductJPA prodRepo;
 
+    /**
+     * Resetea el pack y los productos acumulados
+     */
     @Override
     public void wipePack() {
         this.packContents = new ArrayList<>();
         this.pack = null;
     }
     
-    
+    /**
+     * Selecciona todos los productos de una rareza determinada y todas las rarezas
+     * menores
+     * @param rarity
+     */
     @Override
     public void selectByRarity(char rarity) {
         List<Product> prod;
@@ -57,6 +64,10 @@ public class LootboxConstructor extends ProductConstructor{
         }
     }
 
+    /**
+     * Reduce la cantidad de productos acumulados a una cantidad dada
+     * @param amount
+     */
     @Override
     public void selectAmount(int amount) {
         Collections.shuffle(packContents);
@@ -70,6 +81,10 @@ public class LootboxConstructor extends ProductConstructor{
         }
     }
 
+    /**
+     * Obtiene el pack construido
+     * @return
+     */
     @Override
     public ProductPack getPack() {
         this.pack = new ProductPack(this.packContents, false);

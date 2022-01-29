@@ -13,7 +13,16 @@ import com.edgenp.free2chess.user.User;
  * @author eugeniolr
  */
 public interface ProductInterf {
+
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean buyItem(User user);
 
+    /**
+     *
+     */
     public void increasePurchases();
 }

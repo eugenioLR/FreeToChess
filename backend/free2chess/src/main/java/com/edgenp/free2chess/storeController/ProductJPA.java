@@ -16,6 +16,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductJPA extends JpaRepository<Product, Integer>{   
 
+    /**
+     *
+     * @param rarity
+     * @return
+     */
     public List<Product> findByRarity(char rarity);
     
 }

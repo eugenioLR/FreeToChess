@@ -18,17 +18,32 @@ public class BoardMove implements GameCommandInterf{
     private int[] init;
     private int[] last;
 
+    /**
+     *
+     * @param game
+     * @param init
+     * @param last
+     */
     public BoardMove(Game game, int[] init, int[] last) {
         this.game = game;
         this.init = init;
         this.last = last;
     }
     
+    /**
+     * Verifica si el movimiento que se va a realizar es valido
+     * @param user
+     * @return
+     */
     @Override
     public boolean canMove(User user) {
         return game.canMovePiece(user, init, last);
     }
 
+    /**
+     * Realiza un movimiento en el tablero
+     * @param user
+     */
     @Override
     public void performMove(User user) {
         if(this.canMove(user)){
@@ -42,6 +57,9 @@ public class BoardMove implements GameCommandInterf{
         }
     }
 
+    /**
+     * Deshace un movimiento en el tablero
+     */
     @Override
     public void undoMove() {
         game.forceMove(last, init);

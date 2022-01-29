@@ -11,5 +11,12 @@ package com.edgenp.free2chess.store;
  * @author eugeniolr
  */
 public interface PaySysAbs {
+
+    /**
+     *
+     * @param paypal_id
+     * @param amount
+     * @return
+     */
     public boolean makePurchase(int paypal_id, double amount);
 }

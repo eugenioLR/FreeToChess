@@ -4,14 +4,13 @@
  */
 package com.edgenp.free2chess.userController;
 
-import com.edgenp.free2chess.user.User;
+import com.edgenp.free2chess.user.PendingGame;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author eugeniolr
  */
-@Repository
-public interface UserJPA extends JpaRepository<User, String>{
+public interface PendingGameJPA extends JpaRepository<PendingGame, Integer> {
+    
 }

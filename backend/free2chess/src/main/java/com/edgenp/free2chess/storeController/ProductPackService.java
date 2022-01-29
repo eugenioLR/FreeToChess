@@ -21,10 +21,19 @@ public class ProductPackService {
     @Autowired
     private ProductPackJPA prodPackRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<ProductPack> getAll(){
         return prodPackRepo.findAll();
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public ProductPack getById(Integer id){
         Optional<ProductPack> optional = prodPackRepo.findById(id);
         if (optional.isPresent()) {
@@ -33,6 +42,10 @@ public class ProductPackService {
         return null;
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void update(ProductPack prod){
         prodPackRepo.save(prod);
     }

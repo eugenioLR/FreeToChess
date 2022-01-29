@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,16" last-zoom="1" max-obj-count="14"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="121,206" last-zoom="1" max-obj-count="12"
 	 default-schema="public" default-owner="postgres">
 <database name="free2chessDB" is-template="false" allow-conns="true">
 </database>
@@ -14,7 +14,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="User" layer="0" collapse-mode="2" max-obj-count="14" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="680" y="0"/>
+	<position x="1020" y="380"/>
 	<column name="name" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
@@ -69,7 +69,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Product" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="840" y="380"/>
+	<position x="1020" y="780"/>
 	<column name="id" not-null="true" sequence="public.product_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -110,7 +110,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Emoji" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1320" y="720"/>
+	<position x="1420" y="1080"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -120,34 +120,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</customidxs>
 </table>
 
-<table name="Achievement" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="440" y="400"/>
-	<column name="id" not-null="true">
-		<type name="smallint" length="0"/>
-	</column>
-	<column name="name">
-		<type name="varchar" length="50"/>
-	</column>
-	<column name="description">
-		<type name="text" length="0"/>
-	</column>
-	<column name="exp_reward">
-		<type name="smallint" length="0"/>
-	</column>
-	<column name="coin_reward">
-		<type name="smallint" length="0"/>
-	</column>
-	<constraint name="Achievement_pk" type="pk-constr" table="public.&quot;Achievement&quot;">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
 <table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="800" y="780"/>
+	<position x="880" y="1180"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -160,7 +136,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="PieceSkinSet" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1060" y="780"/>
+	<position x="1160" y="1180"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -170,17 +146,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</customidxs>
 </table>
 
-<table name="PendingGames" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<table name="PendingGames" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1480" y="240"/>
+	<position x="520" y="280"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
-	<column name="w_player_name">
+	<column name="acepted">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="emiter_name">
 		<type name="varchar" length="20"/>
 	</column>
-	<column name="b_player_name">
+	<column name="reciever_name">
 		<type name="varchar" length="20"/>
 	</column>
 	<constraint name="PendingGames_pk" type="pk-constr" table="public.&quot;PendingGames&quot;">
@@ -188,39 +167,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 
 	<customidxs object-type="column">
-		<object name="id_Tournament" index="1"/>
+		<object name="id_Game" index="4"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="Tournament_fk" index="1"/>
+		<object name="Game_fk" index="3"/>
+		<object name="PendingGames_uq" index="4"/>
 	</customidxs>
-</table>
-
-<table name="Tournament" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
-	<schema name="public"/>
-	<role name="postgres"/>
-	<position x="1480" y="40"/>
-	<column name="id" not-null="true">
-		<type name="smallint" length="0"/>
-	</column>
-	<column name="name">
-		<type name="smallint" length="0"/>
-	</column>
-	<column name="min_elo">
-		<type name="smallint" length="0"/>
-	</column>
-	<column name="max_elo">
-		<type name="smallint" length="0"/>
-	</column>
-	<constraint name="Tournament_pk" type="pk-constr" table="public.&quot;Tournament&quot;">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
 </table>
 
 <table name="Booster" layer="0" collapse-mode="2" pagination="true" attribs-page="0" ext-attribs-page="0" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="560" y="740"/>
+	<position x="640" y="1080"/>
 </table>
 
 <relationship name="BoardSkin_inherits_Product" type="relgen" layer="0"
@@ -256,23 +215,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<special-pk-cols indexes="0"/>
 </relationship>
 
-<relationship name="TournamentGame" type="rel1n" layer="0"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 custom-color="#e42ac7"
-	 src-table="public.&quot;Tournament&quot;"
-	 dst-table="public.&quot;PendingGames&quot;"
-	 src-required="false" dst-required="false">
-	<label ref-type="name-label">
-		<position x="47.9946" y="42.0677"/>
-	</label>
-</relationship>
-
 <table name="Game" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="160" y="120"/>
+	<position x="520" y="600"/>
 	<column name="id" not-null="true" sequence="public.game_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -302,55 +248,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</label>
 </relationship>
 
-<relationship name="CompletedAchivement" type="relnn" layer="0"
-	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
-	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
-	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
-	 pk-col-pattern="id"
-	 custom-color="#420df7"
-	 src-table="public.&quot;Achievement&quot;"
-	 dst-table="public.&quot;User&quot;"
-	 src-required="false" dst-required="false"
-	 table-name="CompletedAchivement">
-	<label ref-type="name-label">
-		<position x="-13.3245" y="-17.688"/>
-	</label>
-</relationship>
-
-<relationship name="JoinedTournament" type="relnn" layer="0"
-	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
-	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
-	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
-	 pk-col-pattern="id"
-	 custom-color="#05e2e9"
-	 src-table="public.&quot;Tournament&quot;"
-	 dst-table="public.&quot;User&quot;"
-	 src-required="false" dst-required="false"
-	 table-name="JoinedTournament">
-	<label ref-type="name-label">
-		<position x="10.9689" y="-22.6383"/>
-	</label>
-</relationship>
-
-<relationship name="ProductReward" type="relnn" layer="0"
-	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
-	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
-	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
-	 pk-col-pattern="id"
-	 custom-color="#f6a902"
-	 src-table="public.&quot;Achievement&quot;"
-	 dst-table="public.&quot;Product&quot;"
-	 src-required="false" dst-required="false"
-	 table-name="ProductReward">
-	<label ref-type="name-label">
-		<position x="2.68701" y="-22.4683"/>
-	</label>
-</relationship>
-
 <table name="ProductPack" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1200" y="380"/>
+	<position x="1380" y="780"/>
 	<column name="id" not-null="true" sequence="public.product_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -401,7 +302,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="GameState" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="140" y="380"/>
+	<position x="520" y="860"/>
 	<column name="id" not-null="true" sequence="public.gamestate_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -433,7 +334,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;GameState&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="37.5899" y="-27.7323"/>
+		<position x="47.1092" y="-17.7323"/>
 	</label>
 </relationship>
 
@@ -448,6 +349,36 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<special-pk-cols indexes="0"/>
 </relationship>
 
+<relationship name="PendingGames_has_one_Game" type="rel11" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d67f14"
+	 src-table="public.&quot;Game&quot;"
+	 dst-table="public.&quot;PendingGames&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="51.3775" y="-26.9323"/>
+	</label>
+</relationship>
+
+<sequence name="pending_game_id_generator" cycle="false" start="1" increment="1" min-value="0" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<constraint name="User1_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;PendingGames&quot;">
+	<columns names="emiter_name" ref-type="src-columns"/>
+	<columns names="name" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="User2_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;PendingGames&quot;">
+	<columns names="reciever_name" ref-type="src-columns"/>
+	<columns names="name" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="User1_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;Game&quot;">
 	<columns names="w_player_name" ref-type="src-columns"/>
@@ -456,18 +387,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="User2_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;Game&quot;">
-	<columns names="b_player_name" ref-type="src-columns"/>
-	<columns names="name" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="User1_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;PendingGames&quot;">
-	<columns names="w_player_name" ref-type="src-columns"/>
-	<columns names="name" ref-type="dst-columns"/>
-</constraint>
-
-<constraint name="User2_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;PendingGames&quot;">
 	<columns names="b_player_name" ref-type="src-columns"/>
 	<columns names="name" ref-type="dst-columns"/>
 </constraint>
@@ -487,7 +406,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;User&quot;" reference-fk="User1_fk"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="30.9689" y="-58.4846"/>
+		<position x="13.3823" y="-81.2374"/>
 	</label>
 </relationship>
 
@@ -496,7 +415,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;User&quot;" reference-fk="User2_fk"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="33.9689" y="-54.9656"/>
+		<position x="16.3823" y="-79.2654"/>
 	</label>
 </relationship>
 

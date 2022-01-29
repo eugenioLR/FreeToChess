@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.edgenp.free2chess.chessController;
 
 import com.edgenp.free2chess.chessGame.*;
@@ -18,6 +14,11 @@ public class GameService {
     @Autowired
     private GameJPA gameRepo;
     
+    /**
+     * Obtiene el juego con id "id"
+     * @param id
+     * @return
+     */
     public Game getById(Integer id){
         Optional<Game> optional = gameRepo.findById(id);
         if (optional.isPresent()) {
@@ -26,6 +27,10 @@ public class GameService {
         return null;
     }
     
+    /**
+     * Crea un juego en la base de datos
+     * @param game
+     */
     public void create(Game game){
         gameRepo.save(game);
     }

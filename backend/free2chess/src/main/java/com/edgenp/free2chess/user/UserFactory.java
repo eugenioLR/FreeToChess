@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.edgenp.free2chess.userController;
+package com.edgenp.free2chess.user;
 
 import com.edgenp.free2chess.user.*;
 import java.util.Random;
@@ -19,9 +19,21 @@ import java.security.NoSuchAlgorithmException;
  * @author eugeniolr
  */
 public class UserFactory {
+
+    /**
+     *
+     */
     public UserFactory() {
     }
     
+    /**
+     *
+     * @param name
+     * @param email
+     * @param password
+     * @param paypal_id
+     * @return
+     */
     public User createUser(String name, String email, String password, int paypal_id){
         Random rand = new Random();
         

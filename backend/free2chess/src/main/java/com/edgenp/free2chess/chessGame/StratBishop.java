@@ -14,6 +14,13 @@ import java.util.Arrays;
  */
 public class StratBishop implements PieceStrat{
 
+    /**
+     * Verifica si el movimiento que se quiere realizar es validos
+     * @param board
+     * @param pos_init
+     * @param pos_new
+     * @return
+     */
     @Override
     public boolean verifyMove(Board board, int[] pos_init, int[] pos_new) {
         boolean valid;
@@ -35,10 +42,17 @@ public class StratBishop implements PieceStrat{
         return valid;
     }
 
+    /**
+     *
+     */
     @Override
     public void confirmMove() {
     }   
 
+    /**
+     * Obtiene el nombre de la pieza 
+     * @return
+     */
     @Override
     public char getName() {
         return 'B';

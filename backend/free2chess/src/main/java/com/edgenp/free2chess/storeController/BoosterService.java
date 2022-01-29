@@ -23,10 +23,18 @@ public class BoosterService {
     @Autowired
     private BoosterJPA boosterRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<Booster> getAll(){
         return boosterRepo.findAll();
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void update(Booster prod){
         boosterRepo.save(prod);
     }

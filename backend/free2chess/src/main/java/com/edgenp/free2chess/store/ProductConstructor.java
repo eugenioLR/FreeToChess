@@ -14,15 +14,38 @@ import java.util.*;
  * @author eugeniolr
  */
 public abstract class ProductConstructor {
+
+    /**
+     *
+     */
     protected List<Product> packContents = new ArrayList<>();
+
+    /**
+     *
+     */
     protected ProductPack pack = null;
     
+    /**
+     *
+     */
     public abstract void wipePack();
     
+    /**
+     *
+     * @param rarity
+     */
     public abstract void selectByRarity(char rarity);
     
+    /**
+     *
+     * @param amount
+     */
     public abstract void selectAmount(int amount);
     
+    /**
+     *
+     * @return
+     */
     public abstract ProductPack getPack();
     
 }

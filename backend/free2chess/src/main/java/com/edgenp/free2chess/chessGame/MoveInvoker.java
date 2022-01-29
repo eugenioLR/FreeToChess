@@ -16,11 +16,19 @@ import java.util.*;
 public class MoveInvoker {
     private final List<GameCommandInterf> moveList = new ArrayList<>();
     
+    /**
+     * Añade un movimiento a la lista de comandos y lo ejecuta
+     * @param user
+     * @param command
+     */
     public void addMove(User user, GameCommandInterf command){
         moveList.add(command);
         command.performMove(user);
     }
     
+    /**
+     * 
+     */
     public void undoMove(){
         moveList.get(moveList.size()-1).undoMove();
     }

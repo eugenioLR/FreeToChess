@@ -20,14 +20,28 @@ public class ProductService {
     @Autowired
     private ProductJPA prodRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<Product> getAll(){
         return prodRepo.findAll();
     }
     
+    /**
+     *
+     * @param rarity
+     * @return
+     */
     public List<Product> getByRarity(char rarity){
         return prodRepo.findByRarity(rarity);
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Product getById(Integer id){
         Optional<Product> optional = prodRepo.findById(id);
         if (optional.isPresent()) {
@@ -36,6 +50,10 @@ public class ProductService {
         return null;
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void update(Product prod){
         prodRepo.save(prod);
     }

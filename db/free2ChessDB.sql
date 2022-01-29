@@ -104,7 +104,7 @@ ALTER SEQUENCE public.gamestate_id_generator OWNER TO postgres;
 CREATE TABLE public."Emoji" (
 	texture_path varchar(150),
 
--- 	id smallint NOT NULL,
+-- 	id smallint NOT NULL DEFAULT nextval('public.product_id_generator'::regclass),
 -- 	name varchar(50),
 -- 	description text,
 -- 	c_price integer,
@@ -121,27 +121,12 @@ CREATE TABLE public."Emoji" (
 ALTER TABLE public."Emoji" OWNER TO postgres;
 -- ddl-end --
 
--- object: public."Achievement" | type: TABLE --
--- DROP TABLE IF EXISTS public."Achievement" CASCADE;
-CREATE TABLE public."Achievement" (
-	id smallint NOT NULL,
-	name varchar(50),
-	description text,
-	exp_reward smallint,
-	coin_reward smallint,
-	CONSTRAINT "Achievement_pk" PRIMARY KEY (id)
-
-);
--- ddl-end --
-ALTER TABLE public."Achievement" OWNER TO postgres;
--- ddl-end --
-
 -- object: public."BoardSkin" | type: TABLE --
 -- DROP TABLE IF EXISTS public."BoardSkin" CASCADE;
 CREATE TABLE public."BoardSkin" (
 	texture_path varchar(150),
 
--- 	id smallint NOT NULL,
+-- 	id smallint NOT NULL DEFAULT nextval('public.product_id_generator'::regclass),
 -- 	name varchar(50),
 -- 	description text,
 -- 	c_price integer,
@@ -163,7 +148,7 @@ ALTER TABLE public."BoardSkin" OWNER TO postgres;
 CREATE TABLE public."PieceSkinSet" (
 	texture_path varchar(150),
 
--- 	id smallint NOT NULL,
+-- 	id smallint NOT NULL DEFAULT nextval('public.product_id_generator'::regclass),
 -- 	name varchar(50),
 -- 	description text,
 -- 	c_price integer,
@@ -184,9 +169,10 @@ ALTER TABLE public."PieceSkinSet" OWNER TO postgres;
 -- DROP TABLE IF EXISTS public."PendingGames" CASCADE;
 CREATE TABLE public."PendingGames" (
 	id smallint NOT NULL,
-	"id_Tournament" smallint,
-	w_player_name varchar(20),
-	b_player_name varchar(20),
+	acepted boolean,
+	emiter_name varchar(20),
+	reciever_name varchar(20),
+	"id_Game" smallint,
 	CONSTRAINT "PendingGames_pk" PRIMARY KEY (id)
 
 );
@@ -194,25 +180,11 @@ CREATE TABLE public."PendingGames" (
 ALTER TABLE public."PendingGames" OWNER TO postgres;
 -- ddl-end --
 
--- object: public."Tournament" | type: TABLE --
--- DROP TABLE IF EXISTS public."Tournament" CASCADE;
-CREATE TABLE public."Tournament" (
-	id smallint NOT NULL,
-	name smallint,
-	min_elo smallint,
-	max_elo smallint,
-	CONSTRAINT "Tournament_pk" PRIMARY KEY (id)
-
-);
--- ddl-end --
-ALTER TABLE public."Tournament" OWNER TO postgres;
--- ddl-end --
-
 -- object: public."Booster" | type: TABLE --
 -- DROP TABLE IF EXISTS public."Booster" CASCADE;
 CREATE TABLE public."Booster" (
 
--- 	id smallint NOT NULL,
+-- 	id smallint NOT NULL DEFAULT nextval('public.product_id_generator'::regclass),
 -- 	name varchar(50),
 -- 	description text,
 -- 	c_price integer,
@@ -227,13 +199,6 @@ CREATE TABLE public."Booster" (
  INHERITS(public."Product");
 -- ddl-end --
 ALTER TABLE public."Booster" OWNER TO postgres;
--- ddl-end --
-
--- object: "Tournament_fk" | type: CONSTRAINT --
--- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "Tournament_fk" CASCADE;
-ALTER TABLE public."PendingGames" ADD CONSTRAINT "Tournament_fk" FOREIGN KEY ("id_Tournament")
-REFERENCES public."Tournament" (id) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public."Game" | type: TABLE --
@@ -269,78 +234,6 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 -- object: "Product_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."PurchasedProduct" DROP CONSTRAINT IF EXISTS "Product_fk" CASCADE;
 ALTER TABLE public."PurchasedProduct" ADD CONSTRAINT "Product_fk" FOREIGN KEY ("id_Product")
-REFERENCES public."Product" (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: public."CompletedAchivement" | type: TABLE --
--- DROP TABLE IF EXISTS public."CompletedAchivement" CASCADE;
-CREATE TABLE public."CompletedAchivement" (
-	"id_Achievement" smallint NOT NULL,
-	"name_User" varchar(20) NOT NULL,
-	CONSTRAINT "CompletedAchivement_pk" PRIMARY KEY ("id_Achievement","name_User")
-
-);
--- ddl-end --
-
--- object: "Achievement_fk" | type: CONSTRAINT --
--- ALTER TABLE public."CompletedAchivement" DROP CONSTRAINT IF EXISTS "Achievement_fk" CASCADE;
-ALTER TABLE public."CompletedAchivement" ADD CONSTRAINT "Achievement_fk" FOREIGN KEY ("id_Achievement")
-REFERENCES public."Achievement" (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: "User_fk" | type: CONSTRAINT --
--- ALTER TABLE public."CompletedAchivement" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."CompletedAchivement" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
-REFERENCES public."User" (name) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: public."JoinedTournament" | type: TABLE --
--- DROP TABLE IF EXISTS public."JoinedTournament" CASCADE;
-CREATE TABLE public."JoinedTournament" (
-	"id_Tournament" smallint NOT NULL,
-	"name_User" varchar(20) NOT NULL,
-	CONSTRAINT "JoinedTournament_pk" PRIMARY KEY ("id_Tournament","name_User")
-
-);
--- ddl-end --
-
--- object: "Tournament_fk" | type: CONSTRAINT --
--- ALTER TABLE public."JoinedTournament" DROP CONSTRAINT IF EXISTS "Tournament_fk" CASCADE;
-ALTER TABLE public."JoinedTournament" ADD CONSTRAINT "Tournament_fk" FOREIGN KEY ("id_Tournament")
-REFERENCES public."Tournament" (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: "User_fk" | type: CONSTRAINT --
--- ALTER TABLE public."JoinedTournament" DROP CONSTRAINT IF EXISTS "User_fk" CASCADE;
-ALTER TABLE public."JoinedTournament" ADD CONSTRAINT "User_fk" FOREIGN KEY ("name_User")
-REFERENCES public."User" (name) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: public."ProductReward" | type: TABLE --
--- DROP TABLE IF EXISTS public."ProductReward" CASCADE;
-CREATE TABLE public."ProductReward" (
-	"id_Achievement" smallint NOT NULL,
-	"id_Product" smallint NOT NULL,
-	CONSTRAINT "ProductReward_pk" PRIMARY KEY ("id_Achievement","id_Product")
-
-);
--- ddl-end --
-
--- object: "Achievement_fk" | type: CONSTRAINT --
--- ALTER TABLE public."ProductReward" DROP CONSTRAINT IF EXISTS "Achievement_fk" CASCADE;
-ALTER TABLE public."ProductReward" ADD CONSTRAINT "Achievement_fk" FOREIGN KEY ("id_Achievement")
-REFERENCES public."Achievement" (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: "Product_fk" | type: CONSTRAINT --
--- ALTER TABLE public."ProductReward" DROP CONSTRAINT IF EXISTS "Product_fk" CASCADE;
-ALTER TABLE public."ProductReward" ADD CONSTRAINT "Product_fk" FOREIGN KEY ("id_Product")
 REFERENCES public."Product" (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
@@ -409,6 +302,47 @@ REFERENCES public."Game" (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
+-- object: "Game_fk" | type: CONSTRAINT --
+-- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "Game_fk" CASCADE;
+ALTER TABLE public."PendingGames" ADD CONSTRAINT "Game_fk" FOREIGN KEY ("id_Game")
+REFERENCES public."Game" (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: "PendingGames_uq" | type: CONSTRAINT --
+-- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "PendingGames_uq" CASCADE;
+ALTER TABLE public."PendingGames" ADD CONSTRAINT "PendingGames_uq" UNIQUE ("id_Game");
+-- ddl-end --
+
+-- object: public.pending_game_id_generator | type: SEQUENCE --
+-- DROP SEQUENCE IF EXISTS public.pending_game_id_generator CASCADE;
+CREATE SEQUENCE public.pending_game_id_generator
+	INCREMENT BY 1
+	MINVALUE 0
+	MAXVALUE 2147483647
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+-- ddl-end --
+ALTER SEQUENCE public.pending_game_id_generator OWNER TO postgres;
+-- ddl-end --
+
+-- object: "User1_fk" | type: CONSTRAINT --
+-- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "User1_fk" CASCADE;
+ALTER TABLE public."PendingGames" ADD CONSTRAINT "User1_fk" FOREIGN KEY (emiter_name)
+REFERENCES public."User" (name) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+-- object: "User2_fk" | type: CONSTRAINT --
+-- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "User2_fk" CASCADE;
+ALTER TABLE public."PendingGames" ADD CONSTRAINT "User2_fk" FOREIGN KEY (reciever_name)
+REFERENCES public."User" (name) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
 -- object: "User1_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."Game" DROP CONSTRAINT IF EXISTS "User1_fk" CASCADE;
 ALTER TABLE public."Game" ADD CONSTRAINT "User1_fk" FOREIGN KEY (w_player_name)
@@ -419,20 +353,6 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- object: "User2_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."Game" DROP CONSTRAINT IF EXISTS "User2_fk" CASCADE;
 ALTER TABLE public."Game" ADD CONSTRAINT "User2_fk" FOREIGN KEY (b_player_name)
-REFERENCES public."User" (name) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: "User1_fk" | type: CONSTRAINT --
--- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "User1_fk" CASCADE;
-ALTER TABLE public."PendingGames" ADD CONSTRAINT "User1_fk" FOREIGN KEY (w_player_name)
-REFERENCES public."User" (name) MATCH FULL
-ON DELETE NO ACTION ON UPDATE NO ACTION;
--- ddl-end --
-
--- object: "User2_fk" | type: CONSTRAINT --
--- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "User2_fk" CASCADE;
-ALTER TABLE public."PendingGames" ADD CONSTRAINT "User2_fk" FOREIGN KEY (b_player_name)
 REFERENCES public."User" (name) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --

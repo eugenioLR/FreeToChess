@@ -16,10 +16,20 @@ public class StratRook implements PieceStrat{
     
     private boolean moved;
 
+    /**
+     *
+     */
     public StratRook() {
         this.moved = false;
     }
 
+    /**
+     * Verifica si el movimiento que se quiere realizar es validos
+     * @param board
+     * @param pos_init
+     * @param pos_new
+     * @return
+     */
     @Override
     public boolean verifyMove(Board board, int[] pos_init, int[] pos_new) {
         boolean valid;
@@ -39,10 +49,17 @@ public class StratRook implements PieceStrat{
         return valid;
     }
 
+    /**
+     *
+     */
     @Override
     public void confirmMove() {
     }   
 
+    /**
+     * Obtiene el nombre de la pieza 
+     * @return
+     */
     @Override
     public char getName() {
         return 'R';

@@ -21,10 +21,18 @@ public class PieceSkinSetService {
     @Autowired
     private PieceSkinSetJPA pieceSkinSetRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<PieceSkinSet> getAll(){
         return pieceSkinSetRepo.findAll();
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void update(PieceSkinSet prod){
         pieceSkinSetRepo.save(prod);
     }

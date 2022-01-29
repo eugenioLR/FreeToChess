@@ -21,10 +21,18 @@ public class EmojiService {
     @Autowired
     private EmojiJPA emojiRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<Emoji> getAll(){
         return emojiRepo.findAll();
     }
     
+    /**
+     *
+     * @param prod
+     */
     public void update(Emoji prod){
         emojiRepo.save(prod);
     }

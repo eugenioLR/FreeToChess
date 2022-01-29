@@ -19,10 +19,19 @@ public class UserService {
     @Autowired
     private UserJPA userRepo;
     
+    /**
+     *
+     * @return
+     */
     public List<User> getAll(){
         return userRepo.findAll();
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public User getById(String id){
         Optional<User> optional = userRepo.findById(id);
         if (optional.isPresent()) {
@@ -31,10 +40,18 @@ public class UserService {
         return null;
     }
     
+    /**
+     *
+     * @param user
+     */
     public void create(User user){
         userRepo.save(user);
     }
 
+    /**
+     *
+     * @param user
+     */
     public void update(User user) {
         userRepo.save(user);
     }
