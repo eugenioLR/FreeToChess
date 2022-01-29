@@ -43,7 +43,7 @@ nav {
     font-size: 2vh;
 }
 
-.stats {
+.stats-div {
     display: flex;
     width: 35vh;
     height: 8vh;
@@ -82,4 +82,33 @@ nav {
     font-size: 1.5vh;
     padding-top: 3.5vh;
     padding-right: 7vh;
+}
+
+.log-off {
+    position: absolute;
+    width: 7vh;
+    height: 2vh;
+    background-color: #555555; 
+    border-width: 0.323vh;
+    border-radius: 4vh;
+    color: #e0e0e0;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1vh;
+    cursor: pointer;
+    right: 2vh;
+    top: 1vh;
+}
+
+.log-off:hover {
+    background-color: #5e5d5d;
+}
+
+.log-off:active {
+    background-color: #2b2b2b; 
+}
+
+.greeting {
+    height: 20vh;
+    width: 100%;
 }

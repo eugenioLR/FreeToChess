@@ -1,4 +1,3 @@
-
 function getstats()
 {
     const xhr = new XMLHttpRequest();
@@ -28,20 +27,12 @@ function getstats()
     xhr.send();
 }
 
-function greeting()
-{ 
-    let e = document.getElementsByClassName("greetings");
-    var user = localStorage.getItem("username");
-    console.log(e[0]);
-    // e.insertAdjacentHTML('afterbegin', '<h2>Welcome</h2>');
-    // e[0].insertAdjacentHTML('afterbegin','<h2 class="welcome-message">Welcome ' + user + '</h2>');    
-}
-
-$(document).ready(function(){
-    $("#log-off").click(function(){
+$(document).ready(function()
+{
+    $("#log-off").click(function()
+    {
         window.location.replace("http://127.0.0.1:5500/index.html");
     });
 });
 
 getstats();
-greeting();
