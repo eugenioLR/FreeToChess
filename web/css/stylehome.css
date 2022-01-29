@@ -1,0 +1,85 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    max-height: 8vh;
+    background-color: rgb(93, 73, 84);
+    font-family: "Montserrat", sans-serif;
+}
+
+.logo {
+    color: rgb(204, 204, 204);
+    letter-spacing: 0.2vh;
+    font-size: 2vh;
+    font-family: "Lobster", cursive;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+  
+.nav-links li {
+    list-style: none;
+}
+  
+.nav-links a {
+    color: rgb(204, 204, 204);
+    text-decoration: none;
+    letter-spacing: 0.1vh;
+    font-weight: bold;
+    font-size: 2vh;
+}
+
+.stats {
+    display: flex;
+    width: 35vh;
+    height: 8vh;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(204, 204, 204);
+    font-size: 2vh;
+    justify-content: space-between;
+    padding-top: 1vh;
+}
+
+.nickname {
+    font-family: "Lobster", cursive;
+    letter-spacing: 0.1vh;
+    padding-top: 1vh;
+    font-size: 3vh;
+}
+
+.currencies {
+    display: flex; 
+    font-size: 1.8vh;
+    align-items: center;
+    padding-top: 0.5vh;
+}
+
+.money-icon {
+    width: 1.8vh;
+    height: auto;
+}
+
+.money-stats {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp {
+    font-size: 1.5vh;
+    padding-top: 3.5vh;
+    padding-right: 7vh;
+}
