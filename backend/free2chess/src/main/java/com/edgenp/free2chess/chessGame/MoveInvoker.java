@@ -6,10 +6,22 @@
 
 package com.edgenp.free2chess.chessGame;
 
+import java.util.*;
+
 /**
  *
  * @author eugeniolr
  */
 public class MoveInvoker {
+    private final List<GameCommandInterf> moveList = new ArrayList<>();
+    
+    public void addMove(GameCommandInterf command){
+        moveList.add(command);
+        command.performMove();
+    }
+    
+    public void undoMove(){
+        moveList.get(moveList.size()-1).undoMove();
+    }
 
 }

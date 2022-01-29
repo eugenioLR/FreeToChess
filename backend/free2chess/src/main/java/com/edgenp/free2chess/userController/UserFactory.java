@@ -22,16 +22,17 @@ public class UserFactory {
     public UserFactory() {
     }
     
-    public User createUser(String name, String password, int paypal_id){
+    public User createUser(String name, String email, String password, int paypal_id){
         Random rand = new Random();
         
         byte[] randArray = new byte[10];
         rand.nextBytes(randArray);
+        //byte[] randArray = {65,65,65,65,65,65,65,65,65,65};
         String salt = new String(randArray);
         
         String pass_hashed = encryptPass(password + salt);
         
-        User user = new User(name, pass_hashed, salt, paypal_id);
+        User user = new User(name, email, pass_hashed, salt, paypal_id);
         
         return user;
     }

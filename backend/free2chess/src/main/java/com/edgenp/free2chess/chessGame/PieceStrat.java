@@ -11,5 +11,7 @@ package com.edgenp.free2chess.chessGame;
  * @author eugeniolr
  */
 public interface PieceStrat {
-
+    public boolean verifyMove(Board board, int[] pos_init, int[] pos_new);
+    public void confirmMove();
+    public char getName();
 }

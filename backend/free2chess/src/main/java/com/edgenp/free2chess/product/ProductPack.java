@@ -9,8 +9,7 @@ package com.edgenp.free2chess.product;
 import com.edgenp.free2chess.store.Store;
 import com.edgenp.free2chess.user.User;
 import com.fasterxml.jackson.annotation.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import javax.persistence.*;
 
 /**
@@ -21,8 +20,8 @@ import javax.persistence.*;
 @Table(name = "\"ProductPack\"")
 public class ProductPack implements ProductInterf{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="product_id_generator")
+    private int id;
     private String name;
     private String description;
     private int c_price;
@@ -30,15 +29,21 @@ public class ProductPack implements ProductInterf{
     private char rarity;
     protected long purchases;
     private float discount_perc;
+    private boolean for_sale;
     
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "\"PackContents\"", 
                joinColumns = @JoinColumn(name = "\"id_ProductPack\"", referencedColumnName = "id"), 
                inverseJoinColumns = @JoinColumn(name = "\"id_Product\"", referencedColumnName = "id"))
-    private Set<Product> contents = new HashSet<>();
+    private List<Product> contents = new ArrayList<>();
     
     public ProductPack() {
+    }
+
+    public ProductPack(List<Product> contents, boolean for_sale) {
+        this.contents = contents;
+        this.for_sale = for_sale;
     }
 
     public Integer getId() {
@@ -73,9 +78,18 @@ public class ProductPack implements ProductInterf{
         return discount_perc;
     }
 
-    public Set<Product> getContents() {
+    public boolean isFor_sale() {
+        return for_sale;
+    }
+
+    public void setFor_sale(boolean for_sale) {
+        this.for_sale = for_sale;
+    }
+    
+    public List<Product> getContents() {
         return contents;
     }
+    
     
     @Override
     public void increasePurchases(){
@@ -86,13 +100,13 @@ public class ProductPack implements ProductInterf{
     }    
 
     @Override
-    public void buyItem(User user) {
-        Store store = Store.getInstance();
-        
-        double realPrice = 0.001*this.c_price + 0.01*this.d_price;
-        double finalPrice =  realPrice * (1 - this.discount_perc);
-        finalPrice = ((double) Math.round(finalPrice*100))/100.00;
-        store.doPayment(user, finalPrice);
-        this.increasePurchases();
+    public boolean buyItem(User user) {
+        boolean canBuy;
+        if(canBuy = user.canBuy(this.c_price, this.d_price)){
+            user.spendCoins(this.c_price);
+            user.spendDiamonds(this.d_price);
+            this.increasePurchases();
+        }
+        return canBuy;
     }
 }

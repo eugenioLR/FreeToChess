@@ -12,4 +12,25 @@ package com.edgenp.free2chess.chessGame;
  */
 public class BoosterMove implements GameCommandInterf{
 
+    private Board board;
+
+    public BoosterMove(Board board) {
+        this.board = board;
+    }
+
+    @Override
+    public boolean canMove() {
+        return false;
+    }
+
+    @Override
+    public void performMove() {
+    }
+
+    @Override
+    public void undoMove() {
+    }
+
+    
+
 }

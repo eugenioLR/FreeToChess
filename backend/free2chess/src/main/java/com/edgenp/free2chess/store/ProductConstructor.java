@@ -21,8 +21,6 @@ public abstract class ProductConstructor {
     
     public abstract void selectAmount(int amount);
     
-    public ProductPack getPack(){
-        return this.pack;
-    }
+    public abstract ProductPack getPack();
     
 }

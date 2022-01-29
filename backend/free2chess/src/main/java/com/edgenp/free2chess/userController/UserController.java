@@ -37,7 +37,7 @@ public class UserController {
         return new ArrayList<>(user.getPurchasedProducts());
     }
     
-    @GetMapping("/users/{id}/subscribe")
+    @PostMapping("/users/{id}/subscribe")
     public void subscribeUser(@PathVariable("id") String id){
         User user = userServ.getById(id);
         user.subscribe();
@@ -50,22 +50,18 @@ public class UserController {
     }
     
     @PostMapping(value = "/users", produces = MediaType.TEXT_PLAIN_VALUE)
-    public void create(@RequestBody User user) throws ExistingUserException{
+    public String create(@RequestBody User user){
+        String status = "ok";
         if(this.getById(user.getName()) == null){
             UserFactory userFactory = new UserFactory();
-            User userFinal = userFactory.createUser(user.getName(), user.getPassword(), user.getPaypal_id());
+            User userFinal = userFactory.createUser(user.getName(), user.getEmail(), user.getPassword(), user.getPaypal_id());
 
             System.out.println(userFinal.toString());
+            
             userServ.create(userFinal);
         }else{
-            throw new ExistingUserException(user.getName());
+            status = "error";
         }
-    }
-}
-
-
-class ExistingUserException extends Exception { 
-    public ExistingUserException(String username) {
-        super("The user \"" + username + "\" already exists");
+        return status;
     }
 }

@@ -5,6 +5,7 @@
 package com.edgenp.free2chess.storeController;
 
 import com.edgenp.free2chess.product.*;
+import com.edgenp.free2chess.store.*;
 import com.edgenp.free2chess.user.*;
 import com.edgenp.free2chess.userController.UserService;
 import java.util.*;
@@ -87,35 +88,83 @@ public class StoreController {
         return new ArrayList<>(prodPackServ.getById(id).getContents());
     }
     
-    
-    
-    @PostMapping(value = "/store/dummy", produces = MediaType.TEXT_PLAIN_VALUE)
-    public void updateDummpyProduct(@RequestBody Product prod){
-        Product prodReal = this.getProductById(prod.getId());
-        prodReal.buyItem(new User("none", "none", "none", 0));
-        prodServ.update(prodReal);
-    }
-    
     @PostMapping(value = "/store/buy", produces = MediaType.TEXT_PLAIN_VALUE)
-    public void updateProduct(@RequestParam String name, @RequestBody Product prod){
+    public String updateProduct(@RequestParam String name, @RequestBody Product prod){
+        String status = "ok"; 
         User user = this.userServ.getById(name);
         if(user != null){
             if(this.getPackById(prod.getId()) == null){
                 Product prodReal = this.getProductById(prod.getId());
-                prodReal.buyItem(user);
-                prodServ.update(prodReal);
-                user.addPurchasedProducts(prod);
+                if(user.canBuy(prodReal.getC_price(), prodReal.getD_price())){
+                    prodReal.buyItem(user);
+                    prodServ.update(prodReal);
+                    user.addPurchasedProducts(prod);
+                }else{
+                    System.out.println(user.getCoins() + "," + user.getDiamonds());
+                    System.out.println("not enough moneys, prod");
+                    status = "error";
+                }
             }else{
                 ProductPack pack = this.getPackById(prod.getId());
-                pack.buyItem(user);
-                prodPackServ.update(pack);
-                for(Product p : pack.getContents()){
-                    user.addPurchasedProducts(p);
+                if(user.canBuy(pack.getC_price(), pack.getD_price())){
+                    pack.buyItem(user);
+                    prodPackServ.update(pack);
+                    for(Product p : pack.getContents()){
+                        user.addPurchasedProducts(p);
+                    }
+                }else{
+                    System.out.println("not enough moneys, pack");
+                    status = "error";
                 }
-            }
+            }            
             userServ.update(user);
         }else{
+            status = "error";
             System.out.println("The user with name \"" + name + "\" was not found.");
         }
+        return status;
+    }
+    
+    @PostMapping(value = "/store/lootbox", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ProductPack generateLootbox(@RequestBody User user, @RequestParam char rarity, @RequestParam int amount){
+        ProductConstructor lootboxBuilder;
+        ProductPack lootbox = null;
+        User userReal = userServ.getById(user.getName());
+        if(userReal.canBuy(0, 20)){
+            System.out.println("hello");
+            lootboxBuilder = new LootboxConstructor();
+            lootboxBuilder.selectByRarity(rarity);
+            lootboxBuilder.selectAmount(amount);
+            lootbox = lootboxBuilder.getPack();
+            userReal.spendDiamonds(20);
+            prodPackServ.update(lootbox);
+            userServ.update(userReal);
+        }
+        return lootbox;
+    }
+    
+    @PostMapping(value = "/store/diamonds", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String getDiamonds(@RequestBody User user, @RequestParam int amount){
+        String status = "ok";
+        User userReal = this.userServ.getById(user.getName());
+        Store store = Store.getInstance();
+        store.doPayment(user, 0.13*amount);
+        System.out.println(userReal.getDiamonds());
+        userReal.addDiamonds(amount);
+        System.out.println(userReal.getDiamonds());
+        userServ.update(userReal);
+        return status;
+    }
+    
+    @PostMapping(value = "/store/coins", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String getCoins(@RequestBody User user, @RequestParam int amount){
+        String status = "ok";
+        User userReal = this.userServ.getById(user.getName());
+        Store store = Store.getInstance();
+        store.doPayment(user, 0.01*amount);
+        userReal.addCoins(amount);
+        System.out.println(userReal.getCoins());
+        userServ.update(userReal);
+        return status;
     }
 }

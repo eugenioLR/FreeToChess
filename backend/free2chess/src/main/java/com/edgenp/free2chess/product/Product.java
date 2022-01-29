@@ -19,8 +19,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Product implements ProductInterf, Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="product_id_generator")
+    private int id;
     private String name;
     private String description;
     private int c_price;
@@ -28,6 +28,7 @@ public class Product implements ProductInterf, Serializable{
     private char rarity;
     protected long purchases;
     private float discount_perc;
+    private boolean for_sale;
 
     public Product() {
     }
@@ -82,19 +83,26 @@ public class Product implements ProductInterf, Serializable{
         return discount_perc;
     }
     
+    public boolean isFor_sale() {
+        return for_sale;
+    }
+
+    public void setFor_sale(boolean for_sale) {
+        this.for_sale = for_sale;
+    }
+    
     public void increasePurchases(){
         this.purchases++;
     }
 
     @Override
-    public void buyItem(User user) {
-        Store store = Store.getInstance();
-        
-        double realPrice = 0.001*this.c_price + 0.01*this.d_price;
-        double finalPrice =  realPrice * (1 - this.discount_perc);
-        finalPrice = ((double) Math.round(finalPrice*100))/100.00;
-        store.doPayment(user, finalPrice);
-        this.increasePurchases();
-        System.out.println(this.purchases);
+    public boolean buyItem(User user) {
+        boolean canBuy;
+        if(canBuy = user.canBuy(this.c_price, this.d_price)){
+            user.spendCoins(this.c_price);
+            user.spendDiamonds(this.d_price);
+            this.increasePurchases();
+        }
+        return canBuy;
     }
 }

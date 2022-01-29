@@ -11,5 +11,7 @@ package com.edgenp.free2chess.chessGame;
  * @author eugeniolr
  */
 public interface GameCommandInterf {
-
+    public boolean canMove();
+    public void performMove();
+    public void undoMove();
 }

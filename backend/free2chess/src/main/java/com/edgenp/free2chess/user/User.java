@@ -9,7 +9,6 @@ package com.edgenp.free2chess.user;
 import com.edgenp.free2chess.product.*;
 import com.edgenp.free2chess.store.Store;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.time.Instant;
 import java.util.*;
 import javax.persistence.*;
 
@@ -21,18 +20,18 @@ import javax.persistence.*;
 @Table(name = "\"User\"")
 public class User implements UserInterf{
     @Id
-    protected String name;
-    protected String password;
-    protected String salt;
-    protected int elo;
-    protected int level;
-    protected int exp;
-    protected boolean subscribed;
-    protected Date subs_date;
-    protected int paypal_id;
-    protected int coins;
-    protected int diamonds;
-    
+    private String name;
+    private String email;
+    private String password;
+    private String salt;
+    private int elo;
+    private int level;
+    private int exp;
+    private boolean subscribed;
+    private Date subs_date;
+    private int paypal_id;
+    private int coins;
+    private int diamonds;
     
     
     @JsonIgnore
@@ -45,12 +44,10 @@ public class User implements UserInterf{
     
     public User() {
     }
-    
-    public User(String name, int paypal_id) {
-    }
-    
-    public User(String name, String password, String salt, int paypal_id) {
+
+    public User(String name, String email, String password, String salt, int paypal_id) {
         this.name = name;
+        this.email = email;
         this.password = password;
         this.salt = salt;
         this.paypal_id = paypal_id;
@@ -62,6 +59,10 @@ public class User implements UserInterf{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
@@ -140,17 +141,29 @@ public class User implements UserInterf{
         return coins;
     }
 
-    public void setCoins(int coins) {
-        this.coins = coins;
+    public void spendCoins(int coins) {
+        this.coins -= coins;
+    }
+    
+    public void addCoins(int coins){
+        this.coins += coins;
     }
 
     public int getDiamonds() {
         return diamonds;
     }
 
-    public void setDiamonds(int diamonds) {
-        this.diamonds = diamonds;
-    }    
+    public void spendDiamonds(int diamonds) {
+        this.diamonds -= diamonds;
+    }
+    
+    public void addDiamonds(int diamonds){
+        this.diamonds += diamonds;
+    }
+    
+    public boolean canBuy(int coins, int diamonds){
+        return this.coins >= coins && this.diamonds >= diamonds;
+    }
 
     public Set<Product> getPurchasedProducts() {
         return purchasedProducts;
