@@ -43,67 +43,6 @@ nav {
   font-size: 2vh;
 }
 
-
-.log-off {
-  position: absolute;
-  width: 7vh;
-  height: 2vh;
-  background-color: #555555; 
-  border-width: 0.323vh;
-  border-radius: 4vh;
-  color: #e0e0e0;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 0.1vh;
-  font-size: 1vh;
-  cursor: pointer;
-  right: 2vh;
-  top: 1vh;
-}
-
-.log-off:hover {
-  background-color: #5e5d5d;
-}
-
-.log-off:active {
-  background-color: #2b2b2b; 
-}
-
-.board {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  /* border: 1vh solid black; */
-}
-
-.light-box {
-  background-image: url("../img/boards/militar/light.png");
-  background-size: cover;
-  width: 9vh;
-  height: 9vh;
-  background-repeat: no-repeat;
-  display: inline-block;
-  margin: -0.17vh;
-}
-
-.dark-box {
-  background-image: url("../img/boards/militar/dark.png");
-  background-size: cover;
-  width: 9vh;
-  height: 9vh;
-  background-repeat: no-repeat;
-  display: inline-block;
-  margin: -0.17vh;
-}
-
-.hyperlink {
-  color:#cecece;
-  letter-spacing: 0.1vh;
-  text-decoration: none;
-}
-
 .stats-div {
   display: flex;
   width: 35vh;
@@ -143,5 +82,74 @@ nav {
   font-size: 1.5vh;
   padding-top: 3.5vh;
   padding-right: 7vh;
+}
+
+.log-off {
+  position: absolute;
+  width: 7vh;
+  height: 2vh;
+  background-color: #555555; 
+  border-width: 0.323vh;
+  border-radius: 4vh;
+  color: #e0e0e0;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.1vh;
+  font-size: 1vh;
+  cursor: pointer;
+  right: 2vh;
+  top: 1vh;
+}
+
+.log-off:hover {
+  background-color: #5e5d5d;
+}
+
+.log-off:active {
+  background-color: #2b2b2b; 
+}
+
+.board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  /* border: 1vh solid black; */
+}
+
+.light-box {
+  background-image: url("../img/boards/basic/light.png");
+  background-size: cover;
+  width: 9vh;
+  height: 9vh;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: -0.17vh;
+}
+
+.dark-box {
+  background-image: url("../img/boards/basic/dark.png");
+  background-size: cover;
+  width: 9vh;
+  height: 9vh;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: -0.17vh;
+}
+
+.piece {
+  background-size: cover;
+  width: 9vh;
+  height: 9vh;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: -0.17vh;
+}
+
+.hyperlink {
+  color:#cecece;
+  letter-spacing: 0.1vh;
+  text-decoration: none;
 }
   

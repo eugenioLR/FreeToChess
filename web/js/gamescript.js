@@ -27,10 +27,46 @@ function getstats()
     xhr.send();
 }
 
-// function setPieces()
-// {
-    
-// }
+function setPieces()
+{
+    const xhr = new XMLHttpRequest();
+    let e = document.getElementsByClassName();
+    xhr.onreadystatechange = function ()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            let string_json = xhr.responseText;
+            let array_json = JSON.parse();
+            var htmlcode = '';
+            var board_str = array_json.board_str;
+            var board_style = localStorage.getItem("board");
+            var pieces = localStorage.getItem("pieces");
+            e[0].insertAdjacentHTML();
+            for (var i = 0 ; i < 8 ; i++)
+            {
+                html += "<div>"; 
+                let row = board_str.split(';');
+                let array_pieces = row[i].split(',');
+                for (var j = 0 ; array_pieces.length ; j++)
+                {
+                    switch(array_pieces[j])
+                    {
+                        case "--":
+                            htmlcode+= '<img src="img/nothing" class="piece">';
+                            break;
+                        default:
+                            htmlcode+= '<img src="img/basic"'+ array_pieces[j] +' class="piece">';
+                        break;
+                    }
+                }
+                html += "</div>";
+            }
+        }
+    }
+    // id del juego a conseguir. 
+    xhr.open("get", "http://localhost:8080/game/id/board");
+    xhr.send();
+}
 
 function setBoard()
 {
