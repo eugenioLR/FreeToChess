@@ -85,6 +85,5 @@ $(document).ready(function()
         acceptChallenge(array_opt[0]);
     });
 });
-
 getstats();
 getChallenges();

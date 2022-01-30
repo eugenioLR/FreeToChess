@@ -116,6 +116,17 @@ nav {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   /* border: 1vh solid black; */
+  z-index: 2;
+}
+
+.pieces {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 3;
 }
 
 .light-box {
@@ -126,6 +137,7 @@ nav {
   background-repeat: no-repeat;
   display: inline-block;
   margin: -0.17vh;
+  z-index: 1;
 }
 
 .dark-box {
@@ -136,6 +148,7 @@ nav {
   background-repeat: no-repeat;
   display: inline-block;
   margin: -0.17vh;
+  z-index: 3;
 }
 
 .piece {
@@ -145,6 +158,7 @@ nav {
   background-repeat: no-repeat;
   display: inline-block;
   margin: -0.17vh;
+  /* z-index: 3; */
 }
 
 .hyperlink {
@@ -179,14 +193,3 @@ nav {
   border-bottom: 0.1vh solid rgb(93, 73, 84);
   text-align: center;
 }
-
-.piece {
-
-  width: 9vh;
-  height: 9vh;
-  margin: -0.17vh;
-  background-repeat: no-repeat;
-  display: inline-block;
-  
-}
-  
