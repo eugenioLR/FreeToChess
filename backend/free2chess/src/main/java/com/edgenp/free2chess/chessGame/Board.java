@@ -298,7 +298,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
         
         // Checkmate test
         if(this.kingCanMove(newPlayer)){
-            winner = this.inCheck(newPlayer) ? 2 : player;
+            winner = this.inCheck(newPlayer) ? player : 2;
         }
         
         boolean movesLeft = false;

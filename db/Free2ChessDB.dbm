@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,13" last-zoom="1" max-obj-count="12"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="12"
 	 default-schema="public" default-owner="postgres">
 <database name="free2chessDB" is-template="false" allow-conns="true">
 </database>
@@ -215,11 +215,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<special-pk-cols indexes="0"/>
 </relationship>
 
-<table name="Game" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="Game" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="80" y="340"/>
 	<column name="id" not-null="true" sequence="public.game_id_generator">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="next_player">
 		<type name="smallint" length="0"/>
 	</column>
 	<column name="w_player_name">

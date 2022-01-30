@@ -42,7 +42,6 @@ public class Game implements Serializable {
     @JoinColumns({@JoinColumn(name="\"id\"", referencedColumnName="\"id_Game\"")})
     private PendingGame pendingGame;
     
-    @Transient
     private int next_player = 0;
     
     @Transient
@@ -127,9 +126,7 @@ public class Game implements Serializable {
     }
     
     public void swapNextPlayer(){
-        System.out.println(next_player);
         this.next_player = (this.next_player + 1)%2;
-        System.out.println(next_player);
     }
     
     /**
