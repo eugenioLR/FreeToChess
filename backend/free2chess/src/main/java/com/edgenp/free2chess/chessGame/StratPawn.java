@@ -26,23 +26,27 @@ public class StratPawn implements PieceStrat{
     /**
      * Verifica si el movimiento que se quiere realizar es validos
      * @param board
-     * @param pos_init
-     * @param pos_new
+     * @param initPos
+     * @param newPos
      * @return
      */
     @Override
-    public boolean verifyMove(Board board, int[] pos_init, int[] pos_new) {
-        boolean valid;
-        int delta_y = pos_new[0] - pos_init[0];
-        int delta_x = pos_new[1] - pos_init[1];
-        if(valid = !Arrays.equals(pos_init, pos_new) && Math.abs(delta_x) < 2 && delta_y > 0){
+    public boolean verifyMove(Board board, int[] initPos, int[] newPos) {
+        boolean valid, vertLim;
+        int delta_y = newPos[0] - initPos[0];
+        int delta_x = newPos[1] - initPos[1];
+        
+        if(valid = !Arrays.equals(initPos, newPos) && Math.abs(delta_x) < 2){
             int limit = moved ? 1 : 2;
-            if(board.getPiece(pos_init).getColor() == 0){
-                limit += -1;
-            }
             
-            valid = delta_y <= limit && board.getPiece(pos_init).getColor() != board.getPiece(pos_new).getColor();
-            if(board.getPiece(pos_new).getColor() == '-'){
+            if(board.getPiece(initPos).getColor() == 0){
+                vertLim = delta_y <= 0 && delta_y >= -limit;
+            }else{
+                vertLim = delta_y >= 0 && delta_y <= limit;
+            }           
+            
+            valid = vertLim && board.getPiece(initPos).getColor() != board.getPiece(newPos).getColor();
+            if(board.getPiece(newPos).getColor() == -1){
                 valid = valid && delta_x == 0;
             }else{
                 valid = valid && Math.abs(delta_x) == 1;
@@ -68,13 +72,48 @@ public class StratPawn implements PieceStrat{
         return 'P';
     }
     
+    /**
+     *
+     * @param board
+     * @param initPos
+     * @return
+     */
     @Override
-    public boolean canMove(Board board, int[] pos_init) {
-        return true;
+    public boolean canMove(Board board, int[] initPos) {
+        boolean canMove = false;
+        int oponent = board.getPiece(initPos).getColor() == 0 ? 1 : 0;
+        int[][] offsets = {{1, 1}, {1, -1}};
+        int[] aux;
+        
+        if(board.getPiece(initPos).getColor() == 0){
+            for (int[] offset : offsets) {
+                offset[0] = -1;
+            }
+        }
+        
+        for (int i = 0; i < offsets.length && !canMove; i++) {
+            aux = initPos;
+            aux[0] += offsets[i][0];
+            aux[1] += offsets[i][1];
+            canMove = board.getPiece(aux).getColor() == oponent;
+        }
+        
+        aux = initPos;
+        aux[0] += offsets[0][0];
+        
+        canMove = !canMove && board.getPiece(aux).getColor() == -1;
+        
+        return canMove;
     }
 
+    /**
+     *
+     * @param board
+     * @param initPos
+     * @return
+     */
     @Override
-    public boolean isInDanger(Board board, int[] pos_init) {
+    public boolean isInDanger(Board board, int[] initPos) {
         return false;
     }   
 }

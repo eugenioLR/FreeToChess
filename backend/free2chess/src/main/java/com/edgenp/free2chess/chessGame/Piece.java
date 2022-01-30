@@ -103,8 +103,11 @@ public class Piece {
      */
     public boolean verifyMove(Board board, int[] posNew){
         boolean valid = false;
-        if(this.pieceType != null && this.pieceType.canMove(board, this.pos)){
-            valid = this.pieceType.verifyMove(board, this.pos, posNew);
+        if(this.pieceType != null && this.pieceType.canMove(board, this.pos.clone())){
+            System.out.println("Yes, this piece of type " + this.getType() + " can move");
+            valid = this.pieceType.verifyMove(board, this.pos.clone(), posNew);
+        }else{
+            System.out.println("This piece of type " + this.getType() + " cannot move");
         }
         return valid;
     }
@@ -115,13 +118,8 @@ public class Piece {
      * @param posNew
      * @return
      */
-    public boolean move(Board board, int[] posNew){
-        boolean valid;
-        
-        if(valid = this.verifyMove(board, posNew)){
-            this.pos = posNew;
-        }
-        return valid;
+    public void move(Board board, int[] posNew){
+        this.pos = posNew;
     }
     
     /**
@@ -132,12 +130,30 @@ public class Piece {
         this.pos = posNew;
     }
 
+    /**
+     *
+     * @param board
+     * @return
+     */
     public boolean canMove(Board board) {
-        return pieceType.canMove(board, this.pos);
+        boolean check = false;
+        if(pieceType != null){
+            check = pieceType.canMove(board, this.pos.clone());
+        }
+        return check;
     }
 
+    /**
+     *
+     * @param board
+     * @return
+     */
     public boolean isInDanger(Board board) {
-        return pieceType.isInDanger(board, this.pos);
+        boolean check = false;
+        if(pieceType != null){
+            check = pieceType.isInDanger(board, this.pos.clone());
+        }
+        return check;
     }
     
     /**

@@ -17,26 +17,23 @@ public class StratQueen implements PieceStrat{
     /**
      * Verifica si el movimiento que se quiere realizar es validos
      * @param board
-     * @param pos_init
-     * @param pos_new
+     * @param initPos
+     * @param newPos
      * @return
      */
     @Override
-    public boolean verifyMove(Board board, int[] pos_init, int[] pos_new) {
+    public boolean verifyMove(Board board, int[] initPos, int[] newPos) {
         boolean valid;
-        int delta_y = pos_new[0] - pos_init[0];
-        int delta_x = pos_new[1] - pos_init[1];
-        if(valid = !Arrays.equals(pos_init, pos_new) && (Math.abs(delta_x) == Math.abs(delta_y) || delta_x == 0 || delta_y == 0)){
-            int[] aux_pos = pos_init;
-            aux_pos[0] += Math.signum(delta_y);
-            aux_pos[1] += Math.signum(delta_x);
-            for(int i = 0; !Arrays.equals(aux_pos, pos_init) && valid; i++){
-                valid = board.getPiece(aux_pos).getType() == '-';
-                aux_pos[0] += Math.signum(delta_y);
-                aux_pos[1] += Math.signum(delta_x);
-            }
+        int delta_y = newPos[0] - initPos[0];
+        int delta_x = newPos[1] - initPos[1];
+        int[] auxPos = initPos.clone();
+        if(valid = !Arrays.equals(initPos, newPos) && (Math.abs(delta_x) == Math.abs(delta_y) || delta_x == 0 || delta_y == 0)){
+            do{
+                auxPos[0] += Math.signum(delta_y);
+                auxPos[1] += Math.signum(delta_x);
+            }while(!Arrays.equals(auxPos, newPos) && board.getPiece(auxPos).getColor() == -1);
             
-            valid = valid && board.getPiece(pos_new).getColor() != board.getPiece(pos_init).getColor();
+            valid = board.getPiece(newPos).getColor() != board.getPiece(initPos).getColor();
             
         }
         return valid;
@@ -58,13 +55,36 @@ public class StratQueen implements PieceStrat{
         return 'Q';
     }
     
+    /**
+     *
+     * @param board
+     * @param initPos
+     * @return
+     */
     @Override
-    public boolean canMove(Board board, int[] pos_init) {
-        return true;
+    public boolean canMove(Board board, int[] initPos) {
+        boolean canMove = false;
+        int[][] offsets = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}, {1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        int[] auxPos;
+        int oponent = board.getPiece(initPos).getColor() == 0 ? 1 : 0;
+        
+        for (int i = 0; i < offsets.length && !canMove; i++) {
+            auxPos = initPos;
+            auxPos[0] += offsets[i][0];
+            auxPos[1] += offsets[i][1];
+            canMove = board.getPiece(auxPos).getColor() == -1 || board.getPiece(auxPos).getColor() == oponent;
+        }
+        return canMove;
     }
 
+    /**
+     *
+     * @param board
+     * @param initPos
+     * @return
+     */
     @Override
-    public boolean isInDanger(Board board, int[] pos_init) {
+    public boolean isInDanger(Board board, int[] initPos) {
         return false;
     }   
 }

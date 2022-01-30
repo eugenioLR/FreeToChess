@@ -32,7 +32,19 @@ public interface PieceStrat {
      */
     public char getName();
 
+    /**
+     *
+     * @param board
+     * @param pos_init
+     * @return
+     */
     public boolean canMove(Board board, int[] pos_init);
 
+    /**
+     *
+     * @param board
+     * @param pos_init
+     * @return
+     */
     public boolean isInDanger(Board board, int[] pos_init);
 }

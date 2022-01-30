@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="82,147" last-zoom="1" max-obj-count="12"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,13" last-zoom="1" max-obj-count="12"
 	 default-schema="public" default-owner="postgres">
 <database name="free2chessDB" is-template="false" allow-conns="true">
 </database>
@@ -14,7 +14,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="User" layer="0" collapse-mode="2" max-obj-count="14" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1020" y="380"/>
+	<position x="580" y="120"/>
 	<column name="name" not-null="true">
 		<type name="varchar" length="20"/>
 	</column>
@@ -69,7 +69,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Product" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1020" y="780"/>
+	<position x="580" y="520"/>
 	<column name="id" not-null="true" sequence="public.product_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -110,7 +110,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Emoji" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1420" y="1080"/>
+	<position x="980" y="820"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -123,7 +123,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="BoardSkin" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="880" y="1180"/>
+	<position x="440" y="920"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -136,7 +136,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="PieceSkinSet" layer="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1160" y="1180"/>
+	<position x="720" y="920"/>
 	<column name="texture_path">
 		<type name="varchar" length="150"/>
 	</column>
@@ -149,7 +149,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="PendingGames" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="520" y="280"/>
+	<position x="80" y="20"/>
 	<column name="id" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -179,7 +179,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Booster" layer="0" collapse-mode="2" pagination="true" attribs-page="0" ext-attribs-page="0" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="640" y="1080"/>
+	<position x="200" y="820"/>
 </table>
 
 <relationship name="BoardSkin_inherits_Product" type="relgen" layer="0"
@@ -218,7 +218,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Game" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="520" y="600"/>
+	<position x="80" y="340"/>
 	<column name="id" not-null="true" sequence="public.game_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -251,7 +251,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="ProductPack" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1380" y="780"/>
+	<position x="940" y="520"/>
 	<column name="id" not-null="true" sequence="public.product_id_generator">
 		<type name="smallint" length="0"/>
 	</column>
@@ -302,7 +302,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="GameState" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="520" y="860"/>
+	<position x="80" y="600"/>
 	<column name="id" not-null="true" sequence="public.gamestate_id_generator">
 		<type name="smallint" length="0"/>
 	</column>

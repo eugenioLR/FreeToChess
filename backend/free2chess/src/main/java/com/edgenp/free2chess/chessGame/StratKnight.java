@@ -15,15 +15,18 @@ public class StratKnight implements PieceStrat{
     /**
      * Verifica si el movimiento que se quiere realizar es validos
      * @param board
-     * @param pos_init
-     * @param pos_new
+     * @param initPos
+     * @param newPos
      * @return
      */
     @Override
-    public boolean verifyMove(Board board, int[] pos_init, int[] pos_new) {
-        int delta_y = pos_new[0] - pos_init[0];
-        int delta_x = pos_new[1] - pos_init[1];
-        return delta_x*delta_x + delta_y*delta_y == 5 && board.getPiece(pos_init).getColor() != board.getPiece(pos_new).getColor();
+    public boolean verifyMove(Board board, int[] initPos, int[] newPos) {
+        int delta_y = newPos[0] - initPos[0];
+        int delta_x = newPos[1] - initPos[1];
+        System.out.println(delta_x + "," + delta_y);
+        System.out.println("color at [" + initPos[0] + "," + initPos[1] + "]: " + board.getPiece(initPos).getColor());
+        System.out.println("color at [" + newPos[0] + "," + newPos[1] + "]: " + board.getPiece(newPos).getColor());
+        return delta_x*delta_x + delta_y*delta_y == 5 && board.getPiece(initPos).getColor() != board.getPiece(newPos).getColor();
     }
     
     /**
@@ -42,13 +45,37 @@ public class StratKnight implements PieceStrat{
         return 'N';
     }
     
+    /**
+     *
+     * @param board
+     * @param initPos
+     * @return
+     */
     @Override
-    public boolean canMove(Board board, int[] pos_init) {
-        return true;
+    public boolean canMove(Board board, int[] initPos) {
+        boolean canMove = false;
+        int[][] offsets = {{1, 2}, {2, 1}, {-1, 2}, {-2, 1}, {-1, -2}, {-2, -1}, {1, -2}, {2, -1}};
+        int[] aux;
+        
+        int oponent = board.getPiece(initPos).getColor() == 0 ? 1 : 0;
+        
+        for (int i = 0; i < offsets.length && !canMove; i++) {
+            aux = initPos;
+            aux[0] += offsets[i][0];
+            aux[1] += offsets[i][1];
+            canMove = board.getPiece(aux).getColor() == -1 || board.getPiece(aux).getColor() == oponent;
+        }
+        return canMove;
     }
 
+    /**
+     *
+     * @param board
+     * @param initPos
+     * @return
+     */
     @Override
-    public boolean isInDanger(Board board, int[] pos_init) {
+    public boolean isInDanger(Board board, int[] initPos) {
         return false;
     }   
 }

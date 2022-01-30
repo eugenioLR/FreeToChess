@@ -6,6 +6,7 @@
 
 package com.edgenp.free2chess.chessGame;
 
+import com.edgenp.free2chess.user.PendingGame;
 import com.edgenp.free2chess.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
@@ -35,6 +36,11 @@ public class Game implements Serializable {
     @OneToMany
     @JoinColumns({@JoinColumn(name="\"id_Game\"", referencedColumnName="\"id\"")})
     private final List<Board> gameStates = new ArrayList<>();
+    
+    @JsonIgnore
+    @OneToOne
+    @JoinColumns({@JoinColumn(name="\"id\"", referencedColumnName="\"id_Game\"")})
+    private PendingGame pendingGame;
     
     @Transient
     private int next_player = 0;
@@ -112,8 +118,31 @@ public class Game implements Serializable {
         return board;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNext_player() {
         return next_player;
+    }
+    
+    public void swapNextPlayer(){
+        System.out.println(next_player);
+        this.next_player = (this.next_player + 1)%2;
+        System.out.println(next_player);
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public PendingGame getPendingGame() {
+        return pendingGame;
+    }
+    
+    @JsonIgnore
+    public int getWinner(){
+        return this.getCurrentBoard().getWinner(next_player);
     }
     
     
@@ -127,10 +156,15 @@ public class Game implements Serializable {
      */
     public boolean canMovePiece(User user, int[] pos, int[] target){
         boolean valid = this.getCurrentBoard().canMovePiece(pos, target);
-        boolean white_turn = user.getName().equals(w_player.getName()) && next_player == 0;
-        boolean black_turn = user.getName().equals(b_player.getName()) && next_player == 1;
+        boolean white_turn = user.getName().equals(w_player.getName());
+        boolean black_turn = user.getName().equals(b_player.getName());
         
-        valid = valid && (white_turn || black_turn);
+        System.out.println("valid move: " + valid);
+        System.out.println("white move?: " + white_turn);
+        System.out.println("black move?: " + black_turn);
+        System.out.println("current player:" + ((next_player == 0) ? "white" : "black"));
+        
+        valid = valid && (white_turn && next_player == 0) || (black_turn && next_player == 1);
         
         return valid;
     }
@@ -141,20 +175,17 @@ public class Game implements Serializable {
      * @param target
      * @return
      */
-    public boolean movePiece(int[] pos, int[] target){
-        boolean success;
+    public void movePiece(int[] pos, int[] target){
         Board current = this.getCurrentBoard();
         Board next = current.clone();
+        
         System.out.println(next.getBoardStr());
-        if(success = next.movePiece(pos, target)){
-            System.out.println(next.getBoardStr());
-            next.incrementMove_order();
-            gameStates.add(next);
-            next_player = next_player == 0 ? 1 : 0; 
-        }else{
-            System.out.println("oof");
-        }
-        return success;
+        next.movePiece(pos, target);
+        System.out.println(next.getBoardStr());
+        
+        next.incrementMove_order();
+        
+        gameStates.add(next);
     }
 
     /**

@@ -4,6 +4,7 @@
  */
 package com.edgenp.free2chess.userController;
 
+import com.edgenp.free2chess.chessController.GameJPA;
 import com.edgenp.free2chess.user.*;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Service;
 public class PendingGameService {
     @Autowired
     private PendingGameJPA pendGameRepo;
+    
+    @Autowired
+    private GameJPA gameRepo;
     
     /**
      *
@@ -45,5 +49,22 @@ public class PendingGameService {
      */
     public void update(PendingGame pendGame){
         pendGameRepo.save(pendGame);
+    }
+
+    /**
+     *
+     * @param pendGame
+     */
+    public void removeCascade(PendingGame pendGame) {
+        gameRepo.delete(pendGame.getGame());
+        pendGameRepo.delete(pendGame);
+    }
+    
+    /**
+     *
+     * @param pendGame
+     */
+    public void remove(PendingGame pendGame) {
+        pendGameRepo.delete(pendGame);
     }
 }

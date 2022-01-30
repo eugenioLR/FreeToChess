@@ -4,11 +4,11 @@
  */
 package com.edgenp.free2chess.userController;
 
+import com.edgenp.free2chess.chessController.GameController;
 import com.edgenp.free2chess.user.UserFactory;
 import com.edgenp.free2chess.chessController.GameService;
 import com.edgenp.free2chess.chessGame.Game;
 import com.edgenp.free2chess.product.Product;
-import com.edgenp.free2chess.storeController.ProductService;
 import com.edgenp.free2chess.user.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +114,7 @@ public class UserController {
             Game game = new Game(pendGame.getEmiter(), pendGame.getReceiver()); 
             pendGame.setGame(game);
             gameServ.create(game);
+            GameController.addOpenGame(game.getId());
             pendGameServ.create(pendGame);
         }else{        
             status = "error";
@@ -138,6 +139,7 @@ public class UserController {
             status = Integer.toString(pendGame.getGame().getId());
         }else{
             pendGame.decline();
+            pendGameServ.removeCascade(pendGame);
         }      
         return status;
     }

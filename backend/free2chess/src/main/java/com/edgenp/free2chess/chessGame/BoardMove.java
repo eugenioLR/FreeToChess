@@ -46,15 +46,11 @@ public class BoardMove implements GameCommandInterf{
      */
     @Override
     public void performMove(User user) {
-        if(this.canMove(user)){
-            if(game.movePiece(init, last)){
-                System.out.println(":)");
-            }else{
-                System.out.println(":)");
-            }
-        }else{
-            System.out.println("oof");
-        }
+        game.movePiece(init, last);
+            
+        System.out.println(game.getNext_player());
+        game.swapNextPlayer();
+        System.out.println(game.getNext_player());
     }
 
     /**

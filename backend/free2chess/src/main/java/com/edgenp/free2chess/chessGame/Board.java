@@ -168,6 +168,8 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
         Piece result = null;
         if(x >= 0 && x < 8 && y >= 0 && y < 8){
             result = boardPieces[y][x];
+        }else{
+            result = new Piece(-2, new int[]{y,x}, null);
         }
         return result;
     }
@@ -178,13 +180,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * @return
      */
     public Piece getPiece(int[] pos){
-        Piece result;
-        if(pos[0] >= 0 && pos[0] < 8 && pos[1] >= 0 && pos[1] < 8){
-            result = boardPieces[pos[0]][pos[1]];
-        }else{
-            result = new Piece(-2, pos, null);
-        }
-        return result;
+        return this.getPiece(pos[0], pos[1]);
     }
 
     /**
@@ -230,19 +226,15 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * @param target
      * @return
      */
-    public boolean movePiece(int[] pos, int[] target){
+    public void movePiece(int[] pos, int[] target){
         System.out.println(this.boardPieces[pos[0]][pos[1]].toString());
         System.out.println(this.boardPieces[target[0]][target[1]].toString());
-        boolean valid = this.boardPieces[pos[0]][pos[1]].verifyMove(this, target);
-        if(valid){
-            this.boardPieces[pos[0]][pos[1]].move(this, target);
-            this.boardPieces[target[0]][target[1]] = this.boardPieces[pos[0]][pos[1]];
-            this.boardPieces[pos[0]][pos[1]] = new Piece(-1, pos, null);
-            this.board_str = Board.piecesToStrBoard(boardPieces);
-        }else{
-            System.out.println("oof");
-        }
-        return valid;
+        
+        this.boardPieces[pos[0]][pos[1]].move(this, target);
+        this.boardPieces[target[0]][target[1]] = this.boardPieces[pos[0]][pos[1]];
+        this.boardPieces[pos[0]][pos[1]] = new Piece(-1, pos, null);
+        
+        this.board_str = Board.piecesToStrBoard(boardPieces);
     }
     
     /**
@@ -297,14 +289,30 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * Devuelve el jugador que ha ganado la partida, si las blancas ganan se devolvera
      * un 0, si ganan las negras se devolvera un 1, si hay empate se devolvera un 2 y
      * si la partida no ha terminado todavia se devolvera un -1
+     * @param player
      * @return
      */
     public int getWinner(int player){
         int winner = -1;
         int newPlayer = player == 0 ? 1 : 0;
         
+        // Checkmate test
         if(this.kingCanMove(newPlayer)){
             winner = this.inCheck(newPlayer) ? 2 : player;
+        }
+        
+        boolean movesLeft = false;
+        // Draw test
+        if(winner == 2){
+            for(int i = 0; i < boardPieces.length && !movesLeft; i++){
+                for(int j = 0; j < boardPieces[0].length && !movesLeft; j++){
+                    movesLeft = boardPieces[i][j].canMove(this);
+                }
+            }
+            
+            if(movesLeft){
+                winner = -1;
+            }
         }
         
         return winner;

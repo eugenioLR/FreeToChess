@@ -24,15 +24,15 @@ public class StratKing implements PieceStrat{
     /**
      * Verifica si el movimiento que se quiere realizar es validos
      * @param board
-     * @param pos_init
-     * @param pos_new
+     * @param initPos
+     * @param newPos
      * @return
      */
     @Override
-    public boolean verifyMove(Board board, int[] pos_init, int[] pos_new) {
-        int delta_y = pos_new[0] - pos_init[0];
-        int delta_x = pos_new[1] - pos_init[1];
-        return (Math.abs(delta_x) == 1 || Math.abs(delta_y) == 1) && board.getPiece(pos_init).getColor() != board.getPiece(pos_new).getColor();
+    public boolean verifyMove(Board board, int[] initPos, int[] newPos) {
+        int delta_y = newPos[0] - initPos[0];
+        int delta_x = newPos[1] - initPos[1];
+        return (Math.abs(delta_x) == 1 || Math.abs(delta_y) == 1) && board.getPiece(initPos).getColor() != board.getPiece(newPos).getColor();
     }
     
     /**
@@ -52,21 +52,27 @@ public class StratKing implements PieceStrat{
         return 'K';
     }
     
+    /**
+     *
+     * @param board
+     * @param posInit
+     * @return
+     */
     @Override
-    public boolean canMove(Board board, int[] posInit) {
-        boolean isSafe = false;
-        int[] newPos;
-        for(int i = -1; i <= 1 && !isSafe; i++){
-            for(int j = -1; j <= 1 && !isSafe; j++){
-                newPos = posInit;
-                newPos[0] += i;
-                newPos[1] += j;
-                if(i != 0 || j != 0){
-                    isSafe = this.isInDanger(board, board.getPiece(posInit).getColor(), newPos);
-                }
-            }
+    public boolean canMove(Board board, int[] posInit) {        
+        boolean canMove = false;
+        int[][] offsets = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}, {1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        int[] aux;
+        int oponent = board.getPiece(posInit).getColor() == 0 ? 1 : 0;
+        
+        for (int i = 0; i < offsets.length && !canMove; i++) {
+            aux = posInit;
+            aux[0] += offsets[i][0];
+            aux[1] += offsets[i][1];
+            canMove = board.getPiece(aux).getColor() == -1 || board.getPiece(aux).getColor() == oponent;
+            canMove = canMove && !this.isInDanger(board, board.getPiece(posInit).getColor(), aux);
         }
-        return isSafe;
+        return canMove;
     }
     
     private boolean isInDangerDiagonal(Board board, int color, int[] posInit){
@@ -155,10 +161,25 @@ public class StratKing implements PieceStrat{
                    || isInDangerKnight(board, color, posInit)
                    || isInDangerStraight(board, color, posInit) 
                    || isInDangerDiagonal(board, color, posInit);
+        if(isInDangerPawn(board, color, posInit)){
+            System.out.println("A pawn is checking me");
+        }else if(isInDangerKnight(board, color, posInit)){
+            System.out.println("A knight is checking me");
+        }else if(isInDangerStraight(board, color, posInit)){
+            System.out.println("A bishop is checking me");
+        }else if(isInDangerDiagonal(board, color, posInit)){
+            System.out.println("A rook is checking me");
+        }
         
         return inDanger;
     }
 
+    /**
+     *
+     * @param board
+     * @param posInit
+     * @return
+     */
     @Override
     public boolean isInDanger(Board board, int[] posInit) {
         return this.isInDanger(board, board.getPiece(posInit).getColor(), posInit);
