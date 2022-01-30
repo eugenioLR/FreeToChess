@@ -171,7 +171,7 @@ CREATE TABLE public."PendingGames" (
 	id smallint NOT NULL,
 	acepted boolean,
 	emiter_name varchar(20),
-	reciever_name varchar(20),
+	receiver_name varchar(20),
 	"id_Game" smallint,
 	CONSTRAINT "PendingGames_pk" PRIMARY KEY (id)
 
@@ -338,7 +338,7 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- object: "User2_fk" | type: CONSTRAINT --
 -- ALTER TABLE public."PendingGames" DROP CONSTRAINT IF EXISTS "User2_fk" CASCADE;
-ALTER TABLE public."PendingGames" ADD CONSTRAINT "User2_fk" FOREIGN KEY (reciever_name)
+ALTER TABLE public."PendingGames" ADD CONSTRAINT "User2_fk" FOREIGN KEY (receiver_name)
 REFERENCES public."User" (name) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --

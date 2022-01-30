@@ -81,7 +81,7 @@ public class UserController {
      * @param id
      * @return
      */
-    @GetMapping("/users/{id}/games/recieved")
+    @GetMapping("/users/{id}/games/received")
     public List<PendingGame> getRecievedChallenges(@PathVariable("id") String id){
         User user = userServ.getById(id);
         return new ArrayList<>(user.getChallenges_opened());        
@@ -111,7 +111,7 @@ public class UserController {
         User reciever = userServ.getById(oponent);
         if(emiter != null && reciever != null){
             PendingGame pendGame = new PendingGame(emiter, reciever);
-            Game game = new Game(pendGame.getEmiter(), pendGame.getReciever()); 
+            Game game = new Game(pendGame.getEmiter(), pendGame.getReceiver()); 
             pendGame.setGame(game);
             gameServ.create(game);
             pendGameServ.create(pendGame);
@@ -128,7 +128,7 @@ public class UserController {
      * @param accept
      * @return 
      */
-    @PostMapping("/users/{id}/games/recieved")
+    @PostMapping("/users/{id}/games/received")
     public String acceptChallenge(@PathVariable("id") String name_user, @RequestParam int id, @RequestParam boolean accept){
         String status = "declined";
         PendingGame pendGame = pendGameServ.getById(id);

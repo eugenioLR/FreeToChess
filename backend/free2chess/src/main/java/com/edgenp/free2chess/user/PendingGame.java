@@ -29,10 +29,9 @@ public class PendingGame implements Serializable {
     private User emiter;
     
     @ManyToOne
-    @JoinColumns({@JoinColumn(name="reciever_name", referencedColumnName="name")})
-    private User reciever;
+    @JoinColumns({@JoinColumn(name="receiver_name", referencedColumnName="name")})
+    private User receiver;
     
-    @JsonIgnore
     @OneToOne
     @JoinColumns({@JoinColumn(name="\"id_Game\"", referencedColumnName="id")})
     private Game game;
@@ -50,7 +49,7 @@ public class PendingGame implements Serializable {
      */
     public PendingGame(User emiter, User reciever) {
         this.emiter = emiter;
-        this.reciever = reciever;
+        this.receiver = reciever;
         this.acepted = false;
     }
 
@@ -96,8 +95,8 @@ public class PendingGame implements Serializable {
      *
      * @return
      */
-    public User getReciever() {
-        return reciever;
+    public User getReceiver() {
+        return receiver;
     }
 
     /**

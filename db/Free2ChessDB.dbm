@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="121,206" last-zoom="1" max-obj-count="12"
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="82,147" last-zoom="1" max-obj-count="12"
 	 default-schema="public" default-owner="postgres">
 <database name="free2chessDB" is-template="false" allow-conns="true">
 </database>
@@ -159,7 +159,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="emiter_name">
 		<type name="varchar" length="20"/>
 	</column>
-	<column name="reciever_name">
+	<column name="receiver_name">
 		<type name="varchar" length="20"/>
 	</column>
 	<constraint name="PendingGames_pk" type="pk-constr" table="public.&quot;PendingGames&quot;">
@@ -375,7 +375,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <constraint name="User2_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;User&quot;" table="public.&quot;PendingGames&quot;">
-	<columns names="reciever_name" ref-type="src-columns"/>
+	<columns names="receiver_name" ref-type="src-columns"/>
 	<columns names="name" ref-type="dst-columns"/>
 </constraint>
 

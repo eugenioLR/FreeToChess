@@ -44,7 +44,7 @@ public class User implements UserInterf{
 
     @JsonIgnore
     @OneToMany
-    @JoinColumns({@JoinColumn(name="reciever_name", referencedColumnName="name")})
+    @JoinColumns({@JoinColumn(name="receiver_name", referencedColumnName="name")})
     private Set<PendingGame> challenges_opened = new HashSet<>();
     
     @JsonIgnore
