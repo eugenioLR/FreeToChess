@@ -64,4 +64,14 @@ public class StratRook implements PieceStrat{
     public char getName() {
         return 'R';
     }
+    
+    @Override
+    public boolean canMove(Board board, int[] pos_init) {
+        return true;
+    }
+
+    @Override
+    public boolean isInDanger(Board board, int[] pos_init) {
+        return false;
+    }   
 }

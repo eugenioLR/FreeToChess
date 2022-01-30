@@ -18,6 +18,11 @@ public class PendingGameService {
     @Autowired
     private PendingGameJPA pendGameRepo;
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public PendingGame getById(Integer id){
         Optional<PendingGame> optional = pendGameRepo.findById(id);
         if (optional.isPresent()) {
@@ -26,10 +31,18 @@ public class PendingGameService {
         return null;
     }
     
+    /**
+     *
+     * @param pendGame
+     */
     public void create(PendingGame pendGame){
         pendGameRepo.save(pendGame);
     }
     
+    /**
+     *
+     * @param pendGame
+     */
     public void update(PendingGame pendGame){
         pendGameRepo.save(pendGame);
     }

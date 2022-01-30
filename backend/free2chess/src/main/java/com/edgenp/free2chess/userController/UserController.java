@@ -109,11 +109,15 @@ public class UserController {
         String status = "ok";
         User emiter = userServ.getById(emiter_name);
         User reciever = userServ.getById(oponent);
-        PendingGame pendGame = new PendingGame(emiter, reciever);
-        Game game = new Game(pendGame.getEmiter(), pendGame.getReciever()); 
-        pendGame.setGame(game);
-        gameServ.create(game);
-        pendGameServ.create(pendGame);
+        if(emiter != null && reciever != null){
+            PendingGame pendGame = new PendingGame(emiter, reciever);
+            Game game = new Game(pendGame.getEmiter(), pendGame.getReciever()); 
+            pendGame.setGame(game);
+            gameServ.create(game);
+            pendGameServ.create(pendGame);
+        }else{        
+            status = "error";
+        }
         return status;        
     }
     

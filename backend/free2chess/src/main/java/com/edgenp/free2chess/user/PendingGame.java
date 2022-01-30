@@ -37,43 +37,81 @@ public class PendingGame implements Serializable {
     @JoinColumns({@JoinColumn(name="\"id_Game\"", referencedColumnName="id")})
     private Game game;
 
+    /**
+     *
+     */
     public PendingGame() {
     }
 
+    /**
+     *
+     * @param emiter
+     * @param reciever
+     */
     public PendingGame(User emiter, User reciever) {
         this.emiter = emiter;
         this.reciever = reciever;
         this.acepted = false;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAcepted() {
         return acepted;
     }
 
+    /**
+     *
+     */
     public void acept() {
         this.acepted = true;
     }
     
+    /**
+     *
+     */
     public void decline() {
         this.acepted = false;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getEmiter() {
         return emiter;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getReciever() {
         return reciever;
     }
 
+    /**
+     *
+     * @return
+     */
     public Game getGame() {
         return game;
     }
     
+    /**
+     *
+     * @param game
+     */
     public void setGame(Game game) {
         this.game = game;
     }

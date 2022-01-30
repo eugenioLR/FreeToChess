@@ -31,4 +31,8 @@ public interface PieceStrat {
      * @return
      */
     public char getName();
+
+    public boolean canMove(Board board, int[] pos_init);
+
+    public boolean isInDanger(Board board, int[] pos_init);
 }

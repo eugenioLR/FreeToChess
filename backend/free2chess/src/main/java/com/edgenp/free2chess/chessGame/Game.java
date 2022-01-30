@@ -39,6 +39,9 @@ public class Game implements Serializable {
     @Transient
     private int next_player = 0;
     
+    @Transient
+    private String state = "playing";
+    
     /**
      *
      */
@@ -108,6 +111,12 @@ public class Game implements Serializable {
         }
         return board;
     }
+
+    public int getNext_player() {
+        return next_player;
+    }
+    
+    
     
     /**
      * Verifica si el movimiento que se quiere realizar es validos
@@ -159,6 +168,7 @@ public class Game implements Serializable {
         next.forceMovePiece(pos, target);
         gameStates.add(next);
     }
+    
     
     
 }

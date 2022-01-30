@@ -179,6 +179,23 @@ public class User implements UserInterf{
     public void setExp(int exp) {
         this.exp = exp;
     }
+    
+    /**
+     *
+     * @param expGain
+     */
+    public void addExp(int expGain){
+        if(this.subscribed){
+            expGain *= 1.2;
+        }
+        
+        this.exp += expGain;
+        
+        if(this.exp > 100){
+            this.level += this.exp/100;
+            this.exp = this.exp % 100;
+        }
+    }
 
     /**
      *
@@ -314,10 +331,18 @@ public class User implements UserInterf{
         this.purchasedProducts.add(p);
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<PendingGame> getChallenges_issued() {
         return challenges_issued;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<PendingGame> getChallenges_opened() {
         return challenges_opened;
     }

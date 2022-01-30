@@ -102,7 +102,11 @@ public class Piece {
      * @return
      */
     public boolean verifyMove(Board board, int[] posNew){
-        return this.pieceType != null && this.pieceType.verifyMove(board, this.pos, posNew);
+        boolean valid = false;
+        if(this.pieceType != null && this.pieceType.canMove(board, this.pos)){
+            valid = this.pieceType.verifyMove(board, this.pos, posNew);
+        }
+        return valid;
     }
     
     /**
@@ -114,7 +118,7 @@ public class Piece {
     public boolean move(Board board, int[] posNew){
         boolean valid;
         
-        if(valid = this.pieceType != null && this.pieceType.verifyMove(board, this.pos, posNew)){
+        if(valid = this.verifyMove(board, posNew)){
             this.pos = posNew;
         }
         return valid;
@@ -128,6 +132,14 @@ public class Piece {
         this.pos = posNew;
     }
 
+    public boolean canMove(Board board) {
+        return pieceType.canMove(board, this.pos);
+    }
+
+    public boolean isInDanger(Board board) {
+        return pieceType.isInDanger(board, this.pos);
+    }
+    
     /**
      *
      * @return

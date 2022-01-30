@@ -22,8 +22,8 @@ public class MoveInvoker {
      * @param command
      */
     public void addMove(User user, GameCommandInterf command){
-        moveList.add(command);
         command.performMove(user);
+        moveList.add(command);
     }
     
     /**
@@ -31,6 +31,7 @@ public class MoveInvoker {
      */
     public void undoMove(){
         moveList.get(moveList.size()-1).undoMove();
+        moveList.remove(moveList.size()-1);
     }
 
 }

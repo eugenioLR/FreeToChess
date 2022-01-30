@@ -195,6 +195,10 @@ public class ProductPack implements ProductInterf, Serializable{
         return ids;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getContentNames() {
         List<String> names = new ArrayList<>();
         

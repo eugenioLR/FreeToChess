@@ -140,6 +140,16 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
         return result;
     }
 
+    
+    /**
+     *
+     * @return
+     */
+    public int getId() {
+        return id;
+    }
+    
+    
     /**
      *
      * @return
@@ -168,9 +178,11 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * @return
      */
     public Piece getPiece(int[] pos){
-        Piece result = null;
+        Piece result;
         if(pos[0] >= 0 && pos[0] < 8 && pos[1] >= 0 && pos[1] < 8){
-            return boardPieces[pos[0]][pos[1]];
+            result = boardPieces[pos[0]][pos[1]];
+        }else{
+            result = new Piece(-2, pos, null);
         }
         return result;
     }
@@ -240,6 +252,62 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      */
     public void forceMovePiece(int[] pos, int[] target){
         this.boardPieces[pos[0]][pos[1]].forceMove(target);
+    }
+    
+    private Piece findKing(int color){
+        Piece king = null, aux;
+        boolean kingFound = false;
+        for(int i = 0; i < boardPieces.length && !kingFound; i++){
+            for(int j = 0; j < boardPieces[0].length && !kingFound; j++){
+                aux = boardPieces[i][j];
+                if(kingFound = aux.getColor() == color && aux.getType() == 'K'){
+                    king = aux;
+                }
+            }
+        }
+        return king;
+    }
+    
+    private boolean kingCanMove(int color){
+        boolean canMove = false;
+        
+        Piece king = this.findKing(color);
+        
+        if(king != null){
+            canMove = king.canMove(this);
+        }
+        
+        return canMove;
+    }
+    
+    private boolean inCheck(int color){
+        boolean inCheck = false;
+        
+        Piece king = this.findKing(color);
+        
+        if(king != null){
+            inCheck = king.isInDanger(this);
+        }
+        
+        return inCheck;
+    }
+    
+    
+    /**
+     * Devuelve el jugador que ha ganado la partida, si las blancas ganan se devolvera
+     * un 0, si ganan las negras se devolvera un 1, si hay empate se devolvera un 2 y
+     * si la partida no ha terminado todavia se devolvera un -1
+     * @return
+     */
+    public int getWinner(int player){
+        int winner = -1;
+        int newPlayer = player == 0 ? 1 : 0;
+        
+        if(this.kingCanMove(newPlayer)){
+            winner = this.inCheck(newPlayer) ? 2 : player;
+        }
+        
+        return winner;
     }
     
     /**

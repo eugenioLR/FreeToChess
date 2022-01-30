@@ -31,7 +31,7 @@ public class GameController {
     private UserService userServ;
     
     /**
-     * Obtiene el estado actual de la partida de ajedrez con id "id"
+     * Obtiene las propiedades del juego con la id "id"
      * @param id
      * @return
      */
@@ -63,7 +63,7 @@ public class GameController {
      */
     @PostMapping(value = "/game/{id}/board", produces = MediaType.TEXT_PLAIN_VALUE)
     public String performMove(@PathVariable("id") Integer id, @RequestParam String name, @RequestBody MoveObj move){
-        String status = "ok";
+        String status;
         Game game = gameServ.getById(id);
         User user = userServ.getById(name);
         System.out.println("API move: " + move.getInit()[0] + ", " + move.getInit()[1] + " -> " + move.getLast()[0] + ", " + move.getLast()[1]);
@@ -75,6 +75,20 @@ public class GameController {
             System.out.println("Epic move bro");
             boardServ.create(game.getCurrentBoard());
             gameServ.create(game);
+            
+            if(game.getCurrentBoard().getWinner(game.getNext_player()) == game.getNext_player()){
+                status = "you win";
+                user.addCoins(200);
+                userServ.update(user);
+            }else if(game.getCurrentBoard().getWinner(game.getNext_player()) == 2){
+                status = "draw";
+                user.addCoins(10);
+                userServ.update(user);
+            }else if(game.getCurrentBoard().getWinner(game.getNext_player()) == -1){
+                status = "ok";
+            }else{
+                status = "you lose";
+            }
             
             System.out.println(game.getGameStates().size());
         }else{

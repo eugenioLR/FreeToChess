@@ -57,4 +57,14 @@ public class StratQueen implements PieceStrat{
     public char getName() {
         return 'Q';
     }
+    
+    @Override
+    public boolean canMove(Board board, int[] pos_init) {
+        return true;
+    }
+
+    @Override
+    public boolean isInDanger(Board board, int[] pos_init) {
+        return false;
+    }   
 }
