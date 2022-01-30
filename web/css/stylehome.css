@@ -112,3 +112,46 @@ nav {
     height: 20vh;
     width: 100%;
 }
+
+.challenges-select {
+    position: absolute;
+    top: 17%;
+    left: 46%;
+    width: 16.5vh;
+    height: 2vh;
+    background-color: #555555;
+    color:#e0e0e0;
+    align-items: center;
+}
+
+.challenge-text {
+    text-align: center;
+    top: 10%;
+    padding-top: 4vh;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1vh;
+}
+
+.accept-challenge-button {
+    position: absolute;
+    top: 17%;
+    right: 41%;
+    width: 7vh;
+    height: 2vh;
+    background-color: #555555; 
+    border-width: 0.323vh;
+    border-radius: 4vh;
+    color: #e0e0e0;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1vh;
+    cursor: pointer;
+}
+
+.accept-challenge-button:hover {
+    background-color: #5e5d5d;
+}
+
+.accept-challenge-button:active {
+    background-color: #2b2b2b; 
+}

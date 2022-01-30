@@ -27,7 +27,7 @@ function validateUser()
             {
                 await delay(1500);
                 localStorage.setItem('username',usr);
-                window.location.replace("http://127.0.0.1:5500/home.html");
+                window.location.replace("home.html");
             }
             else 
             {

@@ -28,20 +28,63 @@ function getstats()
     xhr.send();
 }
 
-function greeting()
-{ 
-    let e = document.getElementsByClassName("greetings");
-    var user = localStorage.getItem("username");
-    console.log(e[0]);
-    // e.insertAdjacentHTML('afterbegin', '<h2>Welcome</h2>');
-    // e[0].insertAdjacentHTML('afterbegin','<h2 class="welcome-message">Welcome ' + user + '</h2>');    
+function getChallenges()
+{
+    const xhr = new XMLHttpRequest();
+    let e = document.getElementsByClassName("challenges-select");
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            let string_json = xhr.responseText;
+            let array_json = JSON.parse(string_json);
+            let html_str = '';
+            for(var i = 0 ;i < array_json.length; i++)
+            {
+                let rival = array_json[i].emiter.name;
+                let id_pending_game = array_json[i].id; 
+                let option = id_pending_game + ":" + rival;
+                html_str += '<option value="value' + i + '">'+ option + '</option>';
+            }
+            e[0].insertAdjacentHTML('afterbegin', html_str);
+        }
+    }
+    xhr.open("get", "http://localhost:8080/users/"+localStorage.getItem("username")+"/games/received");
+    xhr.send();
+}
+
+function acceptChallenge(id_pending_game)
+{
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            let string_id = xhr.responseText;
+            localStorage.setItem('game_id', string_id);
+            window.location.replace("games.html");
+        }
+    }
+    let current_user = localStorage.getItem("username");
+    xhr.open("post", "http://localhost:8080/users/"+ current_user +"/games/received?id="+ id_pending_game +"&accept=true")
+    xhr.send();
 }
 
 $(document).ready(function(){
     $("#log-off").click(function(){
-        window.location.replace("http://127.0.0.1:5500/index.html");
+        window.location.replace("index.html");
+    });
+});
+
+$(document).ready(function()
+{
+    $("#accept-challenge").click(function()
+    {
+        var option = $('#challenges').find(":selected").text();
+        let array_opt = option.split(":");
+        acceptChallenge(array_opt[0]);
     });
 });
 
 getstats();
-greeting();
+getChallenges();

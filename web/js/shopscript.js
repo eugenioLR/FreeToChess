@@ -342,7 +342,7 @@ $(document).ready(function()
 {
     $("#log-off").click(function()
     {
-        window.location.replace("http://127.0.0.1:5500/index.html");
+        window.location.replace("index.html");
     });
     
 });
@@ -350,13 +350,11 @@ $(document).ready(function()
 
 $(document).ready(function()
 {
-    for (let i = 0 ; i < 30 ; i++)  // queda encontrar el tamaño del id y llamar a comprar
+    for (let i = 0 ; i < 30 ; i++)  
     {
         var btnid = '#'+i+"button"; 
         $(document).on("click",btnid, function(){
-            console.log(i);
             payment(i);
-            // console.log("üsuario: "+ localStorage.getItem("username") + " comprando: " + btnid);
         });
     }
 });
