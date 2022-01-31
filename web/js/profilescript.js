@@ -16,7 +16,7 @@ function getStats()
               '<div class="stat">'
             + '<h2 class="nickname">' + usernm + '</h2">'
             + '<h2 class="elo">ELO: ' + elo + '</h2>'
-            + '<p class="exp">Lv: ' + level + '/' + exp + '</p>'
+            + '<p class="exp">Lv: ' + level + '   EXP: ' + exp + '</p>'
             + '</div>'
             );
         }
@@ -99,11 +99,6 @@ function isPieceSkin(id_to_check)
     return condition;
 }
 
-function selectItem() 
-{
-    
-}
-
 $(document).ready(function()
 {
     $("#log-off").click(function()
@@ -126,6 +121,6 @@ $(document).ready(function()
 });
 
 getStats();
-getOptions();
+// getOptions();
 
 

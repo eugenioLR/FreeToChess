@@ -44,7 +44,7 @@ function getRanking()
             }
         }
     }
-    xhr.open("get", "http://localhost:8080/users", true);
+    xhr.open("get", "http://localhost:8080/users/ranking", true);
     xhr.send();
 }
 
