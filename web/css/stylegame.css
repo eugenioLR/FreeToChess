@@ -166,30 +166,3 @@ nav {
   letter-spacing: 0.1vh;
   text-decoration: none;
 }
-
-.challenge {
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-}
-
-.challengebutton {
-  background-color: #555555; 
-  border-width: 0.323vh;
-  border-radius: 4vh;
-  color: #e0e0e0;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 0.1vh;
-  font-size: 1vh;
-  cursor: pointer;
-}
-
-.textinput {
-  width: 20vh;
-  font-size: 1.4vh;
-  background-color: #e0e0e000;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 0.1vh solid rgb(93, 73, 84);
-  text-align: center;
-}

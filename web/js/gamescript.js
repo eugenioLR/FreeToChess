@@ -1,3 +1,11 @@
+function delay(delayInms) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(2);
+      }, delayInms);
+    });
+}
+
 function getstats()
 {
     const xhr = new XMLHttpRequest();
@@ -79,32 +87,6 @@ function setBoard()
     CSS("dark-box","background-image: url("+ background_dark + ")");
 }
 
-function challengePlayer(name)
-{
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function ()
-    {
-        if (xhr.readyState == 4 && xhr.status == 200)
-        {
-            let string = xhr.responseText;
-            if (string == "error")
-            {
-                alert("Can't send challenge to said user.");
-                console.log("current player:" + localStorage.getItem("username"));
-                console.log("rival player:" + name);
-            }
-            else
-            {
-                alert(name + " challenged.");
-            }
-            alert(string);
-        }
-    }
-    var myusername = localStorage.getItem("username");
-    xhr.open("post", "http://localhost:8080/users/" + myusername + "/games?oponent=" + name);
-    xhr.send();
-}
-
 function getTurn()
 {
 
@@ -113,22 +95,20 @@ function getTurn()
 function movePiece(previousMove, i)
 {
     prev_col = (previousMove-1)%8;
-    // prev_row = Math.floor(8/previousMove);
     prev_row = ~~((previousMove-1) / 8);
-    console.log(prev_row+":"+prev_col);
-    current_col =(i-1)%8;
-    current_row = prev_row = ~~((i-1) / 8);
-    console.log("to");
-    console.log(current_row+":"+current_col);
-}
+    prev_move = [prev_row, prev_col];
 
-$(document).ready(function()
-{
-    $("#challengebutton").click(function()
-    {
-        var name = $("#usernm").val();
-    });
-});
+    current_col =(i-1)%8;
+    current_row = ~~((i-1) / 8);
+    current_move = [current_row, current_col];
+    const xhr = new XMLHttpRequest();
+    var id_game = localStorage.getItem("game_id"); 
+    let usr = localStorage.getItem("username");
+    xhr.open("post","http://localhost:8080/game/"+ id_game +"/board?name="+usr);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({init:prev_move,last:current_move}));
+    
+}
 
 $(document).ready(function()
 {
@@ -167,6 +147,9 @@ $(document).ready(function()
                     movePiece(previousMove, i)  // igual da problemas de sincrono?
                     clicked = 0;
                        
+                    // delay 2 segundos y print de nuevo.
+                    // delay(1000);
+                    setBoard();
                     // estas 3 funciones en movePiece...
                     // setPieces();
                     // clicked = 0;

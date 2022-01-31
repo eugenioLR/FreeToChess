@@ -28,6 +28,32 @@ function getstats()
     xhr.send();
 }
 
+function challengePlayer(name)
+{
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function ()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            let string = xhr.responseText;
+            if (string == "error")
+            {
+                alert("Can't send challenge to said user.");
+                console.log("current player:" + localStorage.getItem("username"));
+                console.log("rival player:" + name);
+            }
+            else
+            {
+                alert(name + " challenged.");
+            }
+            alert(string);
+        }
+    }
+    var myusername = localStorage.getItem("username");
+    xhr.open("post", "http://localhost:8080/users/" + myusername + "/games?oponent=" + name);
+    xhr.send();
+}
+
 function getChallenges()
 {
     const xhr = new XMLHttpRequest();
@@ -85,5 +111,15 @@ $(document).ready(function()
         acceptChallenge(array_opt[0]);
     });
 });
+
+$(document).ready(function()
+{
+    $("#challengebutton").click(function()
+    {
+        var name = $("#usernm").val();
+        challengePlayer(name);
+    });
+});
+
 getstats();
 getChallenges();

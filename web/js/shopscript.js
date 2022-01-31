@@ -281,8 +281,6 @@ function payment(idp)
 {
     const xhr = new XMLHttpRequest();
     var usr = localStorage.getItem("username");  
-    // if (checkCoins(idp))
-    // {
     xhr.onreadystatechange = function() 
     {
         if (xhr.readyState == 4 && xhr.status == 200)
@@ -297,8 +295,7 @@ function payment(idp)
     }
     xhr.open("post","http://localhost:8080/store/buy?name="+usr, true); 
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify({id:idp})); // este es el id del product que tiene que comprar
-    console.log("d");
+    xhr.send(JSON.stringify({id:idp}));
 }
 
 function checkCoins(id)

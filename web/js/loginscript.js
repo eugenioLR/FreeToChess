@@ -43,9 +43,13 @@ function validateUser()
 
 function cleanCache()
 {
-    if (localStorage.getItem('username') != null)
+    if (localStorage.getItem("username") != null)
     {
-        localStorage.removeItem('username');
+        localStorage.removeItem("username");
+    }
+    if (localStorage.getItem("game_id") != null)
+    {
+        localStorage.removeItem("game_id");
     }
 }
 
@@ -56,6 +60,3 @@ $(document).ready(function(){
 });
 
 cleanCache();
-
-console.log(localStorage.getItem("board"));
-console.log(localStorage.getItem("pieces"));
