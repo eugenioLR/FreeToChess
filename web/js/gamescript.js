@@ -148,8 +148,9 @@ $(document).ready(function()
                     clicked = 0;
                        
                     // delay 2 segundos y print de nuevo.
-                    // delay(1000);
-                    setBoard();
+                        document.location.reload(true);
+                        setPieces();
+                    
                     // estas 3 funciones en movePiece...
                     // setPieces();
                     // clicked = 0;
