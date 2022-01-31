@@ -75,7 +75,7 @@ function setPieces()
         }
     }
     var id_game = localStorage.getItem("game_id");
-    xhr.open("get", "http://localhost:8080/game/"+ id_game +"/board");
+    xhr.open("get", "http://localhost:8080/game/"+ id_game +"/board", true);
     xhr.send();
 }
 
@@ -87,27 +87,20 @@ function setBoard()
     CSS("dark-box","background-image: url("+ background_dark + ")");
 }
 
-function getTurn()
-{
-
-}
-
 function movePiece(previousMove, i)
 {
     prev_col = (previousMove-1)%8;
     prev_row = ~~((previousMove-1) / 8);
     prev_move = [prev_row, prev_col];
-
     current_col =(i-1)%8;
     current_row = ~~((i-1) / 8);
     current_move = [current_row, current_col];
     const xhr = new XMLHttpRequest();
     var id_game = localStorage.getItem("game_id"); 
     let usr = localStorage.getItem("username");
-    xhr.open("post","http://localhost:8080/game/"+ id_game +"/board?name="+usr);
+    xhr.open("post","http://localhost:8080/game/"+ id_game +"/board?name="+usr, false);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({init:prev_move,last:current_move}));
-    
 }
 
 $(document).ready(function()
@@ -130,37 +123,28 @@ $(document).ready(function()
         var previousMove = -1;
         $(document).on("click",squareid, function()
         {
-            // if (myTurn)
-            // {
-                if (clicked == 0) 
-                {
-                    // una funcion para obtener el turno? variables globales igual...
-                    // mueves la pieza
-                    // funcion de mover pieza
-                    console.log("firstMove: "+ i);
-                    clicked += 1; 
-                    previousMove = i;
-                }
-                else
-                {
-                    console.log("Move to: "+i);
-                    movePiece(previousMove, i)  // igual da problemas de sincrono?
-                    clicked = 0;
-                       
-                    // delay 2 segundos y print de nuevo.
-                        document.location.reload(true);
-                        setPieces();
+            if (clicked == 0)
+            {
+                console.log("firstMove: "+ i);
+                clicked += 1; 
+                previousMove = i;
+            }
+            else
+            {
+                console.log("Move to: "+i);
+                movePiece(previousMove, i)  // igual da problemas de sincrono?
+                clicked = 0;
                     
-                    // estas 3 funciones en movePiece...
-                    // setPieces();
-                    // clicked = 0;
-                    // moved = true;
-                                       
-                    // envio de la pieza movida al servidor
-                    // en caso de que el mov sea erroneo... me devuelve un error por lo q tengo que mover
-                    // restauramos la string board_str de antes y volvemos a ejecutar esta funcion??
-                }
-            // }
+                // delay 2 segundos y print de nuevo.
+                setPieces();
+                document.location.reload(true);
+                
+                // estas 3 funciones en movePiece...
+                // setPieces();
+                // clicked = 0;
+                // moved = true;
+
+            }
         });
     }
 });

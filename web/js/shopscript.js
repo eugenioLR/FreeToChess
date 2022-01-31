@@ -42,10 +42,10 @@ function insertProductPack()
             {
                 if (i < array_json.length / 2) 
                 {
-                    e[1].insertAdjacentHTML('afterbegin',
+                    e[0].insertAdjacentHTML('afterbegin',
                     '<p class="idp">' + array_json[i].id + '</p>' 
                     + '<div class="product' + array_json[i].rarity + '">'
-                    + '<button type="button" class="' + array_json[i].id + 'button">Purchase</button>'
+                    + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
                     + '<img src="img/lootboxes/'+ array_json[i].rarity +'.png" class="producticon">'
                     + '<p class="description">' + array_json[i].description + '</p>'
@@ -57,10 +57,10 @@ function insertProductPack()
                 }
                 else 
                 {
-                    e1[1].insertAdjacentHTML('afterbegin',
+                    e1[0].insertAdjacentHTML('afterbegin',
                     '<p class="idp">' + array_json[i].id + '</p>' 
                     + '<div class="product' + array_json[i].rarity + '">'
-                    + '<button type="button" class="' + array_json[i].id + 'button">Purchase</button>'
+                    + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
                     + '<img src="img/lootboxes/'+ array_json[i].rarity +'.png" class="producticon">'
                     + '<p class="description">' + array_json[i].description + '</p>'
@@ -73,7 +73,7 @@ function insertProductPack()
             }   
         }
     }
-    xhr.open("get", "http://localhost:8080/store/productPacks", true);
+    xhr.open("get", "http://localhost:8080/store/packs", true);
     xhr.send();
 }
 
@@ -357,7 +357,7 @@ $(document).ready(function()
 });
 
 getstats();
-// insertProductPack();
+insertProductPack();
 insertPieceSet();
 insertBoardSet();
 insertBooster();

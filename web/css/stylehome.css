@@ -167,7 +167,7 @@ nav {
     letter-spacing: 0.1vh;
 }
 
-.accept-challenge-button {
+.challenges-button {
     right: 41%;
     width: 7vh;
     height: 2vh;
@@ -181,10 +181,10 @@ nav {
     cursor: pointer;
 }
 
-.accept-challenge-button:hover {
+.challenges-button:hover {
     background-color: #5e5d5d;
 }
 
-.accept-challenge-button:active {
+.challenges-button:active {
     background-color: #2b2b2b; 
 }

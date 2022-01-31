@@ -46,7 +46,6 @@ function challengePlayer(name)
             {
                 alert(name + " challenged.");
             }
-            alert(string);
         }
     }
     var myusername = localStorage.getItem("username");
@@ -96,6 +95,21 @@ function acceptChallenge(id_pending_game)
     xhr.send();
 }
 
+function rejectChallenge(id_pending_game)
+{
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            alert("challenge rejected.");
+        }
+    }
+    let current_user = localStorage.getItem("username");
+    xhr.open("post", "http://localhost:8080/users/"+ current_user +"/games/received?id="+ id_pending_game +"&accept=false");
+    xhr.send();
+}
+
 $(document).ready(function(){
     $("#log-off").click(function(){
         window.location.replace("index.html");
@@ -109,6 +123,12 @@ $(document).ready(function()
         var option = $('#challenges').find(":selected").text();
         let array_opt = option.split(":");
         acceptChallenge(array_opt[0]);
+    });
+    $("#reject-challenge").click(function()
+    {
+        var option = $('#challenges').find(":selected").text();
+        let array_opt = option.split(":");
+        rejectChallenge(array_opt[0]);
     });
 });
 
