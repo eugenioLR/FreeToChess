@@ -289,7 +289,7 @@ function payment(idp)
             console.log(string_json);
             if (string_json=="error")
             {
-                window.alert(string_json);
+                window.alert("error purchasing the product.");
             } 
         }
     }
@@ -335,6 +335,74 @@ function checkPrice(id, c_user, d_user)
     xhr.send();
 }
 
+function buyDiamonds()
+{
+    const xhr = new XMLHttpRequest();
+    var usr = localStorage.getItem("username");  
+    xhr.onreadystatechange = function() 
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            let string_json = xhr.responseText;
+            if (string_json=="error")
+            {
+                window.alert("Error purchasing the diamonds!");
+            } 
+        }
+    }
+    var usr = localStorage.getItem("username");
+    xhr.open("post","http://localhost:8080/store/diamonds?amount=100", true); 
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({name:usr}));
+}
+
+function buyCoins()
+{
+    const xhr = new XMLHttpRequest();
+    var usr = localStorage.getItem("username");  
+    xhr.onreadystatechange = function() 
+    {
+        let string_json = xhr.responseText;
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            if (string_json=="error")
+            {
+                window.alert("Error purchasing the coins!");
+            } 
+        }
+    }
+    var usr = localStorage.getItem("username");
+    xhr.open("post","http://localhost:8080/store/coins?amount=1000", true); 
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({name:usr}));
+}
+
+function buyLootbox()
+{
+    const xhr = new XMLHttpRequest();
+    var usr = localStorage.getItem("username");  
+    xhr.onreadystatechange = function() 
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            let string_json = xhr.responseText;
+            if (string_json=="error")
+            {
+                window.alert("Error purchasing the loot box!!");
+            } 
+            else
+            {
+                window.alert("items obtained: "+string_json);
+            }
+        }
+    }
+    var usr = localStorage.getItem("username");
+    xhr.open("post","http://localhost:8080/store/coins/?rarity=S&amount=3", true); 
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({name:usr}));
+}
+
+
 $(document).ready(function()
 {
     $("#log-off").click(function()
@@ -342,6 +410,22 @@ $(document).ready(function()
         window.location.replace("index.html");
     });
     
+});
+
+$(document).ready(function()
+{
+    $("#currency-button1").click(function()
+    {
+        buyDiamonds();
+    });
+    $("#currency-button2").click(function()
+    {
+        buyCoins();
+    });
+    $("#currency-button3").click(function()
+    {
+        buyLootbox();
+    });
 });
 
 
