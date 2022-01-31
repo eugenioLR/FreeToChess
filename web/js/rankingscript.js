@@ -23,7 +23,28 @@ function getstats()
         }
     }
     let usr = localStorage.getItem("username");
-    xhr.open("get", "http://localhost:8080/users/"+usr);
+    xhr.open("get", "http://localhost:8080/users/"+usr, true);
+    xhr.send();
+}
+
+function getRanking()
+{
+    const xhr = new XMLHttpRequest();
+    let e = document.getElementsByClassName("ranking-players");
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            
+            let string_json = xhr.responseText;
+            let array_json = JSON.parse(string_json);
+            for (var i = 0 ; i < array_json.length ; i++)
+            {
+                e[0].insertAdjacentHTML('afterbegin', '<h3>'+array_json[i].name+ " ELO: "+ array_json[i].elo + '<h3/>')
+            }
+        }
+    }
+    xhr.open("get", "http://localhost:8080/users", true);
     xhr.send();
 }
 
@@ -36,3 +57,4 @@ $(document).ready(function()
 });
 
 getstats();
+getRanking();
