@@ -12,5 +12,7 @@ $(document).ready(function()
         xhr.send(JSON.stringify({name:usr,email:email_input,password:pwd,paypal_id:paypal}));
         localStorage.setItem('board','basic');
         localStorage.setItem('pieces','fantasy');
+        alert("User created.");
+        window.location.replace("index.html");
     });    
 });
