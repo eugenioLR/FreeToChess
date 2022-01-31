@@ -18,6 +18,10 @@ nav {
   font-family: "Montserrat", sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 .logo {
   color: rgb(204, 204, 204);
   letter-spacing: 0.2vh;
@@ -276,12 +280,30 @@ nav {
   display:flex;
   align-items: center;
   justify-content: space-around;
-  
   align-self: center;
   align-content: center;
   text-align: center;
-  
 }
+
+.perks {
+  font-family: "Montserrat", sans-serif;
+  width: 25vh;
+  height: 15vh;
+  border-radius: 0.7vh;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  letter-spacing: 0.05vh;
+  gap: 1vh;
+}
+
+.perks-title {
+  font-size: 1.5vh;
+}
+
 
 .currency-button {
   width: 10vh;

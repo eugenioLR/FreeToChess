@@ -340,7 +340,6 @@ function checkPrice(id, c_user, d_user)
 function buyDiamonds()
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");
     xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
@@ -361,7 +360,6 @@ function buyDiamonds()
 function buyCoins()
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");
     xhr.onreadystatechange = function()
     {
         let string_json = xhr.responseText;
@@ -382,7 +380,6 @@ function buyCoins()
 function buyLootbox()
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");
     xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
@@ -404,6 +401,21 @@ function buyLootbox()
     xhr.send(JSON.stringify({name:usr}));
 }
 
+function grandmasterCard()
+{
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            alert("Successfully Subscribed");
+        }
+    }
+    var usr = localStorage.getItem("username");
+    xhr.open("post","http://localhost:8080/users/"+ usr +"/subscribe", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send();
+}
 
 $(document).ready(function()
 {
@@ -427,6 +439,10 @@ $(document).ready(function()
     $("#currency-button3").click(function()
     {
         buyLootbox();
+    });
+    $("#grandmaster-button").click(function()
+    {
+        grandmasterCard();
     });
 });
 

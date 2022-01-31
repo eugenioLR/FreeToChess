@@ -40,20 +40,20 @@ function getOptions()
             for (var i = 0 ; i < array_json.length ; i++)
             {
                 if (isBoardSkin(array_json[i].id))
-                {
-                    e[0].insertAdjacentHTML('afterbegin',                    
-                    '<option value="' + array_json[i].name + '">' + array_json[i].name + '</option>');
+                {      
+                    e1[0].insertAdjacentHTML('afterbegin',                    
+                    '<option value="' + array_json[i].texture_path + '">' + array_json[i].name + '</option>');
                 }
                 else if (isPieceSkin(array_json[i].id))
                 {
-                    e1[0].insertAdjacentHTML('afterbegin',
-                    '<option value="' + array_json[i].name + '">' + array_json[i].name + '</option>');
+                    e[0].insertAdjacentHTML('afterbegin',
+                    '<option value="' + array_json[i].texture_path + '">' + array_json[i].texture_path + '</option>');
                 }
             }
         }
     }
     let usr = localStorage.getItem("username");
-    xhr.open("get","http://localhost:8080/users/" + usr + "/products");
+    xhr.open("get","http://localhost:8080/users/" + usr + "/products", true);
     xhr.send();
 }
 
@@ -73,7 +73,7 @@ function isBoardSkin(id_to_check)
             }
         }
     }
-    xhr.open("get","http://localhost:8080/store/boardSkins" + usr + "/products");
+    xhr.open("get","http://localhost:8080/store/boardSkins/", false);
     xhr.send();
     return condition;
 }
@@ -94,7 +94,7 @@ function isPieceSkin(id_to_check)
             }
         }
     }
-    xhr.open("get","http://localhost:8080/store/pieceSkinSets" + usr + "/products");
+    xhr.open("get","http://localhost:8080/store/pieceSkinSets/", false);
     xhr.send();
     return condition;
 }
@@ -111,16 +111,12 @@ $(document).ready(function()
 {
     $("#set-skin").click(function()
     {
-        var selected_board = $('#board-selector'.val());
-        var selected_piece = $('#piece-selector'.val());
+        var selected_board = $('#board-selector').find(":selected").text();
+        var selected_piece = $('#piece-selector').find(":selected").text();
         localStorage.setItem('board',selected_board);
         localStorage.setItem('pieces',selected_piece);
-        console.log(localStorage.getItem("board"));
-        console.log(localStorage.getItem("pieces"));
     });
 });
 
 getStats();
-// getOptions();
-
-
+getOptions();

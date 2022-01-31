@@ -49,7 +49,7 @@ function setPieces()
             var htmlcode = '';
             var board_str = array_json.boardStr;
             // var board_style = localStorage.getItem("board");
-            // var pieces = localStorage.getItem("pieces");
+            var pieces = localStorage.getItem("pieces");
             var cid = 0;
             var rows = board_str.split(';');
             for (var i = 0 ; i < 8 ; i++)
@@ -65,7 +65,7 @@ function setPieces()
                             htmlBuffer.push('<img src="../img/pieces/nothing.png" id="square' + cid + '" class="piece">');
                             break;
                         default:
-                            htmlBuffer.push('<img src="../img/pieces/cburnett/'+ array_pieces[j] +'.png" id="square' + cid + '" class="piece">');
+                            htmlBuffer.push('<img src="../'+pieces+'/'+ array_pieces[j] +'.png" id="square' + cid + '" class="piece">');
                     }
                 }
                 htmlBuffer.push("</div>");
@@ -116,9 +116,6 @@ $(document).ready(function()
 {
     for (let i = 1; i <= 64 ; i++)
     {
-        
-        // var myTurn = 0; // var turn = getTurn() // de algun lado del sv...
-        
         var squareid = "#square"+i;
         var previousMove = -1;
         $(document).on("click",squareid, function()
@@ -132,26 +129,16 @@ $(document).ready(function()
             else
             {
                 console.log("Move to: "+i);
-                movePiece(previousMove, i)  // igual da problemas de sincrono?
+                movePiece(previousMove, i)  
                 clicked = 0;
-                    
-                // delay 2 segundos y print de nuevo.
                 setPieces();
                 document.location.reload(true);
-                
-                // estas 3 funciones en movePiece...
-                // setPieces();
-                // clicked = 0;
-                // moved = true;
-
             }
         });
     }
 });
 
-// window.onbeforeunload = function(){
-//     localStorage.removeItem("game_id");
-// }
+
 
 getstats();
 setPieces();
