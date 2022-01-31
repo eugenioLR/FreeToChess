@@ -65,7 +65,11 @@ VALUES
 
 
 -- USERS
-INSERT INTO "User" VALUES ('david23', 'email1', 'b3891aec309e4eacc3b9c34d6747b92515be672f969d9a1664124aeb308f80d0', 'SALTY-', 0, 0, 0, false, '2020/01/01', 0, 0, 0);
-INSERT INTO "User" VALUES ('michael34', 'email2', '58dfa8c747ba3fa25cb4e58930b5a68f258c9efec3c9c1b39c942d0c6d374df4', 'SALTY.', 0, 0, 0, false, '2020/01/01', 0, 0, 0);
-INSERT INTO "User" VALUES ('Isaac001', 'email3', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 0, 0, 0, false, '2020/01/01', 0, 0, 0);
-
+INSERT INTO "User" VALUES ('david23', 'email1', 'b3891aec309e4eacc3b9c34d6747b92515be672f969d9a1664124aeb308f80d0', 'SALTY-', 1200, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('michael34', 'email2', '58dfa8c747ba3fa25cb4e58930b5a68f258c9efec3c9c1b39c942d0c6d374df4', 'SALTY.', 900, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('Isaac001', 'email3', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 800, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('a', 'email4', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 400, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('b', 'email2', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 2000, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('c', 'email6', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 1800, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('d', 'email7', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 950, 0, 0, false, '2020/01/01', 0, 0, 0);
+INSERT INTO "User" VALUES ('e', 'email3', '8c7b1dc078bb6a8add9876fc87c347bf7da01a6166a77d6647a71000f20f0f4e', 'SALTY,', 1100, 0, 0, false, '2020/01/01', 0, 0, 0);

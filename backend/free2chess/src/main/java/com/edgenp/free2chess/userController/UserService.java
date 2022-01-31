@@ -60,7 +60,7 @@ public class UserService {
         List<User> allUsers = userRepo.findAll();
         
         allUsers.sort((User o1, User o2) -> {
-            return Integer.compare(o2.getElo(), o1.getElo());
+            return Integer.compare(o1.getElo(), o2.getElo());
         });
         
         return allUsers.subList(0, Math.min(allUsers.size(), 10));
