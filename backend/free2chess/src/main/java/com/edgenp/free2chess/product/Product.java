@@ -159,6 +159,7 @@ public class Product implements ProductInterf, Serializable{
     /**
      *
      */
+    @Override
     public void increasePurchases(){
         this.purchases++;
     }

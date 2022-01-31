@@ -48,9 +48,7 @@ public class BoardMove implements GameCommandInterf{
     public void performMove(User user) {
         game.movePiece(init, last);
             
-        System.out.println("previous next_player: " + game.getNext_player());
         game.swapNextPlayer();
-        System.out.println("previous next_player: " + game.getNext_player());
     }
 
     @Override

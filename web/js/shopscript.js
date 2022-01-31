@@ -16,7 +16,7 @@ function getstats()
              '<p class="nickname">' + username + '</p">'
             + '<div class="money-stats">'
             + '<p class="currencies"><img src="img/diamond.png" class="money-icon">' + diamonds + '</p>'
-            + '<p class="currencies"><img src="img/coin.png" class="money-icon">' + coins + '</p>' 
+            + '<p class="currencies"><img src="img/coin.png" class="money-icon">' + coins + '</p>'
             + '</div>'
             + '<p class="exp">Lv: ' + level + '</p>'
             );
@@ -40,37 +40,39 @@ function insertProductPack()
             let array_json = JSON.parse(string_json);
             for (var i = 0 ; i < array_json.length ; i++)
             {
-                if (i < array_json.length / 2) 
-                {
-                    e[0].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
-                    + '<div class="product' + array_json[i].rarity + '">'
-                    + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
-                    + '<p class="producttitle">' + array_json[i].name + '</p>'
-                    + '<img src="img/lootboxes/'+ array_json[i].rarity +'.png" class="producticon">'
-                    + '<p class="description">' + array_json[i].description + '</p>'
-                    + '<p class="price1">' + array_json[i].c_price + '<img src="img/coin.png" class="coin"></p>'
-                    + '<p class="price">' + array_json[i].d_price + '<img src="/img/diamond.png" class="diamond"></p>'
-                    + '<p class="discount">' + array_json[i].discount_perc * 100 + '%</p>'
-                    + '<p class="rarity">' + array_json[i].rarity + '</p>'
-                    + '</div><br><br>');
+                if(array_json[i].for_sale){
+                    if (i < array_json.length / 2) 
+                    {
+                        e[0].insertAdjacentHTML('afterbegin',
+                        '<p class="idp">' + array_json[i].id + '</p>'
+                        + '<div class="product' + array_json[i].rarity + '">'
+                        + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
+                        + '<p class="producttitle">' + array_json[i].name + '</p>'
+                        + '<img src="img/lootboxes/'+ array_json[i].rarity +'.png" class="producticon">'
+                        + '<p class="description">' + array_json[i].description + '</p>'
+                        + '<p class="price1">' + array_json[i].c_price + '<img src="img/coin.png" class="coin"></p>'
+                        + '<p class="price">' + array_json[i].d_price + '<img src="/img/diamond.png" class="diamond"></p>'
+                        + '<p class="discount">' + array_json[i].discount_perc * 100 + '%</p>'
+                        + '<p class="rarity">' + array_json[i].rarity + '</p>'
+                        + '</div><br><br>');
+                    }
+                    else
+                    {
+                        e1[0].insertAdjacentHTML('afterbegin',
+                        '<p class="idp">' + array_json[i].id + '</p>'
+                        + '<div class="product' + array_json[i].rarity + '">'
+                        + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
+                        + '<p class="producttitle">' + array_json[i].name + '</p>'
+                        + '<img src="img/lootboxes/'+ array_json[i].rarity +'.png" class="producticon">'
+                        + '<p class="description">' + array_json[i].description + '</p>'
+                        + '<p class="price1">' + array_json[i].c_price + '<img src="img/coin.png" class="coin"></p>'
+                        + '<p class="price">' + array_json[i].d_price + '<img src="/img/diamond.png" class="diamond"></p>'
+                        + '<p class="discount">' + array_json[i].discount_perc * 100 + '%</p>'
+                        + '<p class="rarity">' + array_json[i].rarity + '</p>'
+                        + '</div><br><br>');
+                    }
                 }
-                else 
-                {
-                    e1[0].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
-                    + '<div class="product' + array_json[i].rarity + '">'
-                    + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
-                    + '<p class="producttitle">' + array_json[i].name + '</p>'
-                    + '<img src="img/lootboxes/'+ array_json[i].rarity +'.png" class="producticon">'
-                    + '<p class="description">' + array_json[i].description + '</p>'
-                    + '<p class="price1">' + array_json[i].c_price + '<img src="img/coin.png" class="coin"></p>'
-                    + '<p class="price">' + array_json[i].d_price + '<img src="/img/diamond.png" class="diamond"></p>'
-                    + '<p class="discount">' + array_json[i].discount_perc * 100 + '%</p>'
-                    + '<p class="rarity">' + array_json[i].rarity + '</p>'
-                    + '</div><br><br>');
-                }
-            }   
+            }
         }
     }
     xhr.open("get", "http://localhost:8080/store/packs", true);
@@ -80,7 +82,7 @@ function insertProductPack()
 function insertPieceSet()
 {
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -90,10 +92,10 @@ function insertPieceSet()
             let array_json = JSON.parse(string_json);
             for (var i = 0; i < array_json.length ; i++)
             {
-                if (i < array_json.length / 2) 
+                if (i < array_json.length / 2)
                 {
                     e[1].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -105,10 +107,10 @@ function insertPieceSet()
                     + '<p class="rarity">' + array_json[i].rarity + '</p>'
                     + '</div><br><br>');
                 }
-                else 
+                else
                 {
                     e1[1].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -130,7 +132,7 @@ function insertPieceSet()
 function insertBoardSet()
 {
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -140,10 +142,10 @@ function insertBoardSet()
             let array_json = JSON.parse(string_json);
             for (var i = 0; i < array_json.length ; i++)
             {
-                if (i < array_json.length / 2) 
+                if (i < array_json.length / 2)
                 {
                     e[1].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -158,7 +160,7 @@ function insertBoardSet()
                 else
                 {
                     e1[2].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -180,7 +182,7 @@ function insertBoardSet()
 function insertBooster()
 {
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -190,10 +192,10 @@ function insertBooster()
             let array_json = JSON.parse(string_json);
             for (var i = 0; i < array_json.length ; i++)
             {
-                if (i < array_json.length / 2) 
+                if (i < array_json.length / 2)
                 {
                     e[3].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -208,7 +210,7 @@ function insertBooster()
                 else
                 {
                     e1[3].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -230,7 +232,7 @@ function insertBooster()
 function insertEmoji()
 {
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -240,10 +242,10 @@ function insertEmoji()
             let array_json = JSON.parse(string_json);
             for (var i = 0; i < array_json.length ; i++)
             {
-                if (i < array_json.length / 2) 
+                if (i < array_json.length / 2)
                 {
                     e[4].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -258,7 +260,7 @@ function insertEmoji()
                 else
                 {
                     e1[4].insertAdjacentHTML('afterbegin',
-                    '<p class="idp">' + array_json[i].id + '</p>' 
+                    '<p class="idp">' + array_json[i].id + '</p>'
                     + '<div class="product' + array_json[i].rarity + '">'
                     + '<button type="button" id="' + array_json[i].id + 'button" class="purchasebutton">Purchase</button>'
                     + '<p class="producttitle">' + array_json[i].name + '</p>'
@@ -280,8 +282,8 @@ function insertEmoji()
 function payment(idp)
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");  
-    xhr.onreadystatechange = function() 
+    var usr = localStorage.getItem("username");
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -290,10 +292,10 @@ function payment(idp)
             if (string_json=="error")
             {
                 window.alert("error purchasing the product.");
-            } 
+            }
         }
     }
-    xhr.open("post","http://localhost:8080/store/buy?name="+usr, true); 
+    xhr.open("post","http://localhost:8080/store/buy?name="+usr, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({id:idp}));
 }
@@ -302,7 +304,7 @@ function checkCoins(id)
 {
     var condition = false;
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -329,7 +331,7 @@ function checkPrice(id, c_user, d_user)
         let array_json = JSON.parse(string_json);
         var c = array_json[0].c_price;
         var d = array_json[0].d_price;
-        return ((c_user >= c && c != 0) && (d_user >= d && d != 0)); 
+        return ((c_user >= c && c != 0) && (d_user >= d && d != 0));
     }
     xhr.open("get","http://localhost:8080/store/"+id);
     xhr.send();
@@ -338,8 +340,8 @@ function checkPrice(id, c_user, d_user)
 function buyDiamonds()
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");  
-    xhr.onreadystatechange = function() 
+    var usr = localStorage.getItem("username");
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -347,11 +349,11 @@ function buyDiamonds()
             if (string_json=="error")
             {
                 window.alert("Error purchasing the diamonds!");
-            } 
+            }
         }
     }
     var usr = localStorage.getItem("username");
-    xhr.open("post","http://localhost:8080/store/diamonds?amount=100", true); 
+    xhr.open("post","http://localhost:8080/store/diamonds?amount=100", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({name:usr}));
 }
@@ -359,8 +361,8 @@ function buyDiamonds()
 function buyCoins()
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");  
-    xhr.onreadystatechange = function() 
+    var usr = localStorage.getItem("username");
+    xhr.onreadystatechange = function()
     {
         let string_json = xhr.responseText;
         if (xhr.readyState == 4 && xhr.status == 200)
@@ -368,11 +370,11 @@ function buyCoins()
             if (string_json=="error")
             {
                 window.alert("Error purchasing the coins!");
-            } 
+            }
         }
     }
     var usr = localStorage.getItem("username");
-    xhr.open("post","http://localhost:8080/store/coins?amount=1000", true); 
+    xhr.open("post","http://localhost:8080/store/coins?amount=1000", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({name:usr}));
 }
@@ -380,8 +382,8 @@ function buyCoins()
 function buyLootbox()
 {
     const xhr = new XMLHttpRequest();
-    var usr = localStorage.getItem("username");  
-    xhr.onreadystatechange = function() 
+    var usr = localStorage.getItem("username");
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState == 4 && xhr.status == 200)
         {
@@ -389,7 +391,7 @@ function buyLootbox()
             if (string_json=="error")
             {
                 window.alert("Error purchasing the loot box!!");
-            } 
+            }
             else
             {
                 window.alert("items obtained: "+string_json);
@@ -397,7 +399,7 @@ function buyLootbox()
         }
     }
     var usr = localStorage.getItem("username");
-    xhr.open("post","http://localhost:8080/store/lootbox/?rarity=S&amount=3", true); 
+    xhr.open("post","http://localhost:8080/store/lootbox/?rarity=S&amount=3", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({name:usr}));
 }
@@ -409,7 +411,7 @@ $(document).ready(function()
     {
         window.location.replace("index.html");
     });
-    
+
 });
 
 $(document).ready(function()
@@ -431,9 +433,9 @@ $(document).ready(function()
 
 $(document).ready(function()
 {
-    for (let i = 0 ; i < 30 ; i++)  
+    for (let i = 0 ; i < 30 ; i++)
     {
-        var btnid = '#'+i+"button"; 
+        var btnid = '#'+i+"button";
         $(document).on("click",btnid, function(){
             payment(i);
         });

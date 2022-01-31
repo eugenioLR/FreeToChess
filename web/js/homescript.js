@@ -16,7 +16,7 @@ function getstats()
              '<p class="nickname">' + username + '</p">'
             + '<div class="money-stats">'
             + '<p class="currencies"><img src="img/diamond.png" class="money-icon">' + diamonds + '</p>'
-            + '<p class="currencies"><img src="img/coin.png" class="money-icon">' + coins + '</p>' 
+            + '<p class="currencies"><img src="img/coin.png" class="money-icon">' + coins + '</p>'
             + '</div>'
             + '<p class="exp">Lv: ' + level + '</p>'
             );
@@ -66,7 +66,7 @@ function getPendingChallenges()
             for(var i = 0 ;i < array_json.length; i++)
             {
                 let rival = array_json[i].emiter.name;
-                let id_pending_game = array_json[i].id; 
+                let id_pending_game = array_json[i].id;
                 let option = id_pending_game + ":" + rival;
                 html_str += '<option value="value' + i + '">'+ option + '</option>';
             }
@@ -91,15 +91,15 @@ function getCurrentChallenges()
             for(var i = 0 ;i < array_json.length; i++)
             {
                 let rival = array_json[i].emiter.name;
-                let id_pending_game = array_json[i].game.id; 
+                let id_pending_game = array_json[i].game.id;
                 let option = id_pending_game + ":" + rival;
                 html_str += '<option value="value' + i + '">'+ option + '</option>';
             }
             e[0].insertAdjacentHTML('afterbegin', html_str);
         }
     }
-    xhr.open("get", "http://localhost:8080/users/"+localStorage.getItem("username")+"/games/received", true);
-    xhr.send(); 
+    xhr.open("get", "http://localhost:8080/users/"+localStorage.getItem("username")+"/games/openGames", true);
+    xhr.send();
 }
 
 function acceptChallenge(id_pending_game)

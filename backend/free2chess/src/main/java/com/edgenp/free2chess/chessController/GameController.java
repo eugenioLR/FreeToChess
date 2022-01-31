@@ -98,18 +98,22 @@ public class GameController {
                 status = "you win";
                 user.addCoins(200);
                 userServ.update(user);
+                System.out.println("nice, you win");
             }else if(game.getWinner() == 2){
                 status = "draw";
                 user.addCoins(10);
                 userServ.update(user);
+                System.out.println("meh, draw");
             }else if(game.getWinner() == -1){
                 status = "ok";
+                System.out.println("nothing special");
             }else{
                 status = "you lose";
             }
             
             if(game.getWinner() != -1){
                 pendGameServ.remove(game.getPendingGame());
+                System.out.println("ok, nice");
             }
         }else{
             status = "error";

@@ -45,6 +45,7 @@ public class PendingGameService {
             if(!iter.next().isAcepted()){
                 iter.remove();
             }
+            System.out.println("challenge found");
         }
         
         return new ArrayList<>(openGames);       

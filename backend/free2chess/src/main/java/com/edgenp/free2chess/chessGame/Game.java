@@ -161,7 +161,7 @@ public class Game implements Serializable {
         System.out.println("black move?: " + black_turn);
         System.out.println("current player:" + ((next_player == 0) ? "white" : "black"));
         
-        valid = valid && (white_turn && next_player == 0) || (black_turn && next_player == 1);
+        valid = valid && ((white_turn && next_player == 0) || (black_turn && next_player == 1));
         
         return valid && !Arrays.equals(pos, target);
     }
@@ -197,7 +197,8 @@ public class Game implements Serializable {
     }
     
     public boolean wasInCheck(){
-        int prev = (this.next_player + 1)%2;
+        //int prev = (this.next_player + 1)%2;
+        int prev = next_player;
         return this.getCurrentBoard().inCheck(prev);
     }
     

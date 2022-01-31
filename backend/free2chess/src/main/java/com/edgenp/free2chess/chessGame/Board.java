@@ -56,7 +56,9 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
                          "wR,wN,wB,wQ,wK,wB,wN,wR";
         
         //DEBUG ONLY, DELETE WHEN DONE
-        this.board_str = "bR,--,bB,bQ,bK,bB,bN,bR;bP,bP,bP,bP,--,--,--,bP;--,--,bN,--,--,wQ,bP,--;--,--,--,--,bP,--,--,--;--,--,wB,--,wP,--,--,--;--,--,--,--,--,--,--,--;wP,wP,wP,wP,--,wP,wP,wP;wR,wN,wB,--,wK,--,wN,wR";
+        //this.board_str = "bR,--,bB,bQ,bK,bB,bN,bR;bP,bP,bP,bP,--,--,--,bP;--,--,bN,--,--,wQ,bP,--;--,--,--,--,bP,--,--,--;--,--,wB,--,wP,--,--,--;--,--,--,--,--,--,--,--;wP,wP,wP,wP,--,wP,wP,wP;wR,wN,wB,--,wK,--,wN,wR";
+        
+        
         this.boardPieces = Board.strBoardToPieces(board_str);
         this.game = game;
         this.move_order = move_order;
@@ -157,6 +159,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      *
      * @return
      */
+    @JsonIgnore
     public Piece[][] getBoardPieces() {
         return boardPieces;
     }
@@ -167,6 +170,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * @param x
      * @return
      */
+    @JsonIgnore
     public Piece getPiece(int y, int x){
         Piece result = null;
         if(x >= 0 && x < 8 && y >= 0 && y < 8){
@@ -182,6 +186,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * @param pos
      * @return
      */
+    @JsonIgnore
     public Piece getPiece(int[] pos){
         return this.getPiece(pos[0], pos[1]);
     }
@@ -295,6 +300,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * @param player
      * @return
      */
+    @JsonIgnore
     public int getWinner(int player){
         int winner = -1;
         int newPlayer = player == 0 ? 1 : 0;
