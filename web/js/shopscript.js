@@ -397,7 +397,7 @@ function buyLootbox()
         }
     }
     var usr = localStorage.getItem("username");
-    xhr.open("post","http://localhost:8080/store/coins/?rarity=S&amount=3", true); 
+    xhr.open("post","http://localhost:8080/store/lootbox/?rarity=S&amount=3", true); 
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({name:usr}));
 }
