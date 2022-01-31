@@ -63,6 +63,6 @@ public class UserService {
             return Integer.compare(o2.getElo(), o1.getElo());
         });
         
-        return allUsers.subList(0, 10);
+        return allUsers.subList(0, Math.min(allUsers.size(), 10));
     }
 }
