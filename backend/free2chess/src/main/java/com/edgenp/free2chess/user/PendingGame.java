@@ -70,14 +70,14 @@ public class PendingGame implements Serializable {
     }
 
     /**
-     *
+     * Acepta la peticion
      */
     public void acept() {
         this.acepted = true;
     }
     
     /**
-     *
+     * Rechaza la peticion
      */
     public void decline() {
         this.acepted = false;

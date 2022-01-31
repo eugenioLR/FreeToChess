@@ -22,7 +22,7 @@ public class ProductPackService {
     private ProductPackJPA prodPackRepo;
     
     /**
-     *
+     * Obtiene todas las skins del tablero
      * @return
      */
     public List<ProductPack> getAll(){
@@ -30,7 +30,7 @@ public class ProductPackService {
     }
     
     /**
-     *
+     * Obtiene un pack por id
      * @param id
      * @return
      */
@@ -43,7 +43,7 @@ public class ProductPackService {
     }
     
     /**
-     *
+     * Actualiza las propiedades de un pack de productos
      * @param prod
      */
     public void update(ProductPack prod){

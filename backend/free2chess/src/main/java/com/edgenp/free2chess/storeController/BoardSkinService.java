@@ -23,7 +23,7 @@ public class BoardSkinService {
     private BoardSkinJPA boardSkinRepo;
     
     /**
-     *
+     * Obtiene todas las skins del tablero
      * @return
      */
     public List<BoardSkin> getAll(){
@@ -31,7 +31,7 @@ public class BoardSkinService {
     }
     
     /**
-     *
+     * Actualiza las propiedades de un skin de tablero
      * @param prod
      */
     public void update(BoardSkin prod){

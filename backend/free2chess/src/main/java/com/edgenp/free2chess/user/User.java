@@ -35,7 +35,6 @@ public class User implements UserInterf{
     private int diamonds;
     
     
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "\"PurchasedProduct\"", 
                joinColumns = @JoinColumn(name = "\"name_User\"", referencedColumnName = "name"), 
@@ -181,7 +180,7 @@ public class User implements UserInterf{
     }
     
     /**
-     *
+     * Añade una cantidad de experiencia al usuario y actualiza el nivel si se alcanzan los 100 puntos de experiencia
      * @param expGain
      */
     public void addExp(int expGain){

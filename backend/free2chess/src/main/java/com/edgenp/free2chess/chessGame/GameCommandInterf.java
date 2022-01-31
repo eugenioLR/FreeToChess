@@ -27,6 +27,11 @@ public interface GameCommandInterf {
      */
     public void performMove(User user);
     
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean verifyMove(User user);
 
     /**

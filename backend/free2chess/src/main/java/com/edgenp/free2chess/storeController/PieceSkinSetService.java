@@ -22,7 +22,7 @@ public class PieceSkinSetService {
     private PieceSkinSetJPA pieceSkinSetRepo;
     
     /**
-     *
+     * Obtiene todas las skins del tablero
      * @return
      */
     public List<PieceSkinSet> getAll(){
@@ -30,7 +30,7 @@ public class PieceSkinSetService {
     }
     
     /**
-     *
+     * Actualiza las propiedades de un set de skins de piezas
      * @param prod
      */
     public void update(PieceSkinSet prod){

@@ -42,6 +42,11 @@ public class BoosterMove implements GameCommandInterf{
     public void performMove(User user) {
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     @Override
     public boolean verifyMove(User user) {
         return false;

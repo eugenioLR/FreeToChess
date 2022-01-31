@@ -116,7 +116,6 @@ public class Piece {
      * Realiza un movimiento sobre el tablero
      * @param board
      * @param posNew
-     * @return
      */
     public void move(Board board, int[] posNew){
         this.pos = posNew;
@@ -131,7 +130,7 @@ public class Piece {
     }
 
     /**
-     *
+     * Comprueba si existen movimientos legales para esta pieza
      * @param board
      * @return
      */
@@ -144,7 +143,7 @@ public class Piece {
     }
 
     /**
-     *
+     * Comprueba si esta pieza se encuentra amenazada por otra
      * @param board
      * @return
      */

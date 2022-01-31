@@ -27,7 +27,7 @@ public class UserFactory {
     }
     
     /**
-     *
+     * Crea un usuario encriptando la contraseña y aplicando los parametros dados
      * @param name
      * @param email
      * @param password

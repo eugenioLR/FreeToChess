@@ -280,6 +280,11 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
         return canMove;
     }
     
+    /**
+     * Comprueba si el rey se encuentra en jaque
+     * @param color
+     * @return
+     */
     public boolean inCheck(int color){
         boolean inCheck = false;
         

@@ -22,7 +22,7 @@ public class EmojiService {
     private EmojiJPA emojiRepo;
     
     /**
-     *
+     * Obtiene todos los emojis
      * @return
      */
     public List<Emoji> getAll(){
@@ -30,7 +30,7 @@ public class EmojiService {
     }
     
     /**
-     *
+     * Actualiza las propiedades de un emoji
      * @param prod
      */
     public void update(Emoji prod){

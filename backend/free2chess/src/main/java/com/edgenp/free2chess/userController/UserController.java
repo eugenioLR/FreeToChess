@@ -36,7 +36,7 @@ public class UserController {
     private GameService gameServ;
 
     /**
-     *
+     * Obtiene todos los usuarios
      * @return
      */
     @GetMapping("/users")
@@ -46,7 +46,7 @@ public class UserController {
     
     
     /**
-     *
+     * Obtiene los 10 usuarios con mejor elo de la base de datos
      * @return
      */
     @GetMapping("/users/ranking")
@@ -55,7 +55,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Obtiene los productos comprados por un usuario
      * @param id
      * @return
      */
@@ -66,7 +66,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Realiza la subcripcion de un usuario
      * @param id
      */
     @PostMapping("/users/{id}/subscribe")
@@ -77,7 +77,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Obtiene la informacion de un usuario
      * @param id
      * @return
      */
@@ -87,7 +87,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Muestra las peticiones de juegos recibidos
      * @param id
      * @return
      */
@@ -98,7 +98,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Muestra las peticions de juegos enviados
      * @param id
      * @return
      */
@@ -109,7 +109,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Muestra los juegos abiertos
      * @param id
      * @return
      */
@@ -120,7 +120,8 @@ public class UserController {
     
     
     /**
-     *
+     * Crea un juego manualmente entre dos jugadores, solo se deberia usar para hacer
+     * debug.
      * @param emiter_name
      * @param oponent
      * @return
@@ -144,7 +145,7 @@ public class UserController {
     }
     
     /**
-     *
+     * Acepta o rechaza una invitación a un juego con otro usuario
      * @param name_user
      * @param id
      * @param accept
@@ -167,7 +168,7 @@ public class UserController {
     
     
     /**
-     *
+     * Crea un usuario dado el nombre, email, contraseña y ID de paypal.
      * @param user
      * @return
      */

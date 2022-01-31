@@ -125,6 +125,9 @@ public class Game implements Serializable {
         return next_player;
     }
     
+    /**
+     * Cambia el turno del jugador
+     */
     public void swapNextPlayer(){
         this.next_player = (this.next_player + 1)%2;
     }
@@ -137,6 +140,10 @@ public class Game implements Serializable {
         return pendingGame;
     }
     
+    /**
+     *
+     * @return
+     */
     @JsonIgnore
     public int getWinner(){
         return this.getCurrentBoard().getWinner(next_player);
@@ -196,6 +203,10 @@ public class Game implements Serializable {
         gameStates.add(next);
     }
     
+    /**
+     * Comprueba si si hay un jaque
+     * @return
+     */
     public boolean wasInCheck(){
         //int prev = (this.next_player + 1)%2;
         int prev = next_player;

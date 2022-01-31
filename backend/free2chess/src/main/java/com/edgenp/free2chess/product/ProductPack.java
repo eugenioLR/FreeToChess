@@ -196,7 +196,7 @@ public class ProductPack implements ProductInterf, Serializable{
     }
 
     /**
-     *
+     * Obtiene los nombres de los productos en el pack
      * @return
      */
     public List<String> getContentNames() {

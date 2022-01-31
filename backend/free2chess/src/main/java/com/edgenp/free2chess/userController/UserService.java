@@ -20,7 +20,7 @@ public class UserService {
     private UserJPA userRepo;
     
     /**
-     *
+     * Obtiene todos los usuarios
      * @return
      */
     public List<User> getAll(){
@@ -28,7 +28,7 @@ public class UserService {
     }
     
     /**
-     *
+     * Obtiene un usuario dado su id
      * @param id
      * @return
      */
@@ -41,7 +41,7 @@ public class UserService {
     }
     
     /**
-     *
+     * Crea un usuario en la base de datos.
      * @param user
      */
     public void create(User user){
@@ -49,13 +49,17 @@ public class UserService {
     }
 
     /**
-     *
+     * Actualiza un usuario en la base de datos.
      * @param user
      */
     public void update(User user) {
         userRepo.save(user);
     }
 
+    /**
+     * Obtiene usuarios ordenados por ELO, obteniendo 10 usuarios
+     * @return
+     */
     public List<User> getAllOrdered() {
         List<User> allUsers = userRepo.findAll();
         

@@ -51,6 +51,12 @@ public class BoardMove implements GameCommandInterf{
         game.swapNextPlayer();
     }
 
+    /**
+     * Comprueba si el movimiento ha dejado tu rey expuesto o no, y por tanto, si
+     * el último movimiento realizado es legal o no.
+     * @param user
+     * @return
+     */
     @Override
     public boolean verifyMove(User user) {
         return !this.game.wasInCheck();

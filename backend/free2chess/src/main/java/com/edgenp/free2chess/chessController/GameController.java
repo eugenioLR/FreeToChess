@@ -36,6 +36,10 @@ public class GameController {
     @Autowired
     private PendingGameService pendGameServ;
     
+    /**
+     * Añade un juego al hashmap de juegos abiertos
+     * @param id
+     */
     public static void addOpenGame(int id){
         System.out.println(id);
         openGames.put(id, new MoveInvoker());

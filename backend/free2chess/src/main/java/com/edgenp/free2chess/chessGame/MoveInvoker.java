@@ -16,6 +16,10 @@ import java.util.*;
 public class MoveInvoker {
     private final List<GameCommandInterf> moveList = new ArrayList<>();
     
+    /**
+     *
+     * @return
+     */
     public GameCommandInterf getLastCommand(){
         return moveList.get(moveList.size()-1);
     }
@@ -30,6 +34,11 @@ public class MoveInvoker {
         moveList.add(command);
     }
     
+    /**
+     * Verifica si el último movimiento es legal, si no fué, se deshace
+     * @param user
+     * @return
+     */
     public boolean verifyLastMove(User user) {
         boolean valid = true;
         if(!getLastCommand().verifyMove(user)){

@@ -13,8 +13,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author eugeniolr
  */
 public interface PendingGameJPA extends JpaRepository<PendingGame, Integer> {
+
+    /**
+     *
+     * @param name
+     * @return
+     */
     public Set<PendingGame> findByReceiver_name(String name);
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public Set<PendingGame> findByEmiter_name(String name);
     
 }

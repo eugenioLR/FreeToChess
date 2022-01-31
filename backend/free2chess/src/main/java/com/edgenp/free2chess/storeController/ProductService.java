@@ -21,7 +21,7 @@ public class ProductService {
     private ProductJPA prodRepo;
     
     /**
-     *
+     * Obtiene todas las skins del tablero
      * @return
      */
     public List<Product> getAll(){
@@ -29,7 +29,7 @@ public class ProductService {
     }
     
     /**
-     *
+     * Obtiene los productos dada su rareza
      * @param rarity
      * @return
      */
@@ -38,7 +38,7 @@ public class ProductService {
     }
     
     /**
-     *
+     * Obtiene el usuario dado su ID
      * @param id
      * @return
      */
@@ -51,7 +51,7 @@ public class ProductService {
     }
     
     /**
-     *
+     * Actualiza las propiedades de un producto
      * @param prod
      */
     public void update(Product prod){

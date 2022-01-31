@@ -24,7 +24,7 @@ public class BoosterService {
     private BoosterJPA boosterRepo;
     
     /**
-     *
+     * Obtiene todas los boosters
      * @return
      */
     public List<Booster> getAll(){
@@ -32,7 +32,7 @@ public class BoosterService {
     }
     
     /**
-     *
+     * Actualiza las propiedades de un booster
      * @param prod
      */
     public void update(Booster prod){

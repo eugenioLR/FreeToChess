@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Free2chessApplication {
 
     /**
-     *
+     * Funcion principal del server
      * @param args
      */
     public static void main(String[] args) {

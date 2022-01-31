@@ -23,7 +23,7 @@ public class PendingGameService {
     private GameJPA gameRepo;
     
     /**
-     *
+     * Obtiene una peticion de juego dado un ID.
      * @param id
      * @return
      */
@@ -35,6 +35,11 @@ public class PendingGameService {
         return null;
     }
     
+    /**
+     * Obtiene las peticiones de juego que involucren al usuario indicado
+     * @param name
+     * @return
+     */
     public List<PendingGame> getByUser(String name){
         
         Set<PendingGame> openGames = pendGameRepo.findByEmiter_name(name);
@@ -52,7 +57,7 @@ public class PendingGameService {
     }
     
     /**
-     *
+     * Crea una peticion de juego en la base de datos
      * @param pendGame
      */
     public void create(PendingGame pendGame){
@@ -60,7 +65,7 @@ public class PendingGameService {
     }
     
     /**
-     *
+     * Crea una peticion de juego en la base de datos
      * @param pendGame
      */
     public void update(PendingGame pendGame){
@@ -68,7 +73,7 @@ public class PendingGameService {
     }
 
     /**
-     *
+     * Elimina una peticion de juego junto al juego asociado.
      * @param pendGame
      */
     public void removeCascade(PendingGame pendGame) {
@@ -77,7 +82,7 @@ public class PendingGameService {
     }
     
     /**
-     *
+     * Elimina una peticion de juego.
      * @param pendGame
      */
     public void remove(PendingGame pendGame) {
