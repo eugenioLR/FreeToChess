@@ -54,6 +54,9 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
                          "--,--,--,--,--,--,--,--;"+
                          "wP,wP,wP,wP,wP,wP,wP,wP;"+
                          "wR,wN,wB,wQ,wK,wB,wN,wR";
+        
+        //DEBUG ONLY, DELETE WHEN DONE
+        this.board_str = "bR,--,bB,bQ,bK,bB,bN,bR;bP,bP,bP,bP,--,--,--,bP;--,--,bN,--,--,wQ,bP,--;--,--,--,--,bP,--,--,--;--,--,wB,--,wP,--,--,--;--,--,--,--,--,--,--,--;wP,wP,wP,wP,--,wP,wP,wP;wR,wN,wB,--,wK,--,wN,wR";
         this.boardPieces = Board.strBoardToPieces(board_str);
         this.game = game;
         this.move_order = move_order;
@@ -225,7 +228,6 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * Realiza un movimiento sobre el tablero
      * @param pos
      * @param target
-     * @return
      */
     public void movePiece(int[] pos, int[] target){
         System.out.println(this.boardPieces[pos[0]][pos[1]].toString());
@@ -297,25 +299,37 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
         int winner = -1;
         int newPlayer = player == 0 ? 1 : 0;
         
-        // Checkmate test
-        if(this.kingCanMove(newPlayer)){
-            winner = this.inCheck(newPlayer) ? player : 2;
-        }
-        
-        boolean movesLeft = false;
-        // Draw test
-        if(winner == 2){
-            for(int i = 0; i < boardPieces.length && !movesLeft; i++){
-                for(int j = 0; j < boardPieces[0].length && !movesLeft; j++){
-                    movesLeft = boardPieces[i][j].canMove(this);
+        if(this.findKing(winner) == null) {
+            winner = player;
+        }else{
+            // Checkmate test
+            if(this.kingCanMove(newPlayer)){
+                System.out.println("haha your king can't move");
+                winner = this.inCheck(newPlayer) ? player : 2;
+                
+                if(this.inCheck(newPlayer)){
+                    System.out.println("check mate :sunglasses:");
+                }
+                
+                if(this.inCheck(player)){
+                    System.out.println("check mate :sunglasses:");
                 }
             }
-            
-            if(movesLeft){
-                winner = -1;
+
+            boolean movesLeft = false;
+            // Draw test
+            if(winner == 2){
+                for(int i = 0; i < boardPieces.length && !movesLeft; i++){
+                    for(int j = 0; j < boardPieces[0].length && !movesLeft; j++){
+                        movesLeft = boardPieces[i][j].canMove(this);
+                    }
+                }
+
+                if(movesLeft){
+                    winner = -1;
+                }
             }
         }
-        
         return winner;
     }
     

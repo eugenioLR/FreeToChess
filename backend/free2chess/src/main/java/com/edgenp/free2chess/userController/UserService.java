@@ -55,4 +55,14 @@ public class UserService {
     public void update(User user) {
         userRepo.save(user);
     }
+
+    public List<User> getAllOrdered() {
+        List<User> allUsers = userRepo.findAll();
+        
+        allUsers.sort((User o1, User o2) -> {
+            return Integer.compare(o2.getElo(), o1.getElo());
+        });
+        
+        return allUsers.subList(0, 10);
+    }
 }

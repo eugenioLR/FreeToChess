@@ -62,15 +62,15 @@ public class StratKing implements PieceStrat{
     public boolean canMove(Board board, int[] posInit) {        
         boolean canMove = false;
         int[][] offsets = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}, {1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-        int[] aux;
+        int[] auxPos;
         int oponent = board.getPiece(posInit).getColor() == 0 ? 1 : 0;
         
         for (int i = 0; i < offsets.length && !canMove; i++) {
-            aux = posInit;
-            aux[0] += offsets[i][0];
-            aux[1] += offsets[i][1];
-            canMove = board.getPiece(aux).getColor() == -1 || board.getPiece(aux).getColor() == oponent;
-            canMove = canMove && !this.isInDanger(board, board.getPiece(posInit).getColor(), aux);
+            auxPos = posInit.clone();
+            auxPos[0] += offsets[i][0];
+            auxPos[1] += offsets[i][1];
+            canMove = board.getPiece(auxPos).getColor() == -1 || board.getPiece(auxPos).getColor() == oponent;
+            canMove = canMove && !this.isInDanger(board, board.getPiece(posInit).getColor(), auxPos);
         }
         return canMove;
     }
@@ -82,7 +82,7 @@ public class StratKing implements PieceStrat{
         int[] auxPos;
         
         for(int i = 0; i < offsets.length && !inDanger; i++){
-            auxPos = posInit;
+            auxPos = posInit.clone();
             do{
                 auxPos[0] += offsets[i][0];
                 auxPos[1] += offsets[i][1];
@@ -103,7 +103,7 @@ public class StratKing implements PieceStrat{
         int[] auxPos;
         
         for(int i = 0; i < offsets.length && !inDanger; i++){
-            auxPos = posInit;
+            auxPos = posInit.clone();
             do{
                 auxPos[0] += offsets[i][0];
                 auxPos[1] += offsets[i][1];
@@ -161,13 +161,20 @@ public class StratKing implements PieceStrat{
                    || isInDangerKnight(board, color, posInit)
                    || isInDangerStraight(board, color, posInit) 
                    || isInDangerDiagonal(board, color, posInit);
+        
         if(isInDangerPawn(board, color, posInit)){
             System.out.println("A pawn is checking me");
-        }else if(isInDangerKnight(board, color, posInit)){
+        }
+        
+        if(isInDangerKnight(board, color, posInit)){
             System.out.println("A knight is checking me");
-        }else if(isInDangerStraight(board, color, posInit)){
+        }
+        
+        if(isInDangerStraight(board, color, posInit)){
             System.out.println("A bishop is checking me");
-        }else if(isInDangerDiagonal(board, color, posInit)){
+        }
+        
+        if(isInDangerDiagonal(board, color, posInit)){
             System.out.println("A rook is checking me");
         }
         

@@ -44,6 +44,16 @@ public class UserController {
         return userServ.getAll();
     }
     
+    
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/users/ranking")
+    public List<User> getRanging(){
+        return userServ.getAllOrdered();
+    }
+    
     /**
      *
      * @param id

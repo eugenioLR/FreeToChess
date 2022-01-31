@@ -55,7 +55,7 @@ public class BoardMove implements GameCommandInterf{
 
     @Override
     public boolean verifyMove(User user) {
-        return this.game.wasInCheck();
+        return !this.game.wasInCheck();
     }
     
     

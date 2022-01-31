@@ -35,6 +35,7 @@ public class MoveInvoker {
         if(!getLastCommand().verifyMove(user)){
             this.undoMove();
             valid = false;
+            System.out.println("That left your king exposed");
         }
         return valid;
     }
