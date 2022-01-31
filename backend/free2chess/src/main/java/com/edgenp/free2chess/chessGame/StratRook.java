@@ -77,7 +77,7 @@ public class StratRook implements PieceStrat{
         int oponent = board.getPiece(initPos).getColor() == 0 ? 1 : 0;
         
         for (int i = 0; i < offsets.length && !canMove; i++) {
-            auxPos = initPos;
+            auxPos = initPos.clone();
             auxPos[0] += offsets[i][0];
             auxPos[1] += offsets[i][1];
             canMove = board.getPiece(auxPos).getColor() == -1 || board.getPiece(auxPos).getColor() == oponent;

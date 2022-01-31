@@ -20,15 +20,19 @@ public interface GameCommandInterf {
      * @return
      */
     public boolean canMove(User user);
-
+    
     /**
      * Realiza un movimiento en el tablero
      * @param user
      */
     public void performMove(User user);
+    
+    public boolean verifyMove(User user);
 
     /**
      * Deshace un movimiento en el tablero
      */
     public void undoMove();
+
+    
 }

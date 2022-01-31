@@ -210,9 +210,10 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
      * Verifica si el movimiento que se quiere realizar es validos
      * @param pos
      * @param target
+     * @param color
      * @return
      */
-    public boolean canMovePiece(int[] pos, int[] target){
+    public boolean canMovePiece(int[] pos, int[] target, int color){
         if(this.boardPieces[0][0] == null){
             this.boardPieces = Board.strBoardToPieces(this.board_str);
         }
@@ -272,7 +273,7 @@ public class Board implements Serializable, Cloneable, Comparable<Board> {
         return canMove;
     }
     
-    private boolean inCheck(int color){
+    public boolean inCheck(int color){
         boolean inCheck = false;
         
         Piece king = this.findKing(color);

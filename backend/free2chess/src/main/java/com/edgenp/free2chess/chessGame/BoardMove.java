@@ -53,6 +53,13 @@ public class BoardMove implements GameCommandInterf{
         System.out.println("previous next_player: " + game.getNext_player());
     }
 
+    @Override
+    public boolean verifyMove(User user) {
+        return this.game.wasInCheck();
+    }
+    
+    
+
     /**
      * Deshace un movimiento en el tablero
      */

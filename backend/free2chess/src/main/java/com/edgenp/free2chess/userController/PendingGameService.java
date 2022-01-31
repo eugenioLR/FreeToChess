@@ -6,7 +6,7 @@ package com.edgenp.free2chess.userController;
 
 import com.edgenp.free2chess.chessController.GameJPA;
 import com.edgenp.free2chess.user.*;
-import java.util.Optional;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +33,21 @@ public class PendingGameService {
             return optional.get();
         }
         return null;
+    }
+    
+    public List<PendingGame> getByUser(String name){
+        
+        Set<PendingGame> openGames = pendGameRepo.findByEmiter_name(name);
+        openGames.addAll(pendGameRepo.findByReceiver_name(name));
+        
+        Iterator<PendingGame> iter = openGames.iterator();
+        while(iter.hasNext()){
+            if(!iter.next().isAcepted()){
+                iter.remove();
+            }
+        }
+        
+        return new ArrayList<>(openGames);       
     }
     
     /**

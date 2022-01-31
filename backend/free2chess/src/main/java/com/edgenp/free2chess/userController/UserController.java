@@ -100,6 +100,17 @@ public class UserController {
     
     /**
      *
+     * @param id
+     * @return
+     */
+    @GetMapping("/users/{id}/games/openGames")
+    public List<PendingGame> getOpenChallenges(@PathVariable("id") String id){        
+        return pendGameServ.getByUser(id);        
+    }
+    
+    
+    /**
+     *
      * @param emiter_name
      * @param oponent
      * @return

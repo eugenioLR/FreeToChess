@@ -152,7 +152,7 @@ public class Game implements Serializable {
      * @return
      */
     public boolean canMovePiece(User user, int[] pos, int[] target){
-        boolean valid = this.getCurrentBoard().canMovePiece(pos, target);
+        boolean valid = this.getCurrentBoard().canMovePiece(pos, target, this.next_player);
         boolean white_turn = user.getName().equals(w_player.getName());
         boolean black_turn = user.getName().equals(b_player.getName());
         
@@ -163,14 +163,13 @@ public class Game implements Serializable {
         
         valid = valid && (white_turn && next_player == 0) || (black_turn && next_player == 1);
         
-        return valid;
+        return valid && !Arrays.equals(pos, target);
     }
     
     /**
      * Realiza un movimiento sobre el tablero
      * @param pos
      * @param target
-     * @return
      */
     public void movePiece(int[] pos, int[] target){
         Board current = this.getCurrentBoard();
@@ -197,6 +196,10 @@ public class Game implements Serializable {
         gameStates.add(next);
     }
     
+    public boolean wasInCheck(){
+        int prev = (this.next_player + 1)%2;
+        return this.getCurrentBoard().inCheck(prev);
+    }
     
     
 }

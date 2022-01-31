@@ -65,14 +65,14 @@ public class StratBishop implements PieceStrat{
     public boolean canMove(Board board, int[] initPos) {
         boolean canMove = false;
         int[][] offsets = {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
-        int[] aux;
+        int[] auxPos;
         int oponent = board.getPiece(initPos).getColor() == 0 ? 1 : 0;
         
         for (int i = 0; i < offsets.length && !canMove; i++) {
-            aux = initPos;
-            aux[0] += offsets[i][0];
-            aux[1] += offsets[i][1];
-            canMove = board.getPiece(aux).getColor() == -1 || board.getPiece(aux).getColor() == oponent;
+            auxPos = initPos.clone();
+            auxPos[0] += offsets[i][0];
+            auxPos[1] += offsets[i][1];
+            canMove = board.getPiece(auxPos).getColor() == -1 || board.getPiece(auxPos).getColor() == oponent;
         }
         return canMove;
     }

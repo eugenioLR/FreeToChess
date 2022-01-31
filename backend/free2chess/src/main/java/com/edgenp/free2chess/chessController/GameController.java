@@ -80,12 +80,11 @@ public class GameController {
         System.out.println("API move: " + move.getInit()[0] + ", " + move.getInit()[1] + " -> " + move.getLast()[0] + ", " + move.getLast()[1]);
         GameCommandInterf command = new BoardMove(game, move.getInit(), move.getLast());
         MoveInvoker moveInvoker = openGames.get(id);
-        System.out.println(openGames.keySet().toString());
-        
-        
         if(command.canMove(user)){
             moveInvoker.addMove(user, command);
-            
+        }
+        
+        if(moveInvoker.verifyLastMove(user)){
             System.out.println("Epic move bro");
             
             boardServ.create(game.getCurrentBoard());

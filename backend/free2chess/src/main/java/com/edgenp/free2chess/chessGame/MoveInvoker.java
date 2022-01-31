@@ -16,6 +16,10 @@ import java.util.*;
 public class MoveInvoker {
     private final List<GameCommandInterf> moveList = new ArrayList<>();
     
+    public GameCommandInterf getLastCommand(){
+        return moveList.get(moveList.size()-1);
+    }
+    
     /**
      * Añade un movimiento a la lista de comandos y lo ejecuta
      * @param user
@@ -26,6 +30,16 @@ public class MoveInvoker {
         moveList.add(command);
     }
     
+    public boolean verifyLastMove(User user) {
+        boolean valid = true;
+        if(!getLastCommand().verifyMove(user)){
+            this.undoMove();
+            valid = false;
+        }
+        return valid;
+    }
+
+    
     /**
      * 
      */
@@ -34,4 +48,5 @@ public class MoveInvoker {
         moveList.remove(moveList.size()-1);
     }
 
+    
 }

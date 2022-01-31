@@ -5,6 +5,7 @@
 package com.edgenp.free2chess.userController;
 
 import com.edgenp.free2chess.user.PendingGame;
+import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -12,5 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author eugeniolr
  */
 public interface PendingGameJPA extends JpaRepository<PendingGame, Integer> {
+    public Set<PendingGame> findByReceiver_name(String name);
+
+    public Set<PendingGame> findByEmiter_name(String name);
     
 }

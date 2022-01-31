@@ -31,6 +31,8 @@ public class StratQueen implements PieceStrat{
             do{
                 auxPos[0] += Math.signum(delta_y);
                 auxPos[1] += Math.signum(delta_x);
+                System.out.println(Arrays.toString(auxPos));
+                System.out.println(board.getPiece(auxPos).toString());
             }while(!Arrays.equals(auxPos, newPos) && board.getPiece(auxPos).getColor() == -1);
             
             valid = board.getPiece(newPos).getColor() != board.getPiece(initPos).getColor();
@@ -69,10 +71,13 @@ public class StratQueen implements PieceStrat{
         int oponent = board.getPiece(initPos).getColor() == 0 ? 1 : 0;
         
         for (int i = 0; i < offsets.length && !canMove; i++) {
-            auxPos = initPos;
+            auxPos = initPos.clone();
             auxPos[0] += offsets[i][0];
             auxPos[1] += offsets[i][1];
             canMove = board.getPiece(auxPos).getColor() == -1 || board.getPiece(auxPos).getColor() == oponent;
+            System.out.println(Arrays.toString(offsets[i]));
+            System.out.println(board.getPiece(auxPos).getColor());
+            System.out.println(board.getPiece(auxPos).getType());
         }
         return canMove;
     }
